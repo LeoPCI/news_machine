@@ -1,0 +1,15 @@
+* {
+	font-family: Arial;
+}
+
+.info {
+	display: inline-block;
+	float: left;
+	padding: 20px;
+	width: 260px;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+}
