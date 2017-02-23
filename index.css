@@ -1,12 +1,23 @@
 * {
 	font-family: Arial;
+	font-size: .96em;
+}
+
+h1 {
+	font-size: 1.9em;
+	text-align: center;
+	font-style: italic;
+}
+
+h2 {
+	font-size: 1.2em;
 }
 
 .info {
 	display: inline-block;
 	float: left;
 	padding: 20px;
-	width: 260px;
+	width: 200px;
 }
 
 a {
