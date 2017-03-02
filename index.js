@@ -351,13 +351,15 @@ $.ajax({
 
 		for (var i = 1; i < news.length; i++) {
 			var date = news[i].split(" ")[0]
+			var full_date = news[i].split(":")[0]
+			var month_word = news[i].split(" ")[1]
 			var headline = news[i].split("</a>")[0].split(">")
 				headline = headline[headline.length-1]
 			var url = "https://en.wikinews.org" + news[i].split('href="')[1].split('"')[0]
 
-			$('#disasters').append("<div class='news_item'>" + headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
+			$('#disasters').append("<div class='news_item'><strong>" + month_word + " " + date +"</strong><br>"+ headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
 
-			if (date==day) { $('#daily_snapshot').append(headline + " " +date+ "<a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
+			if (date==day&&month_word==month) { $('#daily_snapshot').append(headline + " <a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
 		};
     }
 });
