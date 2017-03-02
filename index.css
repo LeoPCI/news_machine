@@ -10,17 +10,70 @@ h1 {
 }
 
 h2 {
-	font-size: 1.2em;
+	font-size: 1em;
+	margin: 10px;
 }
 
 .info {
+	float: left;
+	width: 100%;
+	height: 50%;
+}
+
+.inner {
+	display: none;
+	width: 100%;
+}
+
+.news_item {
+	padding: 4px;
+	margin: 1px;
 	display: inline-block;
 	float: left;
-	padding: 20px;
-	width: 200px;
+	width: 24%;
+	height: 70px;
 }
 
 a {
 	text-decoration: none;
 	font-weight: bold;
+}
+
+#daily_snapshot {
+	text-align: center;
+}
+
+#long-form {
+	width: 40%;
+	padding-left: 30%;
+	padding-bottom: 10px;
+}
+
+#buttons {
+	margin-top: 40px;
+	text-align: center;
+}
+
+button {
+	background-color: white;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 20px;
+	height: 50px;
+	width: 200px;
+	border: none;
+}
+
+button:focus {
+	outline-color: white;
+	border-bottom: 1px solid black;
+}
+
+
+#ongoing {
+	padding-left: 100px;
+}
+
+em {
+	text-decoration: underline;
 }

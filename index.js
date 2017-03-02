@@ -1,10 +1,26 @@
 $(document).ready(function() {
 
-//define date
+//define dates
+	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var yesterday = new Date();
+	yesterday.setDate(yesterday.getDate() - 1);
+	yesterday_month = monthNames[yesterday.getMonth()]
+	yesterday = yesterday.getDate()
+
+	var third_day = new Date();
+	third_day.setDate(third_day.getDate() - 2);
+	third_day_month = monthNames[third_day.getMonth()]
+	third_day = third_day.getDate()
+
+	var fourth_day = new Date();
+	fourth_day.setDate(fourth_day.getDate() - 3);
+	fourth_day_month = monthNames[fourth_day.getMonth()]
+	fourth_day = fourth_day.getDate()
+
 	today = new Date()
 	year = today.getFullYear();
 	day = today.getDate();
-	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	month = monthNames[today.getMonth()]
 
 	last_month = -1
@@ -17,15 +33,19 @@ $(document).ready(function() {
 	};
 
 //add date
-	$("h1").append(month + " " + day + ", " + year)
+	$("h1").append("Today is " + month + " " + day + ", " + year)
 
 //define source urls
 	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests&contentmodel=wikitext&prop=wikitext&format=json"
 	ongoing_armed_conflicts="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_armed_conflicts&contentmodel=wikitext&prop=wikitext&format=json"
 	terrorist_attacks="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_terrorist_incidents_in_"+month+"_"+year+"&contentmodel=wikitext&prop=wikitext&format=json"
 	terrorist_attacks_2="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_terrorist_incidents_in_"+last_month+"_"+last_month_year+"&contentmodel=wikitext&prop=wikitext&format=json"
-	heads_of_state="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_current_state_leaders_by_date_of_assumption_of_office&contentmodel=wikitext&prop=wikitext&section=1&format=json"
-	notable_deaths="https://en.wikipedia.org/w/api.php?action=parse&page=Deaths_in_"+year+"&contentmodel=wikitext&prop=wikitext&section=1&format=json"
+	heads_of_state="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_current_state_leaders_by_date_of_assumption_of_office&contentmodel=wikitext&prop=wikitext&format=json"
+	notable_deaths="https://en.wikipedia.org/w/api.php?action=parse&page=Deaths_in_"+year+"&contentmodel=wikitext&prop=wikitext&format=json"
+	wiki_news="https://en.wikipedia.org/w/api.php?action=parse&page=Portal%3aCurrent_events/"+year+"_"+month+"_"+day+"&contentmodel=wikitext&prop=wikitext&format=json"
+	disasters_url="https://en.wikinews.org/w/api.php?action=parse&page=Portal:Disasters_and_accidents&format=json"
+	google_news_1="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&q="
+	google_news_2="&safe=off&hl=en&gl=us&authuser=0&tbm=nws&tbs=sbd:1&*"
 
 //get ongoing protests
 $.ajax({
@@ -52,8 +72,8 @@ $.ajax({
 	  	  	if (isNaN(parseInt(died))) {died=thing[4].split('{{')[0]};
 		  var url = "https://en.wikipedia.org/wiki/" + name.replace(/ /g, "_")
 
+		  $("#ongoing_protests").append("<div class='news_item'> <a target='_blank' href=" + url + ">" + title + "</a> <br> SINCE: " + date + " <br>DEAD: " + died + "<br><a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+") + google_news_2 + "> news &#10138; </a> </div>" );
 
-		  $("#ongoing_protests").append("<a target='_blank' href=" + url + ">" + title + "</a><br>SINCE: " + date + " <br>DEAD: " + died + "<br><br>" );
 	  	};
 	  };
 	  getinfo(listvar)
@@ -74,13 +94,16 @@ $.ajax({
 	  listvar = listvar[1].split('align=center');
 
 	  var getinfo = function(line){
+
 	  	for (var i = 1; i < line.length; i++) {
 	  	  var thing=line[i].split("|");
 
 	  	  if (thing[2]==" ") { thing[2]=thing[3] };
 
-	  	  thing[2]=thing[2].replace('[[','').replace(']]','').split("*")
-	  	  thing[2]=thing[2][0]
+	  	  if (thing[2]=="") {
+		  	  thing[2]=thing[2].replace('[[','').replace(']]','').split("*")
+		  	  thing[2]=thing[2][0]
+	  	  };
 
 	  	  death_toll=line[i].split("ntsh")
 	  	  death_toll=death_toll[1].split("}}")
@@ -88,14 +111,14 @@ $.ajax({
 	  	  death_toll=death_toll[0].split("ref")
 	  	  death_toll=death_toll[0].slice(1).replace('[[','').replace(']]','').replace('|','').replace(/[^0-9, \-, +, \u2013|\u2014]+/g, '')
 
-	  	  var title = thing[2].replace(/[0-9]/g, '').replace(/\(([^()]+)\)/g, "").replace(/[^a-zA-Z\s\-\u2013|\u2014]/g, '')
-	  	  var name = thing[2]
+	  	  var title = thing[2].replace(/[0-9]/g, '').replace(/\(([^()]+)\)/g, "").replace(/[^a-zA-Z\s\-\u2013|\u2014]/g, '').split("--")[0]
+	  	  var name = thing[2].replace("]]", "").replace("[[", "")
 	  	  var since = thing[1]
-	  	  var died = death_toll
-	  	  var url = "https://en.wikipedia.org/wiki/" + name.slice(1).replace(/ /g, "_")
+	  	  var died = death_toll.split("--")[0]
+	  	  var url = "https://en.wikipedia.org/wiki/" + name.slice(1).replace(/ /g, "_").split("_<!")[0]
 
 
-		  $("#ongoing_wars").append( "<a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br><br>" );
+		  $("#ongoing_wars").append( "<div class='news_item'> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br><a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news &#10138; </a> </div>" );
 
 	  	};
 	  };
@@ -103,15 +126,17 @@ $.ajax({
     }
 });
 
-//add last month's attacks if within past week
+//get last month's terrorist attacks if within past week
 if (day < 7) {
 $.ajax({
-    url: terrorist_attacks,
+    url: terrorist_attacks_2,
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
 
-		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[1].split("|-")
+		attacks = data["parse"]["wikitext"]["*"].split('== '+window.last_month+' ==')[1].split("|-")
+
+		var last_date = attacks[attacks.length-1].split("|")[1]
 
 		for (var i = 2; i < attacks.length; i++) {
 			
@@ -127,7 +152,7 @@ $.ajax({
 			var context = attacks[i].split("[[")
 			var perpetrator = context[context.length-2].split("]]")[0].split("|")
 			    perpetrator = perpetrator[perpetrator.length-1]
-			    if (perpetrator=="01") {perpetrator = "unknown"};
+			    if (perpetrator=="01") {perpetrator = "unknown perpetrator"};
 			var conflict = context[context.length-1].split("|")
 			    conflict = conflict[conflict.length-1].slice(0,-3)
 
@@ -137,13 +162,13 @@ $.ajax({
 			var dead = attack[4]
 			var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]
 
-			var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
+			// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 
 			var now = new Date().toLocaleString().split("/")[1]
 			var month = new Date().getMonth();
 
-			if (now-date < 8) {
-		    	$("#terrorist_attacks").prepend("<a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.last_month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "<br><br>" );
+			if (date > Number(last_date)-7+window.day) {
+		    	$("#terrorist_attacks_2").prepend("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.last_month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 		    };
 		};
     }
@@ -173,7 +198,7 @@ $.ajax({
 			var context = attacks[i].split("[[")
 			var perpetrator = context[context.length-2].split("]]")[0].split("|")
 			    perpetrator = perpetrator[perpetrator.length-1]
-			    if (perpetrator=="01") {perpetrator = "unknown"};
+			    if (perpetrator=="01") {perpetrator = "unknown perpetrator"};
 			var conflict = context[context.length-1].split("|")
 			    conflict = conflict[conflict.length-1].slice(0,-3)
 
@@ -183,18 +208,20 @@ $.ajax({
 			var dead = attack[4]
 			var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]
 
-			var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
+			// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 
 			var now = new Date().toLocaleString().split("/")[1]
 			var month = new Date().getMonth();
 
 			if (now-date < 8) {
-		    	$("#terrorist_attacks").prepend("<a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "<br><br>" );
+		    	$("#terrorist_attacks").prepend("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
+
+		    	//add today to daily snapshot
+				if (date==window.day) {$("#short-form").append(perpetrator + " <a target='_blank' href=" + source + ">" + type + "</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
 		    };
 		};
     }
 });
-
 
 //get recent heads of state
 $.ajax({
@@ -205,7 +232,7 @@ $.ajax({
 
 		var heads = data["parse"]["wikitext"]["*"].split("=== "+window.year+" ===")
 		heads = heads[heads.length-1].split('|-')
-		
+
 		for (var i = 2; i < heads.length; i++) {
 
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
@@ -213,11 +240,16 @@ $.ajax({
 			var month = section[1].replace(/[0-9 ]/g, "").slice(0,-1)
 			var who = section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")
 			var what = section[5].replace(/[^a-zA-Z \-]/g, "")
+			var country = section[4].slice(0,-3).replace("}}", "")
+			if (section.length>6) {var title = section[6].split("]]")[0]};
 			var url = "https://en.wikipedia.org/wiki/" + who.replace(/ /g, "_")
 
-
 			if ((month==window.month)||(month==window.last_month&&date>=day)) {
-		    	$("#new_heads").prepend( "<a target=_blank href=" + url + ">" + who + "</a><br>" + what + "<br>SINCE: " + month + " " + date + "<br><br>" );
+
+		    	$("#new_heads").prepend( "<div class='news_item'> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" );
+
+		    	//add today to daily snapshot
+				if (date==window.day) {$("#short-form").prepend("<a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "<br><br>")};
 		    };
 		};
     }
@@ -230,46 +262,142 @@ $.ajax({
     dataType: "jsonp",
     success: function( data ) {
 
-		var days = data["parse"]["wikitext"]["*"].split("===\n")
-		var today = days[1].split("*")
-		if (days.length>1) {var yesterday = days[2].split("*")};		
-		if (days.length>2) {var day3 = days[3].split("*")};		
-		
-		// if (days.length>4) {var day4 = days[4].split("*")};		
-		// if (days.length>5) {var day5 = days[5].split("*")};		
-		// if (days.length>6) {var day6 = days[6].split("*")};		
-		// if (days.length>7) {var day7 = days[7].split("*")};		
+		var days = data["parse"]["wikitext"]["*"]
 
-		var list_deaths = function(day, location) {
+//define today's deaths
+		var deaths_today = days.split("==="+String(day)+"===")[1].split("==="+String(yesterday)+"===")[0].split("*")
+//define yesterday's deaths
+		var deaths_yesterday = days.split("=="+String(yesterday_month)+"==")[1].split("==="+String(yesterday)+"===")[1].split("==="+String(third_day)+"===")[0].split("*")
+//define third day's deaths
+		var deaths_third = days.split("=="+String(third_day_month)+"==")[1].split("==="+String(third_day)+"===")[1].split("==="+String(fourth_day)+"===")[0].split("*")
+
+		$("#list-form").append("<em>Notable Deaths</em><br>")
+
+		var list_deaths = function(day, location, today=false) {
 			for (var i = 1; i < day.length; i++) {
-				var notability = day[i].split(".")[0].split("]]")[1].slice(6)
 
+				var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "")
 				var death = day[i].split(">[")[1].split("]</ref>")[0]
-				var person = day[i].split("[[")[1].split("]]")[0].split("|")[0]
+				var person = day[i].split(",")[0].replace("{{ill|","").split("]]")[0].split("|")[0].replace(/\(([^)]+)\)/, "").replace(/\[/g, "")
 				var url = death.split(" ")[0]
 					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 				var explanation = death.replace(url, "").replace("/ ", "").split("]")[0]
 
-				$(location).append("<a target=_blank href=" + url + ">" + person + "</a>" + "<br>" + explanation + "<br><br>")
+				$(location).append("<div class='news_item'> <a target=_blank href=" + url + ">" + person + "</a> <br>" + notability + '<br>~' + explanation + '</div>')
 
+			    //add today to daily snapshot
+			    if (today) {
+					$("#list-form").append(notability + " <a target=_blank href=" + url + ">" + person + "</a><br>");
+				};
 			};
+
 		};
 
 		$("#notable_deaths").append("<strong>TODAY</strong><br>")
-		list_deaths(today, "#notable_deaths")
+		list_deaths(deaths_today, "#notable_deaths", true)
 		$("#notable_deaths").append("<strong>YESTERDAY</strong><br>")
-		list_deaths(yesterday, "#notable_deaths")
-		// $("#notable_deaths").append("____<br>")
-		// list_deaths(day3, "#notable_deaths")
-		// $("#notable_deaths").append("____<br>")
-		// list_deaths(day4, "#notable_deaths")
-		// $("#notable_deaths").append("____<br>")
-		// list_deaths(day5, "#notable_deaths")
-		// $("#notable_deaths").append("____<br>")
-		// list_deaths(day6, "#notable_deaths")
-		// $("#notable_deaths").append("____<br>")
-		// list_deaths(day7, "#notable_deaths")
+		list_deaths(deaths_yesterday, "#notable_deaths")
+		$("#notable_deaths").append("<strong>"+ third_day_month +" "+ third_day +"</strong><br>")
+		list_deaths(deaths_third, "#notable_deaths")
+
     }
 });
+
+//get recent elections and politics news
+$.ajax({
+    url: wiki_news,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+		var content = data["parse"]["wikitext"]["*"]
+
+			elections = content.split("Politics and elections\n")[1].split("\n\n")[0].split("All news items above this line")[0]
+			items = elections.split(")]")
+
+			for (var i = 0; i < items.length-1; i++) {
+				url="http" + items[i].split("[http")[1].split(" ")[0]
+					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+
+				description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "")
+				$("#long-form").append(description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+			};
+
+			// $("#long-form").append("<em>International Agreements and Actions</em><br>")
+			// for (var i = 0; i < items.length-2; i++) {
+			// 	item = items[i].split("[http")[0].split("**")[1].replace(/\|([^)]+?)\]\]/, "").replace(/\(([^)]+)\)/, "").replace(/\[\[/g, "").replace(/\]\]/g, "").replace("|", " ")
+			// 	$("#long-form").append(item+"<br><br>")
+			// };
+
+			// for (var i = 0; i < items.length-2; i++) {
+			// 	url=items[i].split("[http")[1].split(" ")[0]
+			// 		if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+			// 	item=items[i].split("[[")[1].split("]]")[0]
+			// 	$("#long-form").append("An <a target='_blank' href=http"+url+">international agreement</a> was made regarding "+item+"<br><br>")
+			// };
+    }
+});
+
+//get recent disasters news
+$.ajax({
+    url: disasters_url,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+		var content = data["parse"]["text"]["*"]
+
+		var news = content.split("Latest news")[1].split('<span class="mw-headline" id="Africa">')[0].split("<ul>")[1].split("</ul>")[0].split("<li>")
+
+		for (var i = 1; i < news.length; i++) {
+			var date = news[i].split(" ")[0]
+			var headline = news[i].split("</a>")[0].split(">")
+				headline = headline[headline.length-1]
+			var url = "https://en.wikinews.org" + news[i].split('href="')[1].split('"')[0]
+
+			$('#disasters').append("<div class='news_item'>" + headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
+
+			if (date==day) { $('#daily_snapshot').append(headline + " " +date+ "<a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
+		};
+    }
+});
+
+//show and hide info
+
+var showandhide = function(div, other="#"){
+if($(div).css('display') == 'none') {
+		$(".info .inner").css({"display":"none"})
+		$(div).css({"display":"inline-block"})
+		$(other).css({"display":"inline-block"})
+	}
+else {
+		$(".info .inner").css({"display":"none"})
+	};
+};
+
+$('#button_one').click(function(){
+	showandhide("#ongoing_protests")
+});
+
+$('#button_two').click(function(){
+	showandhide("#ongoing_wars")
+});
+
+$('#button_three').click(function(){
+	showandhide("#terrorist_attacks", "#terrorist_attacks_2")
+});
+
+$('#button_four').click(function(){
+	showandhide("#new_heads")
+});
+
+$('#button_five').click(function(){
+	showandhide("#notable_deaths")
+});
+
+$('#button_six').click(function(){
+	showandhide("#disasters")
+});
+
 
 });
