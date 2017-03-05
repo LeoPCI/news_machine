@@ -34,7 +34,7 @@ $(document).ready(function() {
 	};
 
 //add date
-	$("h1").append("Some important things that happend today (" + month + " " + day + ", " + year + ")")
+	$("h1").append("Some important things that happened today (" + month + " " + day + ", " + year + ")")
 
 //define source urls
 	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests&contentmodel=wikitext&prop=wikitext&format=json"
@@ -220,7 +220,7 @@ $.ajax({
 		    	$("#terrorist_attacks").prepend("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
 		    	//add today to daily snapshot
-				if (date==window.day) {$("#short-form").append("<strong>Terrorist attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
+				if (date==window.day) {$("#daily_snapshot").append("<strong>Terrorist attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
 		    };
 		};
     }
@@ -252,7 +252,7 @@ $.ajax({
 		    	$("#new_heads").prepend( "<div class='news_item'> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" );
 
 		    	//add today to daily snapshot
-				if (date==window.day) {$("#short-form").prepend("<a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "<br><br>")};
+				if (date==window.day) {$("#daily_snapshot").prepend("<a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "<br><br>")};
 		    };
 		};
     }
@@ -274,7 +274,7 @@ $.ajax({
 //define third day's deaths
 		var deaths_third = days.split("=="+String(third_day_month)+"==")[1].split("==="+String(third_day)+"===")[1].split("==="+String(fourth_day)+"===")[0].split("*")
 
-		$("#list-form").append("<em>Today's Notable Deaths</em><br>")
+		// $("#daily_snapshot").append("<em>Today's Notable Deaths</em><br>")
 
 		var list_deaths = function(day, location, today=false) {
 			for (var i = 1; i < day.length; i++) {
@@ -290,7 +290,7 @@ $.ajax({
 
 			    //add today to daily snapshot
 			    if (today) {
-					$("#list-form").append(notability + " <a target=_blank href=" + url + ">" + person + "</a><br>");
+					$("#daily_snapshot").append(notability + "<strong>Notable Death: </strong> <a target=_blank href=" + url + ">" + person + " &#10138</a><br>");
 				};
 			};
 
@@ -333,7 +333,7 @@ $.ajax({
 				};
 
 				if (description != " " && description != "") {
-					$("#long-form").append("<strong>Politics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+					$("#daily_snapshot").append("<strong>Politics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
 				};
 			};
     }
@@ -366,7 +366,7 @@ $.ajax({
 				};
 
 				if (description != " " && description != "") {
-					$("#long-form").append("<strong>Disaster: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+					$("#daily_snapshot").append("<strong>Disaster: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
 				};
 			};
     }
@@ -401,7 +401,7 @@ $.ajax({
 
 
 				if (description != " " && description != "" && description != "  ") {
-					$("#long-form").append("<strong>Conflict: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+					$("#daily_snapshot").append("<strong>Conflict: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
 				};
 			};
     }
@@ -435,7 +435,7 @@ $.ajax({
 				};
 
 				if (description != " " && description != "") {
-					$("#long-form").append("<strong>Geopolitics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+					$("#daily_snapshot").append("<strong>Geopolitics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
 				};
 			};
     }
@@ -465,7 +465,7 @@ $.ajax({
 // 				};
 
 // 				if (description != " ") {
-// 					$("#long-form").append("<strong>???: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+// 					$("#daily_snapshot").append("<strong>???: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
 // 				};
 
 // 			};
@@ -590,6 +590,10 @@ else {
 		$(".info .inner").css({"display":"none"})
 	};
 };
+
+$('#button_zero').click(function(){
+	showandhide("#daily_snapshot")
+});
 
 $('#button_one').click(function(){
 	showandhide("#ongoing_protests")
