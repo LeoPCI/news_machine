@@ -1,6 +1,8 @@
 * {
 	font-family: Arial;
 	font-size: .96em;
+/*	color: white;
+	background-color: black;*/
 }
 
 h1 {
@@ -11,7 +13,8 @@ h1 {
 
 h2 {
 	font-size: 1em;
-	margin: 10px;
+	padding: 10px;
+	margin: 0px;
 }
 
 .info {
@@ -61,7 +64,7 @@ button {
 	margin-bottom: 20px;
 	height: 50px;
 	width: 200px;
-	border: none;
+	border: 0px;
 }
 
 button:focus {

@@ -4,6 +4,7 @@ $(document).ready(function() {
 	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 	var yesterday = new Date();
+	yesterday_year = yesterday.getFullYear();
 	yesterday.setDate(yesterday.getDate() - 1);
 	yesterday_month = monthNames[yesterday.getMonth()]
 	yesterday = yesterday.getDate()
@@ -33,7 +34,7 @@ $(document).ready(function() {
 	};
 
 //add date
-	$("h1").append("Today is " + month + " " + day + ", " + year)
+	$("h1").append("Some important things that happend today (" + month + " " + day + ", " + year + ")")
 
 //define source urls
 	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests&contentmodel=wikitext&prop=wikitext&format=json"
@@ -43,7 +44,9 @@ $(document).ready(function() {
 	heads_of_state="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_current_state_leaders_by_date_of_assumption_of_office&contentmodel=wikitext&prop=wikitext&format=json"
 	notable_deaths="https://en.wikipedia.org/w/api.php?action=parse&page=Deaths_in_"+year+"&contentmodel=wikitext&prop=wikitext&format=json"
 	wiki_news="https://en.wikipedia.org/w/api.php?action=parse&page=Portal%3aCurrent_events/"+year+"_"+month+"_"+day+"&contentmodel=wikitext&prop=wikitext&format=json"
+	wiki_news_2="https://en.wikipedia.org/w/api.php?action=parse&page=Portal%3aCurrent_events/"+yesterday_year+"_"+yesterday_month+"_"+yesterday+"&contentmodel=wikitext&prop=wikitext&format=json"
 	disasters_url="https://en.wikinews.org/w/api.php?action=parse&page=Portal:Disasters_and_accidents&format=json"
+	oil_spills="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_oil_spills&format=json"
 	google_news_1="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&q="
 	google_news_2="&safe=off&hl=en&gl=us&authuser=0&tbm=nws&tbs=sbd:1&*"
 
@@ -217,7 +220,7 @@ $.ajax({
 		    	$("#terrorist_attacks").prepend("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
 		    	//add today to daily snapshot
-				if (date==window.day) {$("#short-form").append(perpetrator + " <a target='_blank' href=" + source + ">" + type + "</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
+				if (date==window.day) {$("#short-form").append("<strong>Terrorist attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
 		    };
 		};
     }
@@ -271,7 +274,7 @@ $.ajax({
 //define third day's deaths
 		var deaths_third = days.split("=="+String(third_day_month)+"==")[1].split("==="+String(third_day)+"===")[1].split("==="+String(fourth_day)+"===")[0].split("*")
 
-		$("#list-form").append("<em>Notable Deaths</em><br>")
+		$("#list-form").append("<em>Today's Notable Deaths</em><br>")
 
 		var list_deaths = function(day, location, today=false) {
 			for (var i = 1; i < day.length; i++) {
@@ -319,48 +322,259 @@ $.ajax({
 				url="http" + items[i].split("[http")[1].split(" ")[0]
 					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 
-				description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "")
-				$("#long-form").append(description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+
+				if(items[i].split("**")[1]!=null){
+					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if(items[i].split("***")[1]!=null){
+					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if (description != " " && description != "") {
+					$("#long-form").append("<strong>Politics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+				};
 			};
-
-			// $("#long-form").append("<em>International Agreements and Actions</em><br>")
-			// for (var i = 0; i < items.length-2; i++) {
-			// 	item = items[i].split("[http")[0].split("**")[1].replace(/\|([^)]+?)\]\]/, "").replace(/\(([^)]+)\)/, "").replace(/\[\[/g, "").replace(/\]\]/g, "").replace("|", " ")
-			// 	$("#long-form").append(item+"<br><br>")
-			// };
-
-			// for (var i = 0; i < items.length-2; i++) {
-			// 	url=items[i].split("[http")[1].split(" ")[0]
-			// 		if (url.slice(-1)=="/") {url = url.slice(0, -1)};
-			// 	item=items[i].split("[[")[1].split("]]")[0]
-			// 	$("#long-form").append("An <a target='_blank' href=http"+url+">international agreement</a> was made regarding "+item+"<br><br>")
-			// };
     }
 });
 
-//get recent disasters news
+//get recent accidents and disasters
 $.ajax({
-    url: disasters_url,
+    url: wiki_news,
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
 
-		var content = data["parse"]["text"]["*"]
+		var content = data["parse"]["wikitext"]["*"]
 
-		var news = content.split("Latest news")[1].split('<span class="mw-headline" id="Africa">')[0].split("<ul>")[1].split("</ul>")[0].split("<li>")
+			disasters = content.split("Disasters and accidents\n")[1].split("\n\n")[0].split("All news items above this line")[0]
+			items = disasters.split(")]")
 
-		for (var i = 1; i < news.length; i++) {
-			var date = news[i].split(" ")[0]
-			var full_date = news[i].split(":")[0]
-			var month_word = news[i].split(" ")[1]
-			var headline = news[i].split("</a>")[0].split(">")
-				headline = headline[headline.length-1]
-			var url = "https://en.wikinews.org" + news[i].split('href="')[1].split('"')[0]
+			for (var i = 0; i < items.length-1; i++) {
+				url="http" + items[i].split("[http")[1].split(" ")[0]
+					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 
-			$('#disasters').append("<div class='news_item'><strong>" + month_word + " " + date +"</strong><br>"+ headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
+				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
 
-			if (date==day&&month_word==month) { $('#daily_snapshot').append(headline + " <a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
-		};
+				if(items[i].split("**")[1]!=null){
+					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if(items[i].split("***")[1]!=null){
+					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if (description != " " && description != "") {
+					$("#long-form").append("<strong>Disaster: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+				};
+			};
+    }
+});
+
+//get recent Armed conflicts and attacks
+$.ajax({
+    url: wiki_news,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+		var content = data["parse"]["wikitext"]["*"]
+
+			disasters = content.split("Armed conflicts and attacks\n")[1].split("\n\n")[0].split("All news items above this line")[0]
+			items = disasters.replace(/\]\]/g, "").split(")]")
+
+			for (var i = 0; i < items.length-1; i++) {
+
+				url="http" + items[i].split("[http")[1].split(" ")[0]
+					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+
+				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+
+				if(items[i].split("**")[1]!=null){
+					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if(items[i].split("***")[1]!=null){
+					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+
+				if (description != " " && description != "" && description != "  ") {
+					$("#long-form").append("<strong>Conflict: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+				};
+			};
+    }
+});
+
+//get recent International relations events
+$.ajax({
+    url: wiki_news,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+		var content = data["parse"]["wikitext"]["*"]
+
+			disasters = content.split("International relations\n")[1].split("\n\n")[0].split("All news items above this line")[0]
+			items = disasters.replace(/\]\]/g, "").split(")]")
+
+			for (var i = 0; i < items.length-1; i++) {
+
+				url="http" + items[i].split("[http")[1].split(" ")[0]
+					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+
+				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+
+				if(items[i].split("**")[1]!=null){
+					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if(items[i].split("***")[1]!=null){
+					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+				};
+
+				if (description != " " && description != "") {
+					$("#long-form").append("<strong>Geopolitics: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+				};
+			};
+    }
+});
+
+//get recent Law and Crime events
+// $.ajax({
+//     url: wiki_news,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
+
+// 		var content = data["parse"]["wikitext"]["*"]
+
+// 			disasters = content.split("Law and crime\n")[1].split("\n\n")[0].split("All news items above this line")[0]
+// 			items = disasters.replace(/\]\]/g, "").split(")]")
+
+// 			for (var i = 0; i < items.length-1; i++) {
+
+// 				url="http" + items[i].split("[http")[1].split(" ")[0]
+// 					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+
+// 				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "")
+
+// 				if(items[i].split("**")[1]!=null){
+// 					var description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "")
+// 				};
+
+// 				if (description != " ") {
+// 					$("#long-form").append("<strong>???: </strong>" + description+"<a target='_blank' href="+url+">Story &#10138;</a><br><br>")
+// 				};
+
+// 			};
+//     }
+// });
+
+//get recent disasters news
+// $.ajax({
+//     url: disasters_url,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
+
+// 		var content = data["parse"]["text"]["*"]
+
+// 		var news = content.split("Latest news")[1].split('<span class="mw-headline" id="Africa">')[0].split("<ul>")[1].split("</ul>")[0].split("<li>")
+
+// 		for (var i = 1; i < news.length; i++) {
+// 			var date = news[i].split(" ")[0]
+// 			var full_date = news[i].split(":")[0]
+// 			var month_word = news[i].split(" ")[1]
+// 			var headline = news[i].split("</a>")[0].split(">")
+// 				headline = headline[headline.length-1]
+// 			var url = "https://en.wikinews.org" + news[i].split('href="')[1].split('"')[0]
+
+// 			$('#disasters').append("<div class='news_item'><strong>" + month_word + " " + date +"</strong><br>"+ headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
+
+// 			if (date==day&&month_word==month) { $('#daily_snapshot').append(headline + " <a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
+// 		};
+//     }
+// });
+
+//get recent oil spills
+// $.ajax({
+//     url: oil_spills,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
+// 		var content = data["parse"]["text"]["*"].split('<tr>\n<td align="left">')
+
+// 		for (var i = 1; i < content.length; i++) {
+
+// 			item = content[i].split('<td align="left">')[0].replace("</td>", "")//.replace('<span class="nowrap">', "")
+
+// 			$('#disasters').append("<br>" + item + "<br>")
+
+			// var date = news[i].split(" ")[0]
+			// var full_date = news[i].split(":")[0]
+			// var month_word = news[i].split(" ")[1]
+			// var headline = news[i].split("</a>")[0].split(">")
+			// 	headline = headline[headline.length-1]
+			// var url = "https://en.wikinews.org" + news[i].split('href="')[1].split('"')[0]
+
+			// $('#disasters').append("<div class='news_item'><strong>" + month_word + " " + date +"</strong><br>"+ headline + "<a target=_blank href="+ url + "> <br> Story &#10138 </a> </div>")
+
+			// if (date==day&&month_word==month) { $('#daily_snapshot').append(headline + " <a target=_blank href="+ url + "> Story &#10138 </a> <br>") };
+// 		};
+//     }
+// });
+
+
+//get recent REAL disasters news
+$.ajax({
+    url: "https://api.sigimera.org/v1/crises?auth_token=G1g5PTC4P4hstvYf3ZRz",
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+    	for (var i = 0; i < data.length; i++) {
+    		var content = data[i]
+    	
+	    	var severity = content["crisis_severity"]
+	    	var description = content["dc_description"]
+	    	var date = description.split(",")[0]
+	    	var nowdate = ""
+	    	if (date.split(" ")[0]=="From") {
+	    		nowdate = date.split(" ")[3].split("/")[0]
+	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+	    	}
+	    	else {
+	    		nowdate = date.split(" ")[1].split("/")[1]
+	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
+	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+	    	};
+	    	var title = content["dc_title"]
+	    	var what = content["dc_subject"][0]
+	    	var url = content["rdfs_seeAlso"]
+	    	var effected = content["crisis_population"]
+	    	var country = content["gn_parentCountry"]
+	    	if (country=="") {country="unspecified country"};
+	    	$('#disasters').append("<div class='news_item'> <strong>" + date + "</strong><br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+
+	    	if (nowdate==window.day) {$('#daily_snapshot').prepend("<strong>" + what + " in " + country + "</strong>: " + effected + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br><br>")};
+
+    	};
+    }
+});
+
+
+//get conversion rates
+$.ajax({
+    url: "http://api.fixer.io/2000-01-03",
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+
+    	// var content = data["rates"]["AUD"]
+    	// alert(content)
+ 
     }
 });
 
