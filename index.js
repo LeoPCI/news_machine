@@ -45,6 +45,7 @@ $(document).ready(function() {
 	notable_deaths="https://en.wikipedia.org/w/api.php?action=parse&page=Deaths_in_"+year+"&contentmodel=wikitext&prop=wikitext&format=json"
 	wiki_news="https://en.wikipedia.org/w/api.php?action=parse&page=Portal%3aCurrent_events/"+year+"_"+month+"_"+day+"&contentmodel=wikitext&prop=wikitext&format=json"
 	wiki_news_2="https://en.wikipedia.org/w/api.php?action=parse&page=Portal%3aCurrent_events/"+yesterday_year+"_"+yesterday_month+"_"+yesterday+"&contentmodel=wikitext&prop=wikitext&format=json"
+	natural_disasters="https://api.sigimera.org/v1/crises?auth_token=zUbyCGBVs3Mra8J8TjtS" //G1g5PTC4P4hstvYf3ZRz
 	disasters_url="https://en.wikinews.org/w/api.php?action=parse&page=Portal:Disasters_and_accidents&format=json"
 	oil_spills="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_oil_spills&format=json"
 	google_news_1="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&q="
@@ -529,7 +530,7 @@ $.ajax({
 
 //get recent REAL disasters news
 $.ajax({
-    url: "https://api.sigimera.org/v1/crises?auth_token=G1g5PTC4P4hstvYf3ZRz",
+    url: natural_disasters,
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
@@ -552,13 +553,25 @@ $.ajax({
 	    	};
 	    	var title = content["dc_title"]
 	    	var what = content["dc_subject"][0]
+	    		what = what[0].toUpperCase() + what.slice(1)
 	    	var url = content["rdfs_seeAlso"]
 	    	var effected = content["crisis_population"]
-	    	var country = content["gn_parentCountry"]
-	    	if (country=="") {country="unspecified country"};
-	    	$('#disasters').append("<div class='news_item'> <strong>" + date + "</strong><br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
-	    	if (nowdate==window.day) {$('#daily_snapshot').prepend("<strong>" + what + " in " + country + "</strong>: " + effected + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br><br>")};
+	    	var country = content["gn_parentCountry"][0]
+	    	if (country=="" || country==null) {country="unspecified country"};
+
+	    		if (country[0]==" ") {alert("hi")};
+
+	    		country = country.split(" ")
+
+	    		for (var j = 0; j < country.length; j++) {
+	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
+	    		};
+	    		country = country.join(" ")
+
+	    	$('#disasters').append("<div class='news_item'> <strong>" + what + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+
+	    	if (nowdate==window.day) {$('#daily_snapshot').append("<strong>" + what + " in " + country + "</strong>: " + effected + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br><br>")};
 
     	};
     }
