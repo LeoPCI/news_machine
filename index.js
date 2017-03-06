@@ -221,7 +221,7 @@ $.ajax({
 		    	$("#terrorist_attacks").prepend("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
 		    	//add today to daily snapshot
-				if (date==window.day) {$("#daily_snapshot").append("<strong>Terrorist attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
+				if (date==window.day) {$("#daily_snapshot").append("<strong>Terrorist Attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br><br>")};
 		    };
 		};
     }
@@ -291,7 +291,7 @@ $.ajax({
 
 			    //add today to daily snapshot
 			    if (today) {
-					$("#daily_snapshot").append(notability + "<strong>Notable Death: </strong> <a target=_blank href=" + url + ">" + person + " &#10138</a><br>");
+					$("#daily_snapshot").append("<strong>Notable Death: </strong>" + notability + " <a target=_blank href=" + url + ">" + person + " &#10138</a><br><br>");
 				};
 			};
 
