@@ -8,10 +8,8 @@ h1 {
 	font-size: 1.9em;
 	text-align: center;
 	font-style: italic;
-	background-color:black;
-	color:white;
 	margin-bottom:0;
-	padding:10px;
+	padding:10px 10px 15px 10px;
 }
 
 h2 {
@@ -42,15 +40,20 @@ a {
 	font-weight: bold;
 	width:100%;
 }
-#button {
-	
+
+#buttons .row button h6 {
+	vertical-align: middle;
+}
+
+#buttons .row:hover {
+	background-color:gray;
 } 
 
 #daily_snapshot {
 	margin:20px;
 	text-align: left;
-	display: none;
 	width:75%;
+	display:inline-block;
 }
 
 /*#long-form {
@@ -61,6 +64,7 @@ a {
 
 #buttons {
 	margin-left:0px;
+	padding-top:20px;
 	display:inline-block;
 	background-color:black;
 	height:100%;
@@ -75,12 +79,10 @@ button {
 }
 
 button:focus {
-	outline-color: white;
+	color:white;
+	font-weight: 700;
 	text-decoration: none;
 	border:0;
-}
-button:hover {
-	background-color:gray;
 }
 
 #ongoing {
