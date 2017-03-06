@@ -1,53 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+ <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>News Machine</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
 <link rel="stylesheet" type="text/css" href="index.css">
 
 </head>
 <body>
 
-<h1></h1>
-
 <div id="buttons">
-	<button id="button_zero"><h2>Today<br>&nbsp;</h2></button>
-	<button id="button_one"><h2>Ongoing Mass Protests<br>&nbsp;</h2></button>
-	<button id="button_two"><h2>Ongoing Wars and Violent Conflicts</h2></button>
-	<button id="button_three"><h2>Terrorist Attacks in the past week</h2></button>
-	<button id="button_four"><h2>New Heads of State (past month)</h2></button>
-	<button id="button_five"><h2>Recent Notable Deaths<br>&nbsp; </h2></button>
-	<button id="button_six"><h2>Recent Natural Disasters<br>&nbsp; </h2></button>
+
+	<div class="row">
+		<button class="four columns" id="button_zero"><h6>Today</h6></button>
+	</div>
+	<div class="row">
+		<button class="four columns" id="button_one"><h6>Mass Protests</h6></button>
+	</div> 
+	<div class="row">
+		<button class="four columns" id="button_two"><h6>Wars and Violent Conflicts</h6></button>
+	</div>
+	<div class="row">
+		<button class="four columns" id="button_three"><h6>Terrorist Attacks</h6></button>
+	</div>
+	<div class="row">
+		<button class="four columns" id="button_four"><h6>New Heads of State</h6></button>
+	</div>
+	<div class="row">
+		<button class="four columns" id="button_five"><h6>Notable Deaths</h6></button>
+	</div>
+	<div class="row">
+		<button class="four columns" id="button_six"><h6>Natural Disasters</h6></button>
+	</div>
+
 </div>
 
-<div id="ongoing">
+<div class="row">
 
-	<div class="info" >
-		<div id="daily_snapshot" class="inner"></div>
+
+	<div id="ongoing" class="eight columns">
+
+		<div class="info" >
+			<div id="daily_snapshot" class="inner"><h1></h1></div>
+		</div>
+
+		<div class="info" >
+			<div id="ongoing_protests" class="inner"></div>
+		</div>
+
+		<div class="info">
+			<div id="ongoing_wars" class="inner"></div>
+		</div>
+
+		<div class="info">
+				<div id="terrorist_attacks" class="inner"></div>
+				<div id="terrorist_attacks_2" class="inner"></div>
+		</div>
+
+		<div class="info">
+			<div id="new_heads" class="inner"></div>
+		</div>
+
+		<div class="info">
+			<div id="notable_deaths" class="inner"></div>
+		</div>
+
+		<div class="info">
+			<div id="disasters" class="inner"></div>
+		</div>
+
 	</div>
 
-	<div class="info" >
-		<div id="ongoing_protests" class="inner"></div>
-	</div>
-
-	<div class="info">
-		<div id="ongoing_wars" class="inner"></div>
-	</div>
-
-	<div class="info">
-			<div id="terrorist_attacks" class="inner"></div>
-			<div id="terrorist_attacks_2" class="inner"></div>
-	</div>
-
-	<div class="info">
-		<div id="new_heads" class="inner"></div>
-	</div>
-
-	<div class="info">
-		<div id="notable_deaths" class="inner"></div>
-	</div>
-
-	<div class="info">
-		<div id="disasters" class="inner"></div>
-	</div>
 </div>
 
 </body>
