@@ -150,3 +150,7 @@ p {
 #about ul li {
 	margin: 0px;
 }
+
+#terrorlist1, #terrorlist2 {
+	display: none;
+}
