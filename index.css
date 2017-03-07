@@ -15,16 +15,18 @@ h1, h2, h3, h5, h6 {
 }
 
 .news_item {
-	margin: 10px;
+	margin: 7px;
 	display: inline-block;
-	width: 24%;
+	width: 14%;
 	min-height:150px;
 	max-height:200px;
 	overflow: hidden;
 }
 
 #disasters .news_item {
-	height: 130px;
+	height: 30%;
+	width: 24%;
+	text-align: left;
 }
 
 a {
@@ -40,7 +42,10 @@ a {
 #daily_snapshot, #yesterday_snapshot {
 	margin:20px;
 	text-align: left;
-	width:75%;
+	width:65%;
+}
+
+#daily_snapshot {
 	display:inline-block;
 }
 
@@ -113,10 +118,35 @@ header h1 {
 h6 {
 	color: white;
 }
+
 .fix {
   position: fixed;
 }
+
 .navbar .fix {
 	margin-top:0;
  	color:black;
+}
+
+p {
+	margin-left: 50px;
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+#about p {
+	margin-top: 10px;
+}
+
+#about {
+	width: 60%;
+}
+
+#about ul {
+	text-align: left;
+	margin-left: 50px;
+}
+
+#about ul li {
+	margin: 0px;
 }

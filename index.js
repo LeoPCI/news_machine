@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 //define dates
 	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -92,20 +91,20 @@ $.ajax({
 			    //add today to daily snapshot
 			    if (today) {
 			    	if (i==1) {
-						$("#daily_snapshot").append("<br><strong>Deaths: </strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a><br>");
+						$("#daily_snapshot").append("<br><strong>Deaths: </strong><p>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
 					}
 					else {
-						$("#daily_snapshot").append("<strong></strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a><br>");
+						$("#daily_snapshot").append("<p><strong></strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
 					};
 				};
 
 			    //add today to yesterday snapshot
 			    if (date == yesterday_month + " " + yesterday) {
 			    	if (i==1) {
-						$("#yesterday_snapshot").append("<br><strong>Deaths: </strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a><br>");
+						$("#yesterday_snapshot").append("<br><strong>Deaths: </strong><p>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
 					}
 					else {
-						$("#yesterday_snapshot").append("<strong></strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a><br>");
+						$("#yesterday_snapshot").append("<p><strong></strong>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
 					};
 				};
 
@@ -148,12 +147,12 @@ var getWikimediaNews = function(title, update){
 
 		    	if (i==0) {
 					if (description != " " && description != "" && description != "  ") {
-						$("#daily_snapshot").append(update + description+"<a target='_blank' href="+url+">Story &#10138;</a><br>")
+						$("#daily_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
 					};
 				}
 				else {
 					if (description != " " && description != "" && description != "  ") {
-						$("#daily_snapshot").append(description+"<a target='_blank' href="+url+">Story &#10138;</a><br>")
+						$("#daily_snapshot").append("<p>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
 					};
 				};
 
@@ -197,12 +196,12 @@ var getWikimediaNews_yesterday = function(title, update){
 
 		    	if (i==0) {
 					if (description != " " && description != "" && description != "  ") {
-						$("#yesterday_snapshot").append(update + description+"<a target='_blank' href="+url+">Story &#10138;</a><br>")
+						$("#yesterday_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
 					};
 				}
 				else {
 					if (description != " " && description != "" && description != "  ") {
-						$("#yesterday_snapshot").append(description+"<a target='_blank' href="+url+">Story &#10138;</a><br>")
+						$("#yesterday_snapshot").append("<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
 					};
 				};
 
@@ -386,7 +385,7 @@ $.ajax({
 
 		    	//add today to daily snapshot
 				if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br>")};
-				if (date==window.yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br>")};
+				if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead <br>")};
 		    };
 		};
     }
@@ -421,8 +420,8 @@ $.ajax({
 
 	    	//add today to daily snapshot
 			if ((month==window.month)||(month==window.last_month&&date>=day)) {
-				if (date==window.day) {$("#daily_snapshot").prepend("***<a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "<br><br>")};
-				if (date==window.yesterday) {$("#yesterday_snapshot").prepend("**<a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "<br><br>")};
+				if (date==window.day) {$("#daily_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+				if (date==yesterday) {$("#yesterday_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 		    };
 		};
     }
@@ -473,7 +472,7 @@ $.ajax({
 	    	$('#disasters').append("<div class='news_item'> <strong>" + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
 	    	if (nowdate==window.day) {$('#daily_snapshot').append("<br><strong>***" + what + " in " + country + "</strong>: " + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br>")};
-	    	if (nowdate==window.yesterday) {$('#yesterday_snapshot').append("<br><strong>**" + what + " in " + country + "</strong>: " + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br>")};
+	    	if (nowdate==yesterday) {$('#yesterday_snapshot').append("<br><strong>**" + what + " in " + country + "</strong>: " + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> <br>")};
 
     	};
     }
@@ -528,21 +527,7 @@ $.ajax({
     }
 });
 
-//get conversion rates
-// $.ajax({
-//     url: "http://api.fixer.io/2000-01-03",
-//     jsonp: "callback",
-//     dataType: "jsonp",
-//     success: function( data ) {
-
-//     	// var content = data["rates"]["AUD"]
-//     	// alert(content)
- 
-//     }
-// });
-
 //show and hide info
-
 var showandhide = function(btn="#", div, other="#"){
 		$(".inner").css({"display":"none"})
 		$(div).css({"display":"inline-block"})
@@ -559,12 +544,16 @@ $('#button_zero_point_one').click(function(){
 	showandhide('#button_zero_point_one', "#yesterday_snapshot")
 });
 
+$('#about_button').click(function(){
+	showandhide('#about_button', "#about")
+});
+
 $('#button_one').click(function(){
-	showandhide('#button_one', '#button_zero_point_one', "#ongoing_protests")
+	showandhide('#button_one', "#ongoing_protests")
 });
 
 $('#button_two').click(function(){
-	showandhide('#button_two', '#button_zero_point_one', "#ongoing_wars")
+	showandhide('#button_two', "#ongoing_wars")
 });
 
 $('#button_three').click(function(){
