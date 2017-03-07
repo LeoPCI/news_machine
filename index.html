@@ -15,7 +15,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Karla|Roboto+Mono" rel="stylesheet">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -31,74 +31,50 @@
 </head>
 <body>
 
-<header><h2>Reality Brief</h2></header>
+<header>
 
-<div id="buttons">
+<h1>Reality Brief</h1>
 
-	<div class="row" id="beginner">
-		<button id="button_zero"><h6>Today</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_zero_point_one"><h6>Yesterday</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_one"><h6>Ongoing Protests</h6></button>
-	</div> 
-	<div class="row">
-		<button id="button_two"><h6>Ongoing Conflicts</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_three"><h6>Recent Terrorist Attacks</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_four"><h6>Recent Heads of State</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_five"><h6>Recent Notable Deaths</h6></button>
-	</div>
-	<div class="row">
-		<button id="button_six"><h6>Recent Natural Disasters</h6></button>
+<h2 id="today-title"></h2>
+
+	<div id="buttons">
+
+		<button id="button_zero"><h5>Today</h5></button>
+		<button id="button_zero_point_one"><h5>Yesterday</h5></button><br>
+
+		<div class="navbar">
+
+			<button id="button_one"><h6>Protests</h6></button>
+			<button id="button_two"><h6>Conflicts</h6></button>
+			<button id="button_three"><h6>Terrorist Attacks</h6></button>
+			<button id="button_four"><h6>New Heads of State</h6></button>
+			<button id="button_five"><h6>Notable Deaths</h6></button>
+			<button id="button_six"><h6>Natural Disasters</h6></button>
+
+		</div>
+
 	</div>
 
-</div>
+</header>
 
-<div class="row">
+	<div id="ongoing">
 
+		<div id="daily_snapshot" class="inner"></div>
 
-	<div id="ongoing" class="eight columns">
+		<div id="yesterday_snapshot" class="inner"><h1 id="yesterday-title"></h1></div>
 
-		<div class="info" >
-			<div id="daily_snapshot" class="inner"><h1 id="today-title"></h1></div>
-		</div>
+		<div id="ongoing_protests" class="inner"><h5>Ongoing Mass Protests</h5></div>
 
-		<div class="info" >
-			<div id="yesterday_snapshot" class="inner"><h1 id="yesterday-title"></h1></div>
-		</div>
+		<div id="ongoing_wars" class="inner"><h5>Ongoing Wars and Violent Conflicts</h5></div>
 
-		<div class="info" >
-			<div id="ongoing_protests" class="inner"><h5>Ongoing Mass Protests</h5></div>
-		</div>
+		<div id="terrorist_attacks" class="inner"><h5>Terrorist Attacks in the Past Week</h5></div>
+		<div id="terrorist_attacks_2" class="inner"></div>
 
-		<div class="info">
-			<div id="ongoing_wars" class="inner"><h5>Ongoing Wars and Violent Conflicts</h5></div>
-		</div>
+		<div id="new_heads" class="inner"><h5>New Heads of State This Year</h5></div>
 
-		<div class="info">
-				<div id="terrorist_attacks" class="inner"><h5>Terrorist Attacks in the Past Week</h5></div>
-				<div id="terrorist_attacks_2" class="inner"></div>
-		</div>
+		<div id="notable_deaths" class="inner"><h5>Public Figures Who Have Died in the Past Three Days</h5></div>
 
-		<div class="info">
-			<div id="new_heads" class="inner"><h5>New Heads of State This Year</h5></div>
-		</div>
-
-		<div class="info">
-			<div id="notable_deaths" class="inner"><h5>Public Figures Who Have Died in the Past Three Days</h5></div>
-		</div>
-
-		<div class="info">
-			<div id="disasters" class="inner"><h5>20 Last Code Red and Orange Natural Disasters</h5></div>
-		</div>
+		<div id="disasters" class="inner"><h5>20 Last Code Red and Orange Natural Disasters</h5></div>
 
 	</div>
 

@@ -34,8 +34,8 @@ $(document).ready(function() {
 	};
 
 //add date
-	$("#today-title").append("Major events so far today (" + month + " " + day + ", " + year + ")")
-	$("#yesterday-title").append("Major events yesterday (" + yesterday_month + " " + yesterday + ", " + yesterday_year + ")")
+	$("#today-title").append(month + " " + day + ", " + year)
+	$("#yesterday-title").append(yesterday_month + " " + yesterday + ", " + yesterday_year)
 
 //define source urls
 	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests&contentmodel=wikitext&prop=wikitext&format=json"
@@ -544,11 +544,11 @@ $.ajax({
 //show and hide info
 
 var showandhide = function(btn="#", div, other="#"){
-		$(".info .inner").css({"display":"none"})
+		$(".inner").css({"display":"none"})
 		$(div).css({"display":"inline-block"})
 		$(other).css({"display":"inline-block"})
-		$("button").parent().css({"color":"white", "background-color":"black"})
-		$(btn).parent().css({"color":"white", "background-color":"grey"})
+		$("button").parent().css({})
+		$(btn).parent().css({})
 };
 
 $('#button_zero').click(function(){
