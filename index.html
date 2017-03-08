@@ -5,7 +5,7 @@
  <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>News Machine</title>
+  <title>Reality Brief – Automated News</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -62,21 +62,7 @@
 
 		<div id="about" class="inner"><h5>About</h5><p>Nationalism, sensationalism and the <a target="_blank" href="https://en.wikipedia.org/wiki/Propaganda_model">propaganda model</a> cause many people to consume a dangerously biased assortment of news. Using the miracles of the internet, Reality Brief reduces a degree of bias by automatically reporting every instance in the world of a variety of predetermined types of events.</p>
 		<p>More specifically, Reality Brief uses the Wikimedia API to pull current information from crowdsourced lists. It also uses the Sigimera API to pull natural disaster data from gdacs.org.</p>
-		<p>Automatically included events:</p>
-		<ul>
-			<li>Terrorist attacks</li>
-			<li>New heads of state</li>
-			<li>Natural disasters</li>
-			<li>Deaths of public figures</li>
-			<li>Coups</li>
-			<li>Attempted and successful political assasinations</li>
-			<li>Train crashes, airplane crashes and shipwrecks</li>
-			<li>Massacres</li>
-			<li>Major structural failures</li>
-			<li>Major data breaches</li>
-			<li>Riots</li>
-			<li>Wikimedia news items listed under "Politics and Elections", "Conflicts and Attacks" and "International Relations." These headline lists are selected subjectively, but are included because they are fact-based, tend not to be biased toward any one nation, and provide coverage of important events frequently not found in other lists</li>
-		</ul>
+
 		</div>
 
 		<div id="daily_snapshot" class="inner"></div>
@@ -103,4 +89,12 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="index.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-89969136-3', 'auto');
+  ga('send', 'pageview');
+</script>
 </html>

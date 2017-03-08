@@ -129,42 +129,44 @@ var getWikimediaNews = function(title, update){
 
 			var content = data["parse"]["wikitext"]["*"]
 
-			elections = content.split(title)[1].split("\n\n")[0].split("All news items above this line")[0]
-			items = elections.split(")]")
+			if (content.split(title)[1] != undefined) {
 
-			for (var i = 0; i < items.length-1; i++) {
-				url="http" + items[i].split("[http")[1].split(" ")[0]
-					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+				content = content.split(title)[1].split("\n\;")[0].split("All news items above this line")[0]
+				items = content.split(")]\n")
 
-				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-
-				if(items[i].split("**")[1]!=null){
-					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-				};
-
-				if(items[i].split("***")[1]!=null){
-					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-				};
-
-		    	if (i==0) {
-					if (description != " " && description != "" && description != "  ") {
-						$("#daily_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+				for (var i = 0; i < items.length-1; i++) {
+					if (items[i].split("[http")[1]!=undefined) {
+						url="http" + items[i].split("[http")[1].split(" ")[0]
+							if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 					};
-				}
-				else {
-					if (description != " " && description != "" && description != "  ") {
-						$("#daily_snapshot").append("<p>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
+					var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+
+					if(items[i].split("**")[1]!=undefined){
+						description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+					};
+
+					if(items[i].split("***")[1]!=undefined){
+						description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+					};
+
+			    	if (i==0) {
+						if (description != " " && description != "" && description != "  ") {
+							$("#daily_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+						};
+					}
+					else {
+						if (description != " " && description != "" && description != "  ") {
+							$("#daily_snapshot").append("<p>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
+						};
 					};
 				};
-
-
 			};
 	    }
 	});
 };
 
 getWikimediaNews("Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
-getWikimediaNews("Disasters and accidents\n", "<br><strong>Disaster Update: </strong><br>")
+getWikimediaNews("Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
 getWikimediaNews("Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
 getWikimediaNews("International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
 
@@ -178,42 +180,47 @@ var getWikimediaNews_yesterday = function(title, update){
 
 			var content = data["parse"]["wikitext"]["*"]
 
-			elections = content.split(title)[1].split("\n\n")[0].split("All news items above this line")[0]
-			items = elections.split(")]")
+			if (content.split(title)[1] != undefined) {
 
-			for (var i = 0; i < items.length-1; i++) {
-				url="http" + items[i].split("[http")[1].split(" ")[0]
-					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
+				content = content.split(title)[1].split("\n\;")[0].split("All news items above this line")[0]
+				items = content.split(")]\n")
 
-				var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+				for (var i = 0; i < items.length-1; i++) {
 
-				if(items[i].split("**")[1]!=null){
-					description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-				};
-
-				if(items[i].split("***")[1]!=null){
-					description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-				};
-
-		    	if (i==0) {
-					if (description != " " && description != "" && description != "  ") {
-						$("#yesterday_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+					if (items[i].split("[http")[1]!=undefined) {
+						url="http" + items[i].split("[http")[1].split(" ")[0]
+							if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 					};
-				}
-				else {
-					if (description != " " && description != "" && description != "  ") {
-						$("#yesterday_snapshot").append("<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+					var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+
+					if(items[i].split("**")[1]!=undefined){
+						description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
 					};
+
+					if(items[i].split("***")[1]!=undefined){
+						description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
+					};
+
+			    	if (i==0) {
+						if (description != " " && description != "" && description != "  ") {
+							$("#yesterday_snapshot").append(update + "<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+						};
+					}
+					else {
+						if (description != " " && description != "" && description != "  ") {
+							$("#yesterday_snapshot").append("<p>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+						};
+					};
+
+
 				};
-
-
 			};
 	    }
 	});
 };
 
 getWikimediaNews_yesterday("Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
-getWikimediaNews_yesterday("Disasters and accidents\n", "<br><strong>Disaster Update: </strong><br>")
+getWikimediaNews_yesterday("Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
 getWikimediaNews_yesterday("Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
 getWikimediaNews_yesterday("International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
 
@@ -276,15 +283,15 @@ $.ajax({
 	  	  };
 
 	  	  death_toll=line[i].split("ntsh")
-	  	  death_toll=death_toll[1].split("}}")[1].split("{{")[0].split("ref")
-	  	  death_toll=death_toll[0].slice(1).replace('[[','').replace(']]','').replace('|','').replace(/[^0-9, \-, +, \u2013|\u2014]+/g, '')
-
-	  	  var title = thing[2].replace(/[0-9]/g, '').replace(/\(([^()]+)\)/g, "").replace(/[^a-zA-Z\s\-\u2013|\u2014]/g, '').split("--")[0]
-	  	  var name = thing[2].replace("]]", "").replace("[[", "")
-	  	  var since = thing[1]
-	  	  var died = death_toll.split("--")[0]
-	  	  var url = "https://en.wikipedia.org/wiki/" + name.slice(1).replace(/ /g, "_").split("_<!")[0]
-
+	  	  if (death_toll[1]!=undefined) {
+	  	  	death_toll=death_toll[1].split("}}")[1].split("{{")[0].split("ref")
+	  	  	death_toll=death_toll[0].slice(1).replace('[[','').replace(']]','').replace('|','').replace(/[^0-9, \-, +, \u2013|\u2014]+/g, '')
+	  	  	var title = thing[2].replace(/[0-9]/g, '').replace(/\(([^()]+)\)/g, "").replace(/[^a-zA-Z\s\-\u2013|\u2014]/g, '').split("--")[0]
+	  	  	var name = thing[2].replace("]]", "").replace("[[", "")
+	  	  	var since = thing[1]
+	  	  	var died = death_toll.split("--")[0]
+	  	  	var url = "https://en.wikipedia.org/wiki/" + name.slice(1).replace(/ /g, "_").split("_<!")[0]
+		  };
 
 		  $("#ongoing_wars").append( "<div class='news_item'> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br><a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news &#10138; </a> </div>" );
 
@@ -421,31 +428,38 @@ $.ajax({
     success: function( data ) {
 
 		var heads = data["parse"]["wikitext"]["*"].split("=== "+window.year+" ===")
-		heads = heads[heads.length-1].split('|-')
+		heads = heads[heads.length-1].split("== List of upcoming leaders ==")[0].split('|-')
+
+		heads_of_state_array = []
 
 		for (var i = 2; i < heads.length; i++) {
 
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
+			if (section[2]!=undefined) {
+				if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
+				if (section[1]=='rowspan="2" ') {section.shift();};
 
-			if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
-			if (section[1]=='rowspan="2" ') {section.shift();};
+				var date = section[1].replace(/[^0-9 ]/g, "")
+				var month = section[1].replace(/[0-9 ]/g, "").slice(0,-1)
+				var who = section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")
+				if (section[5]!=undefined) {var what = section[5].replace(/[^a-zA-Z \-]/g, "")
+				var country = section[4].slice(0,-3).replace("}}", "").split("{")[0]};
+				if (section.length>6) {var title = section[6].split("]]")[0].replace(/\[/g, "")};
+				var url = "https://en.wikipedia.org/wiki/" + who.replace(/ /g, "_")
 
-			var date = section[1].replace(/[^0-9 ]/g, "")
-			var month = section[1].replace(/[0-9 ]/g, "").slice(0,-1)
-			var who = section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")
-			var what = section[5].replace(/[^a-zA-Z \-]/g, "")
-			var country = section[4].slice(0,-3).replace("}}", "").split("{")[0]
-			if (section.length>6) {var title = section[6].split("]]")[0].replace(/\[/g, "")};
-			var url = "https://en.wikipedia.org/wiki/" + who.replace(/ /g, "_")
+				heads_of_state_array.unshift( "<div class='news_item'> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" )
 
-		    $("#new_heads").append( "<div class='news_item'> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" );
 
-	    	//add today to daily snapshot
-			if ((month==window.month)||(month==window.last_month&&date>=day)) {
-				if (date==window.day) {$("#daily_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
-				if (date==yesterday) {$("#yesterday_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+		    	//add today to daily snapshot
+				if ((month==window.month)||(month==window.last_month&&date>=day)) {
+					if (date==window.day) {$("#daily_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+					if (date==yesterday) {$("#yesterday_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+			    };
 		    };
 		};
+			for (var i = 0; i < heads_of_state_array.length; i++) {
+				$("#new_heads").append(heads_of_state_array[i]);
+			};
     }
 });
 
@@ -456,6 +470,8 @@ $.ajax({
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
+
+    	$('#disasters').append("<h5><em>Code Red</em></h5>")
 
     	for (var i = 0; i < data.length; i++) {
     		var content = data[i]
@@ -506,6 +522,9 @@ $.ajax({
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
+
+    	$('#disasters').append("<h5><em>Code Orange</em></h5>")
+
     	for (var i = 0; i < data.length; i++) {
     		var content = data[i]
     	
@@ -549,37 +568,38 @@ $.ajax({
     }
 });
 
-// //get recent shipwrecks
-// $.ajax({
-//     url: shipwrecks,
-//     jsonp: "callback",
-//     dataType: "jsonp",
-//     success: function( data ) {
-// 		var wrecks = data["parse"]["wikitext"]["*"].split(/\n\n===/g)
-//     	 for (var i = 1; i < wrecks.length; i++) {
-//     	 		var all = wrecks[i].split("{{shipwreck list item")
-//     	 		 for (var j = 1; j < all.length; j++) {
-// 	    			var wreck = all[j]
-// 		    		var date = wrecks[i].split("| ")[0].split("===")[0]
-// 		    		var url = ""
-// 		    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0]};
-// 		    		// var title = wreck.split("|title=")[1]
-// 		    		if (wreck.split("|title=")[1] != undefined) {
-// 		    			var headline = wreck.split("|title=")[1].split("|")[0]
-// 		    			$('#daily_snapshot').prepend(all.length+ "<br>...." + date + " " + url + " " + headline +"<br><br>")
-// 		    		};
-//     	 		};
-//     	};
-//     }
-// });
+//get recent shipwrecks
+$.ajax({
+    url: shipwrecks,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+		var wrecks = data["parse"]["wikitext"]["*"].split(/\n\n===/g)
+    	 for (var i = 1; i < wrecks.length; i++) {
+	 		var all = wrecks[i].split("{{shipwreck list item")
+	 		 for (var j = 1; j < all.length; j++) {
+    			var wreck = all[j]
+	    		var date = wrecks[i].split("| ")[0].split("===")[0]
+	    		var url = ""
+	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0]};
+	    		if (wreck.split("|title=")[1] != undefined) {
+	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
+	    			if (date.split(" ")[0]==window.day && date.split(" ")[1]==window.month) {$('#daily_snapshot').append("<br><strong>Shipwreck: </strong><p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
+	    		};
+	 		};
+    	};
+    }
+});
 
 //show and hide info
 var showandhide = function(btn="#", div, other="#"){
 		$(".inner").css({"display":"none"})
 		$(div).css({"display":"inline-block"})
 		$(other).css({"display":"inline-block"})
-		// $("button").parent().css({})
-		// $(btn).parent().css({})
+		// $("button").css({"background-color":"transparent"})
+		$("button").children().css({"text-decoration":"none"})
+		// $(btn).css({"background-color":"rgba(255, 255, 255, 0.2)"})
+		$(btn).children().css({"text-decoration":"underline"})
 };
 
 $('#button_zero').click(function(){
