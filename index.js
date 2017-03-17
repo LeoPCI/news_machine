@@ -457,9 +457,10 @@ $.ajax({
 			    };
 		    };
 		};
-			for (var i = 0; i < heads_of_state_array.length; i++) {
-				$("#new_heads").append(heads_of_state_array[i]);
-			};
+
+		for (var i = 1; i < heads_of_state_array.length; i++) {
+			$("#new_heads").append(heads_of_state_array[i]);
+		};
     }
 });
 
