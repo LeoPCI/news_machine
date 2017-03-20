@@ -453,7 +453,7 @@ $.ajax({
 		    	//add today to daily snapshot
 				if ((month==window.month)||(month==window.last_month&&date>=day)) {
 					if (date==window.day) {$("#daily_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
-					if (date==yesterday) {$("#yesterday_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+					if (date==yesterday) {$("#yesterday_snapshot").append("<strong>***New " + title + ":</strong> <p> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 			    };
 		    };
 		};
