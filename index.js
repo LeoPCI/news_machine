@@ -1,4 +1,13 @@
 $(document).ready(function() {
+// nice little unless function
+var unless = function( condition, callback ) {
+    if (typeof callback === 'function') {
+        if (!condition) callback();
+    }else{
+        return !condition;    
+    }
+};
+
 //define dates
 	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -52,7 +61,7 @@ $(document).ready(function() {
 	shipwrecks="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_shipwrecks_in_"+year+"&format=json&prop=wikitext"
 	google_news_1="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&q="
 	google_news_2="&safe=off&hl=en&gl=us&authuser=0&tbm=nws&tbs=sbd:1&*"
-
+	coup_attempts="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_coups_d%27état_and_coup_attempts_since_2010&contentmodel=wikitext&prop=wikitext&format=json"
 
 //get notable deaths
 $.ajax({
@@ -363,7 +372,7 @@ $.ajax({
 		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[1].split("|-")
 
 		for (var i = 2; i < attacks.length; i++) {
-			
+				
 			var source=attacks[i].split("http")[1]
 			if (source!=null) { 
 				source = source.split("|")[0]
@@ -372,50 +381,54 @@ $.ajax({
 				source = 'http' + source
 			};
 
-
 			var context = attacks[i].split("[[")
-			var perpetrator = context[context.length-2].split("]]")[0].split("|")
-			    perpetrator = perpetrator[perpetrator.length-1]
-			    if (perpetrator=="01") {perpetrator = "unknown perpetrator"};
-			var conflict = context[context.length-1].split("|")
-			    conflict = conflict[conflict.length-1].slice(0,-3)
 
-			var attack = attacks[i].split("|")
-			var date = attack[1]
-			var type = attack[2]
-			var dead = attack[4]
-			var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]
+// prevent failure errors with unless
+			unless(context[context.length-2]==undefined, function() {
 
-			// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
+				var perpetrator = context[context.length-2].split("]]")[0].split("|")
+				    perpetrator = perpetrator[perpetrator.length-1]
+				    if (perpetrator=="01") {perpetrator = "unknown perpetrator"};
+				var conflict = context[context.length-1].split("|")
+				    conflict = conflict[conflict.length-1].slice(0,-3)
 
-			var now = new Date().toLocaleString().split("/")[1]
-			var month = new Date().getMonth();
+				var attack = attacks[i].split("|")
+				var date = attack[1]
+				var type = attack[2]
+				var dead = attack[4]
+				var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]
 
-			var display1 = false
-			var display2 = false
+				// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 
-			if (now-date < 8) {
-		    	$("#terrorist_attacks").append("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
+				var now = new Date().toLocaleString().split("/")[1]
+				var month = new Date().getMonth();
 
-		    	//add today to daily snapshot
-		   //  		if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong><br><p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
-					// if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong><br<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
-		
+				var display1 = false
+				var display2 = false
 
-				if (date==window.day) {
-					display1 = true
-					$("#daily_snapshot").append("<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")
-				};
+				if (now-date < 8) {
+			    	$("#terrorist_attacks").append("<div class='news_item'> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
-				if (date==yesterday) {
-					display2 = true
-					$("#yesterday_snapshot").append("<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")
-				};
+			    	//add today to daily snapshot
+			   //  		if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong><br><p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
+						// if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong><br<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
+			
 
-		    };
+					if (date==window.day) {
+						display1 = true
+						$("#daily_snapshot").append("<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")
+					};
 
-		    if (display1) {$("#terrorlist1").css({"display":"inherit"})};
-		    if (display2) {$("#terrorlist2").css({"display":"inherit"})};
+					if (date==yesterday) {
+						display2 = true
+						$("#yesterday_snapshot").append("<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")
+					};
+
+			    };
+
+			    if (display1) {$("#terrorlist1").css({"display":"inherit"})};
+			    if (display2) {$("#terrorlist2").css({"display":"inherit"})};
+			})
 	    };
     }
 });
@@ -428,12 +441,11 @@ $.ajax({
     success: function( data ) {
 
 		var heads = data["parse"]["wikitext"]["*"].split("=== "+window.year+" ===")
-		heads = heads[heads.length-1].split("== List of upcoming leaders ==")[0].split('|-')
+		heads = heads[heads.length-1].split("== List of upcoming leaders ==")[0].split("<!--")[0].split('|-')
 
 		heads_of_state_array = []
 
 		for (var i = 2; i < heads.length; i++) {
-
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
 			if (section[2]!=undefined) {
 				if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
@@ -582,15 +594,56 @@ $.ajax({
     			var wreck = all[j]
 	    		var date = wrecks[i].split("| ")[0].split("===")[0]
 	    		var url = ""
-	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0]};
+	    		var country = wreck.split("|desc=")[0].split("|flag=")[1].split("|")[1].slice(0,-3)
+	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0].split("|")[0]};
 	    		if (wreck.split("|title=")[1] != undefined) {
 	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
-	    			if (date.split(" ")[0]==window.day && date.split(" ")[1]==window.month) {$('#daily_snapshot').append("<br><strong>Shipwreck: </strong><p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
+	    			if (date.split(" ")[0]==window.day && date.split(" ")[1]==window.month) {$('#daily_snapshot').append("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
 	    		};
+	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")
 	 		};
     	};
     }
 });
+
+// // get oil spills
+// $.ajax({
+//     url: oil_spills,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
+// 		var spills = data["parse"]["text"]["*"].split("section: Underway")[1].split("Complete</span>")[0].split(" title=")
+// 		$('#daily_snapshot').prepend(spills)
+//     }
+// });
+
+// coup attempts
+$.ajax({
+    url: coup_attempts,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+		var coups = data["parse"]["wikitext"]["*"].split("Coups d'\u00e9tat and coup attempts since 2010")[1].split("\n==See also==\n")[0].split("\n|- ")
+	
+		for (var i = 2; i < coups.length-1; i++) {
+			coup = coups[i].split("\n|")[1]
+			var title = coup.split("||")[0]
+			var date = coup.split("||")[1]
+
+			var country = coup.split("||")[3].split("[[")[1].split("]]")[0]
+			var status = coup.split("||")[2]
+
+			if (coup.split("http")[1]!=undefined) {
+				var url = "http" + coup.split("http")[1].split("|")[0]
+			};
+			
+			// if (status == " Ongoing ") {
+			// 	$('#daily_snapshot').prepend("<br>Coup: <p>" + status + " in " + country + " on " + date+ "</p>")
+			// };
+		};
+    }
+});
+
 
 //show and hide info
 var showandhide = function(btn="#", div, other="#"){
