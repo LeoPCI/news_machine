@@ -183,4 +183,5 @@ h5 {
 #ongoing img {
 	position: relative;
 	top: 5px;
+	z-index: -1;
 }
