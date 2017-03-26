@@ -2,6 +2,7 @@
 	font-family:'Karla', monospace;
 }
 body {
+	background: url(images/debut_light.png)
 }
 
 h1, h2, h3, h5, h6 {
@@ -184,4 +185,5 @@ h5 {
 	position: relative;
 	top: 5px;
 	z-index: -1;
+	padding-right: 2px;
 }

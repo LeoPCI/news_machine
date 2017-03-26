@@ -20,7 +20,7 @@ var unless = function( condition, callback ) {
 var demonymic = {"Zimbabwean" : "Zimbabwe", "Zambian" : "Zambia", "Yemeni" : "Yemen", "Sahraouian" : "Western Sahara", "Sahrawian" : "Western Sahara", "Sahrawi" : "Western Sahara", "Futunan" : "Wallis And Futuna", "Wallisian" : "Wallis And Futuna", "Wallis and Futuna" : "Wallis And Futuna", "Welsh" : "Wales", "U.S. Virgin Island" : "Virgin Islands- United States", "British Virgin Island" : "Virgin Islands- British", "Vietnamese" : "Vietnam", "Venezuelan" : "Venezuela", "Vatican" : "Vatican City State", "Vanuatuan" : "Vanuatu ", "Ni-Vanuatu" : "Vanuatu", "Uzbek" : "Uzbekistan ", "Uzbekistani" : "Uzbekistan", "Uruguayan" : "Uruguay", "American" : "United States", "Emiri" : "United Arab Emirates", "Emirian" : "United Arab Emirates", "Emirati" : "United Arab Emirates", "Ukrainian" : "Ukraine", "Ugandan" : "Uganda", "Tuvaluan" : "Tuvalu", "Turks and Caicos Island" : "Turks And Caicos Islands", "Turkmen" : "Turkmenistan", "Turkish" : "Turkey", "Tunisian" : "Tunisia", "Tobagonian" : "Trinidad And Tobago", "Trinidadian" : "Trinidad And Tobago", "Tongan" : "Tonga", "Tokelauan" : "Tokelau", "Togolese" : "Togo", "Timorese" : "Timor-Leste", "Thai" : "Thailand", "Tanzanian" : "Tanzania", "Tajikistani" : "Tajikistan", "Syrian" : "Syria", "Swiss" : "Switzerland", "Swedish" : "Sweden", "Swazi" : "Swaziland", "Svalbard" : "Svalbard", "Surinamese" : "Surinam", "Sudanese" : "Sudan", "Sri Lankan" : "Sri Lanka", "Spanish" : "Spain", "South Sudanese" : "South Sudan", "South Sandwich Island" : "South Georgia And Sandwich Isl.", "South Georgian" : "South Georgia And Sandwich Isl.", "South African" : "South Africa", "Somalilander" : "Somaliland", "Somali" : "Somalia", "Solomon Island" : "Solomon Islands", "Slovene" : "Slovenia", "Slovenian" : "Slovenia", "Slovak" : "Slovakia", "Sint Maarten" : "Sint Maarten", "Statian" : "Sint Eustatius", "Sint Eustatius" : "Sint Eustatius", "Singaporean" : "Singapore ", "Singapore" : "Singapore", "Sierra Leonean" : "Sierra Leone", "Seychellois" : "Seychelles", "Serbian" : "Serbia", "Senegalese" : "Senegal", "Scottish" : "Scotland", "Saudi Arabian" : "Saudi Arabia", "Saudi" : "Saudi Arabia", "Sao Tomean" : "Sao Tome and Príncipe", "Sammarinese" : "San Marino", "Samoan" : "Samoa", "Vincentian" : "Saint Vincent And Grenadines", "Saint Vincentian" : "Saint Vincent And Grenadines", "Miquelonnais" : "Saint Pierre And Miquelon", "Saint-Pierrais" : "Saint Pierre And Miquelon", "Saint-Martinoise" : "Saint Martin", "Saint Lucian" : "Saint Lucia", "Kittitian or Nevisian" : "Saint Kitts and Nevis", "Saint Helenian" : "Saint Helena", "Barthelemois" : "Saint Barthelemy", "Saba" : "Saba", "Rwandan" : "Rwanda", "Soviet" : "Russia", "Soviet-Russian" : "Russia", "Russian" : "Russia", "Romanian" : "Romania", "Reunionnais" : "Reunion ", "Reunionese" : "Reunion", "Qatari" : "Qatar", "Puerto Rican" : "Puerto Rico", "Portuguese" : "Portugal", "Polish" : "Poland", "Pitcairn Island" : "Pitcairn Islands", "Philippine" : "Philippines", "Filipino" : "Philippines", "Peruvian" : "Peru", "Paraguayan" : "Paraguay", "Papuan" : "Papua New Guinea", "Papua New Guinean" : "Papua New Guinea", "Panamanian" : "Panama", "Palestinian" : "Palestine", "Palauan" : "Palau", "Pakistani" : "Pakistan", "Omani" : "Oman", "Norwegian" : "Norway", "Northern Marianan" : "Northern Mariana Islands", "Irish" : "Ireland", "Northern Irish" : "Northern Ireland", "Norfolk Island" : "Norfolk Island", "Niuean" : "Niue", "Nigerian" : "Nigeria", "Nigerien" : "Niger", "Nicaraguan" : "Nicaragua", "New Zealand" : "New Zealand", "New Caledonian" : "New Caledonia", "Netherlandic" : "Netherlands ", "Dutch" : "Netherlands", "Nepalese" : "Nepal ", "Nepali" : "Nepal", "Nauruan" : "Nauru", "Namibian" : "Namibia", "Burmese" : "Myanmar", "Mozambican" : "Mozambique", "Moroccan" : "Morocco", "Montserratian" : "Montserrat", "Montenegrin" : "Montenegro", "Mongolian" : "Mongolia", "Monacan" : "Monaco ", "Monégasque" : "Monaco", "Moldovan" : "Moldova", "Micronesian" : "Micronesia- Federated States of", "Mexican" : "Mexico", "Mahoran" : "Mayotte", "Mauritian" : "Mauritius", "Mauritanian" : "Mauritania", "Martinican" : "Martinique ", "Martiniquais" : "Martinique", "Marshallese" : "Marshall Islands", "Maltese" : "Malta", "Malinese" : "Mali ", "Malian" : "Mali", "Maldivian" : "Maldives", "Malaysian" : "Malaysia", "Malawian" : "Malawi", "Malagasy" : "Madagascar", "Macedonian" : "Macedonia", "Chinese" : "Macau ", "Macanese" : "Macau", "Luxembourgish" : "Luxembourg ", "Luxembourg" : "Luxembourg", "Lithuanian" : "Lithuania", "Liechtensteiner" : "Liechtenstein", "Libyan" : "Libya", "Liberian" : "Liberia", "Basotho" : "Lesotho", "Lebanese" : "Lebanon", "Lettish" : "Latvia ", "Latvian" : "Latvia", "Laotian" : "Laos ", "Lao" : "Laos", "Kirghiz" : "Kyrgyzstan ", "Kirgiz" : "Kyrgyzstan ", "Kyrgyz" : "Kyrgyzstan ", "Kyrgyzstani" : "Kyrgyzstan", "Kuwaiti" : "Kuwait", "Kosovars" : "Kosovo", "Kosovan" : "Kosovo ", "Kosovar" : "Kosovo", "South Korean" : "South Korea", "North Korean" : "North Korea", "I-Kiribati" : "Kiribati", "Kenyan" : "Kenya", "Kazakh" : "Kazakhstan ", "Kazakhstani" : "Kazakhstan", "Jordanian" : "Jordan", "Channel Island" : "Jersey", "Japanese" : "Japan", "Jan Mayen" : "Jan Mayen", "Jamaican" : "Jamaica", "Ivorian" : "Ivory Coast", "Italian" : "Italy", "Israeli" : "Israel", "Manx" : "Isle of Man", "Irish" : "Ireland", "Iraqi" : "Iraq", "Persian" : "Iran", "Iranian" : "Iran", "Indonesian" : "Indonesia", "Indian" : "India", "Icelandic" : "Iceland", "Magyar" : "Iceland", "Hungarian" : "Hungary", "Hong Kongese" : "Hong Kong", "Honduran" : "Honduras", "McDonald Island" : "Heard Island & McDonald Islands", "Heard Island" : "Heard Island & McDonald Islands", "Haitian" : "Haiti", "Guyanese" : "Guyana", "Bissau-Guinean" : "Guinea-Bissau", "Guinean" : "Guinea", "Channel Island" : "Guernsey", "Guatemalan" : "Guatemala", "Guambat" : "Guam", "Guamanian" : "Guam", "Guadeloupe" : "Guadeloupe", "Grenadian" : "Grenada", "Greenlandic" : "Greenland", "Greek- Hellenic" : "Greece", "Gibraltar" : "Gibraltar", "Ghanaian" : "Ghana", "German" : "Germany", "Georgian" : "Georgia", "Gambian" : "Gambia", "Gabonese" : "Gabon", "French Southern Territories" : "French Southern Territories", "French Polynesian" : "French Polynesia", "French Guianese" : "French Guiana", "French" : "France", "Finnish" : "Finland", "Fijian" : "Fiji", "Faroese" : "Faroe Islands", "Falkland Island" : "Falkland Islands", "European" : "European Union", "Ethiopian" : "Ethiopia", "Estonian" : "Estonia", "Eritrean" : "Eritrea", "Equatoguinean" : "Equatorial Guinea", "Equatorial Guinean" : "Equatorial Guinea", "English" : "United Kingdom", "UK" : "United Kingdom", "British" : "United Kingdom", "Salvadoran" : "El Salvador", "Egyptian" : "Egypt", "Ecuadorian" : "Ecuador", "Timorese" : "East Timor", "Dominican" : "Dominican Republic", "Dominican" : "Dominica", "Djiboutian" : "Djibouti", "Danish" : "Denmark", "Czech" : "Czech Republic", "Cypriot" : "Cyprus", "Curacaoan" : "Curacao", "Cuban" : "Cuba", "Croatian" : "Croatia", "Ivorian" : "Cote D'Ivoire", "Costa Rican" : "Costa Rica", "Cook Island" : "Cook Islands", "Congolese" : "Congo- Democratic Republic", "Comorian" : "Comoros ", "Comoran" : "Comoros", "Colombian" : "Colombia", "Cocos Island" : "Cocos (Keeling) Islands", "Christmas Island" : "Christmas Island", "Chinese" : "China", "Chilean" : "Chile", "Chadian" : "Chad", "Central African" : "Central African Republic", "Caymanian" : "Cayman Islands", "Canadian" : "Canada", "Cameroonian" : "Cameroon", "Cambodian" : "Cambodia", "Cabo Verdean" : "Cabo Verde", "Burundian" : "Burundi", "Burmese" : "Burma", "Burkinabé" : "Burkina Faso", "Bulgarian" : "Bulgaria", "Bruneian" : "Brunei", "BIOT" : "British Indian Ocean Territory", "Brazilian" : "Brazil", "Bouvet Island" : "Bouvet Island", "Botswanan" : "Botswana", "Motswana" : "Botswana", "Herzegovinian" : "Bosnia And Herzegovina", "Bosnian" : "Bosnia And Herzegovina", "Bonaire" : "Bonaire", "Bolivian" : "Bolivia", "Bhutanese" : "Bhutan", "Bermudan" : "Bermuda ", "Bermudian" : "Bermuda", "Beninoises" : "Benin ", "Beninois" : "Benin ", "Beninese" : "Benin", "Belizean" : "Belize", "Belgian" : "Belgium", "Belarusian" : "Belarus", "Barbadian" : "Barbados", "Bangladeshi" : "Bangladesh", "Bahraini" : "Bahrain", "Bahamian" : "Bahamas", "Azeri" : "Azerbaijan ", "Azerbaijani" : "Azerbaijan", "Austrian" : "Austria", "Australian" : "Australia", "Aruban" : "Aruba", "Armenian" : "Armenia", "Argentine" : "Argentina", "Barbudan" : "Antigua And Barbuda", "Antiguan" : "Antigua And Barbuda", "Antarctic" : "Antarctica", "Anguillan" : "Anguilla", "Angolan" : "Angola", "Andorran" : "Andorra", "American Samoan" : "American Samoa", "Algerian" : "Algeria", "Albanian" : "Albania", "Aland Island" : "Aland Islands", "Afghan" : "Afghanistan", "Abkhazian" : "Abkhazia", "Abkhaz" : "Abkhazia"}
 
 // list of country codes
-countryLetters = {"UK" : "gb", "Zimbabwe" : "zw", "Zambia" : "zm", "Yemen" : "ye", "Western Sahara" : "eh", "Wallis And Futuna" : "wf", "Virgin Islands, U.S." : "vi", "Virgin Islands, British" : "vg", "Viet Nam" : "vn", "Venezuela" : "ve", "Vanuatu" : "vu", "Uzbekistan" : "uz", "Uruguay" : "uy", "United States Outlying Islands" : "um", "United States" : "us", "United Kingdom" : "gb", "United Arab Emirates" : "ae", "Ukraine" : "ua", "Uganda" : "ug", "Tuvalu" : "tv", "Turks And Caicos Islands" : "tc", "Turkmenistan" : "tm", "Turkey" : "tr", "Tunisia" : "tn", "Trinidad And Tobago" : "tt", "Tonga" : "to", "Tokelau" : "tk", "Togo" : "tg", "Timor-Leste" : "tl", "Thailand" : "th", "Tanzania" : "tz", "Tajikistan" : "tj", "Taiwan" : "tw", "Syria" : "sy", "Syrian Arab Republic" : "sy", "Switzerland" : "ch", "Sweden" : "se", "Swaziland" : "sz", "Svalbard And Jan Mayen" : "sj", "Suriname" : "sr", "Sudan" : "sd", "Sri Lanka" : "lk", "Spain" : "es", "South Georgia And Sandwich Isl." : "gs", "South Africa" : "za", "Somalia" : "so", "Solomon Islands" : "sb", "Slovenia" : "si", "Slovakia" : "sk", "Singapore" : "sg", "Sierra Leone" : "sl", "Seychelles" : "sc", "Serbia" : "rs", "Senegal" : "sn", "Saudi Arabia" : "sa", "Sao Tome And Principe" : "st", "San Marino" : "sm", "Samoa" : "ws", "Saint Vincent And Grenadines" : "vc", "Saint Pierre And Miquelon" : "pm", "Saint Martin" : "mf", "Saint Lucia" : "lc", "Saint Kitts And Nevis" : "kn", "Saint Helena" : "sh", "Saint Barthelemy" : "bl", "Rwanda" : "rw", "Russian Federation" : "ru", "Russia" : "ru", "Romania" : "ro", "Reunion" : "re", "Qatar" : "qa", "Puerto Rico" : "pr", "Portugal" : "pt", "Poland" : "pl", "Pitcairn" : "pn", "Philippines" : "ph", "Peru" : "pe", "Paraguay" : "py", "Papua New Guinea" : "pg", "Panama" : "pa", "Palestinian Territory, Occupied" : "ps", "Palau" : "pw", "Pakistan" : "pk", "Oman" : "om", "Norway" : "no", "Northern Mariana Islands" : "mp", "Norfolk Island" : "nf", "Niue" : "nu", "Nigeria" : "ng", "Niger" : "ne", "Nicaragua" : "ni", "New Zealand" : "nz", "New Caledonia" : "nc", "Netherlands Antilles" : "an", "Netherlands" : "nl", "Nepal" : "np", "Nauru" : "nr", "Namibia" : "na", "Myanmar" : "mm", "Mozambique" : "mz", "Morocco" : "ma", "Montserrat" : "ms", "Montenegro" : "me", "Mongolia" : "mn", "Monaco" : "mc", "Moldova" : "md", "Micronesia, Federated States Of" : "fm", "Mexico" : "mx", "Mayotte" : "yt", "Mauritius" : "mu", "Mauritania" : "mr", "Martinique" : "mq", "Marshall Islands" : "mh", "Malta" : "mt", "Mali" : "ml", "Maldives" : "mv", "Malaysia" : "my", "Malawi" : "mw", "Madagascar" : "mg", "Macedonia" : "mk", "Macao" : "mo", "Luxembourg" : "lu", "Lithuania" : "lt", "Liechtenstein" : "li", "Libya" : "ly", "Libyan Arab Jamahiriya" : "ly", "Liberia" : "lr", "Lesotho" : "ls", "Lebanon" : "lb", "Latvia" : "lv", "Lao People's Democratic Republic" : "la", "Kyrgyzstan" : "kg", "Kuwait" : "kw", "South Korea" : "kr", "North Korea" : "kp", "Kiribati" : "ki", "Kenya" : "ke", "Kazakhstan" : "kz", "Jordan" : "jo", "Jersey" : "je", "Japan" : "jp", "Jamaica" : "jm", "Rome" : "it", "Italy" : "it", "Israel" : "il", "Isle Of Man" : "im", "Ireland" : "ie", "Iraq" : "iq", "Iran, Islamic Republic Of" : "ir", "Indonesia" : "id", "India" : "in", "Iceland" : "is", "Hungary" : "hu", "Hong Kong" : "hk", "Honduras" : "hn", "Holy See (Vatican City State)" : "va", "Heard Island & Mcdonald Islands" : "hm", "Haiti" : "ht", "Guyana" : "gy", "Guinea-Bissau" : "gw", "Guinea" : "gn", "Guernsey" : "gg", "Guatemala" : "gt", "Guam" : "gu", "Guadeloupe" : "gp", "Grenada" : "gd", "Greenland" : "gl", "Greece" : "gr", "Gibraltar" : "gi", "Ghana" : "gh", "Germany" : "de", "Georgia" : "ge", "Abkhazia" : "ge", "The Gambia" : "gm", "Gambia" : "gm", "Gabon" : "ga", "French Southern Territories" : "tf", "French Polynesia" : "pf", "French Guiana" : "gf", "France" : "fr", "Finland" : "fi", "Fiji" : "fj", "Faroe Islands" : "fo", "Falkland Islands (Malvinas)" : "fk", "Ethiopia" : "et", "Estonia" : "ee", "Eritrea" : "er", "Equatorial Guinea" : "gq", "El Salvador" : "sv", "Egypt" : "eg", "Ecuador" : "ec", "Dominican Republic" : "do", "Dominica" : "dm", "Djibouti" : "dj", "Denmark" : "dk", "Czech Republic" : "cz", "Cyprus" : "cy", "Cuba" : "cu", "Croatia" : "hr", "Ivory Coast" : "ci", "Cote D'Ivoire" : "ci", "Costa Rica" : "cr", "Cook Islands" : "ck", "Congo, Democratic Republic" : "cd", "Congo" : "cg", "Comoros" : "km", "Colombia" : "co", "Cocos (Keeling) Islands" : "cc", "Christmas Island" : "cx", "China" : "cn", "Chile" : "cl", "Chad" : "td", "Central African Republic" : "cf", "Cayman Islands" : "ky", "Cape Verde" : "cv", "Canada" : "ca", "Cameroon" : "cm", "Cambodia" : "kh", "Burundi" : "bi", "Burkina Faso" : "bf", "Bulgaria" : "bg", "Brunei Darussalam" : "bn", "British Indian Ocean Territory" : "io", "Brazil" : "br", "Bouvet Island" : "bv", "Botswana" : "bw", "Bosnia And Herzegovina" : "ba", "Bolivia" : "bo", "Bhutan" : "bt", "Bermuda" : "bm", "Benin" : "bj", "Belize" : "bz", "Belgium" : "be", "Belarus" : "by", "Barbados" : "bb", "Bangledesh" : "bd", "Bangladesh" : "bd", "Bahrain" : "bh", "Bahamas" : "bs", "Azerbaijan" : "az", "Austria" : "at", "Australia" : "au", "Aruba" : "aw", "Armenia" : "am", "Argentina" : "ar", "Antigua And Barbuda" : "ag", "Antarctica" : "aq", "Anguilla" : "ai", "Angola" : "ao", "Andorra" : "ad", "American Samoa" : "as", "Algeria" : "dz", "Albania" : "al", "Aland Islands" : "ax", "Afghanistan" : "af", "Unknown" : "UNKNOWN"}
+countryLetters = {"UK" : "gb", "Zimbabwe" : "zw", "Zambia" : "zm", "Yemen" : "ye", "Western Sahara" : "eh", "Wallis And Futuna" : "wf", "Virgin Islands, U.S." : "vi", "Virgin Islands, British" : "vg", "Viet Nam" : "vn", "Venezuela" : "ve", "Vanuatu" : "vu", "Uzbekistan" : "uz", "Uruguay" : "uy", "United States Outlying Islands" : "um", "United States" : "us", "United Kingdom" : "gb", "United Arab Emirates" : "ae", "Ukraine" : "ua", "Uganda" : "ug", "Tuvalu" : "tv", "Turks And Caicos Islands" : "tc", "Turkmenistan" : "tm", "Turkey" : "tr", "Tunisia" : "tn", "Trinidad And Tobago" : "tt", "Tonga" : "to", "Tokelau" : "tk", "Togo" : "tg", "Timor-Leste" : "tl", "Thailand" : "th", "Tanzania" : "tz", "Tajikistan" : "tj", "Taiwan" : "tw", "Syria" : "sy", "Syrian Arab Republic" : "sy", "Switzerland" : "ch", "Sweden" : "se", "Swaziland" : "sz", "Svalbard And Jan Mayen" : "sj", "Suriname" : "sr", "Sudan" : "sd", "Sri Lanka" : "lk", "Spain" : "es", "South Georgia And Sandwich Isl." : "gs", "South Africa" : "za", "Somalia" : "so", "Solomon Islands" : "sb", "Slovenia" : "si", "Slovakia" : "sk", "Singapore" : "sg", "Sierra Leone" : "sl", "Seychelles" : "sc", "Serbia" : "rs", "Senegal" : "sn", "Saudi Arabia" : "sa", "Sao Tome And Principe" : "st", "San Marino" : "sm", "Samoa" : "ws", "Saint Vincent And Grenadines" : "vc", "Saint Pierre And Miquelon" : "pm", "Saint Martin" : "mf", "Saint Lucia" : "lc", "Saint Kitts And Nevis" : "kn", "Saint Helena" : "sh", "Saint Barthelemy" : "bl", "Rwanda" : "rw", "Russian Federation" : "ru", "Russia" : "ru", "Romania" : "ro", "Reunion" : "re", "Qatar" : "qa", "Puerto Rico" : "pr", "Portugal" : "pt", "Poland" : "pl", "Pitcairn" : "pn", "Philippines" : "ph", "Peru" : "pe", "Paraguay" : "py", "Papua New Guinea" : "pg", "Panama" : "pa", "Palestinian Territory, Occupied" : "ps", "Palau" : "pw", "Pakistan" : "pk", "Oman" : "om", "Norway" : "no", "Northern Mariana Islands" : "mp", "Norfolk Island" : "nf", "Niue" : "nu", "Nigeria" : "ng", "Niger" : "ne", "Nicaragua" : "ni", "New Zealand" : "nz", "New Caledonia" : "nc", "Netherlands Antilles" : "an", "Netherlands" : "nl", "Nepal" : "np", "Nauru" : "nr", "Namibia" : "na", "Myanmar" : "mm", "Mozambique" : "mz", "Morocco" : "ma", "Montserrat" : "ms", "Montenegro" : "me", "Mongolia" : "mn", "Monaco" : "mc", "Moldova" : "md", "Micronesia, Federated States Of" : "fm", "Mexico" : "mx", "Mayotte" : "yt", "Mauritius" : "mu", "Mauritania" : "mr", "Martinique" : "mq", "Marshall Islands" : "mh", "Malta" : "mt", "Mali" : "ml", "Maldives" : "mv", "Malaysia" : "my", "Malawi" : "mw", "Madagascar" : "mg", "Macedonia" : "mk", "Macao" : "mo", "Luxembourg" : "lu", "Lithuania" : "lt", "Liechtenstein" : "li", "Libya" : "ly", "Libyan Arab Jamahiriya" : "ly", "Liberia" : "lr", "Lesotho" : "ls", "Lebanon" : "lb", "Latvia" : "lv", "Lao People's Democratic Republic" : "la", "Kyrgyzstan" : "kg", "Kuwait" : "kw", "South Korea" : "kr", "North Korea" : "kp", "Kiribati" : "ki", "Kenya" : "ke", "Kazakhstan" : "kz", "Jordan" : "jo", "Jersey" : "je", "Japan" : "jp", "Jamaica" : "jm", "Rome" : "it", "Italy" : "it", "Israel" : "il", "Isle Of Man" : "im", "Ireland" : "ie", "Iraq" : "iq", "Iran, Islamic Republic Of" : "ir", "Indonesia" : "id", "India" : "in", "Iceland" : "is", "Hungary" : "hu", "Hong Kong" : "hk", "Honduras" : "hn", "Holy See (Vatican City State)" : "va", "Heard Island & Mcdonald Islands" : "hm", "Haiti" : "ht", "Guyana" : "gy", "Guinea-Bissau" : "gw", "Guinea" : "gn", "Guernsey" : "gg", "Guatemala" : "gt", "Guam" : "gu", "Guadeloupe" : "gp", "Grenada" : "gd", "Greenland" : "gl", "Greece" : "gr", "Gibraltar" : "gi", "Ghana" : "gh", "Germany" : "de", "Georgia" : "ge", "Abkhazia" : "ge", "The Gambia" : "gm", "Gambia" : "gm", "Gabon" : "ga", "French Southern Territories" : "tf", "French Polynesia" : "pf", "French Guiana" : "gf", "France" : "fr", "Finland" : "fi", "Fiji" : "fj", "Faroe Islands" : "fo", "Falkland Islands (Malvinas)" : "fk", "Ethiopia" : "et", "Estonia" : "ee", "Eritrea" : "er", "Equatorial Guinea" : "gq", "El Salvador" : "sv", "Egypt" : "eg", "Ecuador" : "ec", "Dominican Republic" : "do", "Dominica" : "dm", "Djibouti" : "dj", "Denmark" : "dk", "Czech Republic" : "cz", "Cyprus" : "cy", "Cuba" : "cu", "Croatia" : "hr", "Ivory Coast" : "ci", "Cote D'Ivoire" : "ci", "Costa Rica" : "cr", "Cook Islands" : "ck", "Congo, Democratic Republic" : "cd", "Congo" : "cg", "Comoros" : "km", "Colombia" : "co", "Cocos (Keeling) Islands" : "cc", "Christmas Island" : "cx", "China" : "cn", "Chile" : "cl", "Chad" : "td", "Central African Republic" : "cf", "Cayman Islands" : "ky", "Cape Verde" : "cv", "Canada" : "ca", "Cameroon" : "cm", "Cambodia" : "kh", "Burundi" : "bi", "Burkina Faso" : "bf", "Bulgaria" : "bg", "Brunei Darussalam" : "bn", "British Indian Ocean Territory" : "io", "Brazil" : "br", "Bouvet Island" : "bv", "Botswana" : "bw", "Bosnia And Herzegovina" : "ba", "Bolivia" : "bo", "Bhutan" : "bt", "Bermuda" : "bm", "Benin" : "bj", "Belize" : "bz", "Belgium" : "be", "Belarus" : "by", "Barbados" : "bb", "Bangledesh" : "bd", "Bangladesh" : "bd", "Bahrain" : "bh", "Bahamas" : "bs", "Azerbaijan" : "az", "Austria" : "at", "Australia" : "au", "Aruba" : "aw", "Armenia" : "am", "Argentina" : "ar", "Antigua And Barbuda" : "ag", "Antarctica" : "aq", "Anguilla" : "ai", "Angola" : "ao", "Andorra" : "ad", "American Samoa" : "as", "Algeria" : "dz", "Albania" : "al", "Aland Islands" : "ax", "Afghanistan" : "af", "Unknown" : "undefined"}
 
 //define dates
 	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -145,70 +145,10 @@ $.ajax({
     }
 });
 
-var getWikimediaNews = function(title, update){
+// get relevant wikimedia news today
+var getWikimediaNews = function(url, appendto, title, update){
 	$.ajax({
-	    url: wiki_news,
-	    jsonp: "callback",
-	    dataType: "jsonp",
-	    success: function( data ) {
-
-			var content = data["parse"]["wikitext"]["*"]
-
-			if (content.split(title)[1] != undefined) {
-
-				content = content.split(title)[1].split("\n\;")[0].split("All news items above this line")[0]
-				items = content.split(")]\n")
-
-				for (var i = 0; i < items.length-1; i++) {
-					if (items[i].split("[http")[1]!=undefined) {
-						url="http" + items[i].split("[http")[1].split(" ")[0]
-							if (url.slice(-1)=="/") {url = url.slice(0, -1)};
-					};
-					var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
-
-					if(items[i].split("**")[1]!=undefined){
-						description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
-					};
-
-					if(items[i].split("***")[1]!=undefined){
-						description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/[a-z]\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
-					};
-
-					var country = "unknown"
-
-					for (var key in demonymic) {
-						if (description.includes(key)) {country = countryLetters[demonymic[key]]};
-					}
-
-					for (var key in countryLetters) {
-						if (description.includes(key)) {country = countryLetters[key]};
-					}
-
-			    	if (i==0) {
-						if (description != " " && description != "" && description != "  ") {
-							$("#daily_snapshot").append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
-						};
-					}
-					else {
-						if (description != " " && description != "" && description != "  ") {
-							$("#daily_snapshot").append("<p> <img src='flags/"+country+".png'>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
-						};
-					};
-				};
-			};
-	    }
-	});
-};
-
-getWikimediaNews("Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
-getWikimediaNews("Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
-getWikimediaNews("Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
-getWikimediaNews("International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
-
-
-var getWikimediaNews_yesterday = function(title, update){
-	$.ajax({
-	    url: wiki_news_2,
+	    url: url,
 	    jsonp: "callback",
 	    dataType: "jsonp",
 	    success: function( data ) {
@@ -222,52 +162,63 @@ var getWikimediaNews_yesterday = function(title, update){
 
 				for (var i = 0; i < items.length-1; i++) {
 
+					// find source url if possible
 					if (items[i].split("[http")[1]!=undefined) {
 						url="http" + items[i].split("[http")[1].split(" ")[0]
 							if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 					};
-					var description = items[i].split("**")[0].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
 
-					if(items[i].split("**")[1]!=undefined){
-						description = items[i].split("**")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-					};
+					// define function for pulling human readable description
+					var parse_wikimedia = function(text) {
+						parsed = text.split("[http")[0].replace("*", "")
+						parsed_array = parsed.split("|")
+						double_def_array = []
+						for (var i = 1; i < parsed_array.length; i++) {
+							double_def_array.push(parsed_array[i].split("]]")[0])
+						};
+						for (var i = 0; i < double_def_array.length; i++) {
+							parsed = parsed.replace(double_def_array[i] + "]]", "")
+						};
+						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+					}
 
-					if(items[i].split("***")[1]!=undefined){
-						description = items[i].split("***")[1].split("[http")[0].replace("*", "").replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, " / ").split(/\. [A-Z]/g)[0].split(/[a-z]\." [A-Z]/g)[0] + " "
-					};
+					// make sure longest description is shown
+					var description = parse_wikimedia(items[i].split("**")[0])
+					if(items[i].split("**")[1]!=undefined){ description = parse_wikimedia(items[i].split("**")[1]) };
+					if(items[i].split("***")[1]!=undefined){ description = parse_wikimedia(items[i].split("***")[1]) };
 
+					// find appropriate flag
 					var country = "unknown"
+					for (var key in demonymic) { if (description.includes(key)) {country = countryLetters[demonymic[key]]}; }
+					for (var key in countryLetters) { if (description.includes(key)) {country = countryLetters[key]}; }
 
-					for (var key in demonymic) {
-						if (description.includes(key)) {country = countryLetters[demonymic[key]]};
-					}
-
-					for (var key in countryLetters) {
-						if (description.includes(key)) {country = countryLetters[key]};
-					}
-
+					// append to daily events list
 			    	if (i==0) {
 						if (description != " " && description != "" && description != "  ") {
-							$("#yesterday_snapshot").append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+							$(appendto).append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
 						};
 					}
 					else {
 						if (description != " " && description != "" && description != "  ") {
-							$("#yesterday_snapshot").append("<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+							$(appendto).append("<p> <img src='flags/"+country+".png'>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
 						};
 					};
-
-
 				};
 			};
 	    }
 	});
 };
 
-getWikimediaNews_yesterday("Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
-getWikimediaNews_yesterday("Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
-getWikimediaNews_yesterday("Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
-getWikimediaNews_yesterday("International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
+getWikimediaNews(wiki_news, "#daily_snapshot", "Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
+getWikimediaNews(wiki_news, "#daily_snapshot", "Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
+getWikimediaNews(wiki_news, "#daily_snapshot", "Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
+getWikimediaNews(wiki_news, "#daily_snapshot", "International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
+
+// get relevant wikimedia news from yesterday
+getWikimediaNews(wiki_news_2, "#yesterday_snapshot", "Politics and elections\n", "<br><strong>Politics Update: </strong><br>")
+getWikimediaNews(wiki_news_2, "#yesterday_snapshot", "Disasters and accidents\n", "<br><strong>Disasters Update: </strong><br>")
+getWikimediaNews(wiki_news_2, "#yesterday_snapshot", "Armed conflicts and attacks\n", "<br><strong>Conflicts Update: </strong><br>")
+getWikimediaNews(wiki_news_2, "#yesterday_snapshot", "International relations\n", "<br><strong>Geopolitics Update: </strong><br>")
 
 
 //get ongoing protests
@@ -540,6 +491,11 @@ $.ajax({
 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
 	    	};
+
+	    	var nowyear = ""
+	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
+	    	else { nowyear = date.split(" ")[1].split("/")[2] };
+
 	    	var title = content["dc_title"]
 	    	var what = content["dc_subject"][0]
 	    		what = what[0].toUpperCase() + what.slice(1)
@@ -558,8 +514,8 @@ $.ajax({
 
 	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
-	    	if (nowdate==window.day) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-	    	if (nowdate==yesterday) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
 
     	};
     }
@@ -590,6 +546,11 @@ $.ajax({
 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
 	    	};
+
+	    	var nowyear = ""
+	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
+	    	else { nowyear = date.split(" ")[1].split("/")[2] };
+
 	    	var title = content["dc_title"]
 	    	var what = content["dc_subject"][0]
 	    		what = what[0].toUpperCase() + what.slice(1)
@@ -608,8 +569,8 @@ $.ajax({
 
 	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
-	    	if (nowdate==window.day) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-	    	if (nowdate==yesterday) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
 
     	};
     }
