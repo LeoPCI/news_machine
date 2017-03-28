@@ -207,6 +207,11 @@ h5 {
 	padding: 2px;
 }
 
+#recent_sub_menu .last_submenu_item,
+#ongoing_sub_menu .last_submenu_item {
+	padding-bottom: 35px;
+}
+
 #ongoing_sub_menu button { 
 	width: 90px;
 	left: -50px; 
@@ -218,9 +223,4 @@ h5 {
 
 ul li ul li h6 {
 	font-size: 1em;
-	padding-bottom: 20px;
-}
-
-ul li ul {
-	margin-bottom: 5px;
 }
