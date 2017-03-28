@@ -9,14 +9,6 @@ var unless = function( condition, callback ) {
 };
 
 // list of countries and demonymic forms
-// x = "Abkhazia,Abkhaz,Abkhazia,Abkhazian,Afghanistan,Afghan,Aland Islands,Aland Island,Albania,Albanian,Algeria,Algerian,American Samoa,American Samoan,Andorra,Andorran,Angola,Angolan,Anguilla,Anguillan,Antarctica,Antarctic,Antigua And Barbuda,Antiguan,Antigua And Barbuda,Barbudan,Argentina,Argentine,Armenia,Armenian,Aruba,Aruban,Australia,Australian,Austria,Austrian,Azerbaijan,Azerbaijani,Azerbaijan ,Azeri,Bahamas,Bahamian,Bahrain,Bahraini,Bangladesh,Bangladeshi,Barbados,Barbadian,Belarus,Belarusian,Belgium,Belgian,Belize,Belizean,Benin,Beninese,Benin ,Beninois,Benin ,Beninoises,Bermuda,Bermudian,Bermuda ,Bermudan,Bhutan,Bhutanese,Bolivia,Bolivian,Bonaire,Bonaire,Bosnia And Herzegovina,Bosnian,Bosnia And Herzegovina,Herzegovinian,Botswana,Motswana,Botswana,Botswanan,Bouvet Island,Bouvet Island,Brazil,Brazilian,British Indian Ocean Territory,BIOT,Brunei,Bruneian,Bulgaria,Bulgarian,Burkina Faso,Burkinabé,Burma,Burmese,Burundi,Burundian,Cabo Verde,Cabo Verdean,Cambodia,Cambodian,Cameroon,Cameroonian,Canada,Canadian,Cayman Islands,Caymanian,Central African Republic,Central African,Chad,Chadian,Chile,Chilean,China,Chinese,Christmas Island,Christmas Island,Cocos (Keeling) Islands,Cocos Island,Colombia,Colombian,Comoros,Comoran,Comoros ,Comorian,Congo- Democratic Republic,Congolese,Cook Islands,Cook Island,Costa Rica,Costa Rican,Cote D'Ivoire,Ivorian,Croatia,Croatian,Cuba,Cuban,Curacao,Curacaoan,Cyprus,Cypriot,Czech Republic,Czech,Denmark,Danish,Djibouti,Djiboutian,Dominica,Dominican,Dominican Republic,Dominican,East Timor,Timorese,Ecuador,Ecuadorian,Egypt,Egyptian,El Salvador,Salvadoran,United Kingdom,British,United Kingdom,UK,United Kingdom,English,Equatorial Guinea,Equatorial Guinean,Equatorial Guinea,Equatoguinean,Eritrea,Eritrean,Estonia,Estonian,Ethiopia,Ethiopian,European Union,European,Falkland Islands,Falkland Island,Faroe Islands,Faroese,Fiji,Fijian,Finland,Finnish,France,French,French Guiana,French Guianese,French Polynesia,French Polynesian,French Southern Territories,French Southern Territories,Gabon,Gabonese,Gambia,Gambian,Georgia,Georgian,Germany,German,Ghana,Ghanaian,Gibraltar,Gibraltar,Greece,Greek- Hellenic,Greenland,Greenlandic,Grenada,Grenadian,Guadeloupe,Guadeloupe,Guam,Guamanian,Guam,Guambat,Guatemala,Guatemalan,Guernsey,Channel Island,Guinea,Guinean,Guinea-Bissau,Bissau-Guinean,Guyana,Guyanese,Haiti,Haitian,Heard Island & McDonald Islands,Heard Island,Heard Island & McDonald Islands,McDonald Island,Honduras,Honduran,Hong Kong,Hong Kongese,Hungary,Hungarian,Iceland,Magyar,Iceland,Icelandic,India,Indian,Indonesia,Indonesian,Iran,Iranian,Iran,Persian,Iraq,Iraqi,Ireland,Irish,Isle of Man,Manx,Israel,Israeli,Italy,Italian,Ivory Coast,Ivorian,Jamaica,Jamaican,Jan Mayen,Jan Mayen,Japan,Japanese,Jersey,Channel Island,Jordan,Jordanian,Kazakhstan,Kazakhstani,Kazakhstan ,Kazakh,Kenya,Kenyan,Kiribati,I-Kiribati,North Korea,North Korean,South Korea,South Korean,Kosovo,Kosovar,Kosovo ,Kosovan,Kosovo,Kosovars,Kuwait,Kuwaiti,Kyrgyzstan,Kyrgyzstani,Kyrgyzstan ,Kyrgyz,Kyrgyzstan ,Kirgiz,Kyrgyzstan ,Kirghiz,Laos,Lao,Laos ,Laotian,Latvia,Latvian,Latvia ,Lettish,Lebanon,Lebanese,Lesotho,Basotho,Liberia,Liberian,Libya,Libyan,Liechtenstein,Liechtensteiner,Lithuania,Lithuanian,Luxembourg,Luxembourg,Luxembourg ,Luxembourgish,Macau,Macanese,Macau ,Chinese,Macedonia,Macedonian,Madagascar,Malagasy,Malawi,Malawian,Malaysia,Malaysian,Maldives,Maldivian,Mali,Malian,Mali ,Malinese,Malta,Maltese,Marshall Islands,Marshallese,Martinique,Martiniquais,Martinique ,Martinican,Mauritania,Mauritanian,Mauritius,Mauritian,Mayotte,Mahoran,Mexico,Mexican,Micronesia- Federated States of,Micronesian,Moldova,Moldovan,Monaco,Monégasque,Monaco ,Monacan,Mongolia,Mongolian,Montenegro,Montenegrin,Montserrat,Montserratian,Morocco,Moroccan,Mozambique,Mozambican,Myanmar,Burmese,Namibia,Namibian,Nauru,Nauruan,Nepal,Nepali,Nepal ,Nepalese,Netherlands,Dutch,Netherlands ,Netherlandic,New Caledonia,New Caledonian,New Zealand,New Zealand,Nicaragua,Nicaraguan,Niger,Nigerien,Nigeria,Nigerian,Niue,Niuean,Norfolk Island,Norfolk Island,Northern Ireland,Northern Irish,Ireland,Irish,Northern Mariana Islands,Northern Marianan,Norway,Norwegian,Oman,Omani,Pakistan,Pakistani,Palau,Palauan,Palestine,Palestinian,Panama,Panamanian,Papua New Guinea,Papua New Guinean,Papua New Guinea,Papuan,Paraguay,Paraguayan,Peru,Peruvian,Philippines,Filipino,Philippines,Philippine,Pitcairn Islands,Pitcairn Island,Poland,Polish,Portugal,Portuguese,Puerto Rico,Puerto Rican,Qatar,Qatari,Reunion,Reunionese,Reunion ,Reunionnais,Romania,Romanian,Russia,Russian,Rwanda,Rwandan,Saba,Saba,Saint Barthelemy,Barthelemois,Saint Helena,Saint Helenian,Saint Kitts and Nevis,Kittitian or Nevisian,Saint Lucia,Saint Lucian,Saint Martin,Saint-Martinoise,Saint Pierre And Miquelon,Saint-Pierrais,Saint Pierre And Miquelon,Miquelonnais,Saint Vincent And Grenadines,Saint Vincentian,Saint Vincent And Grenadines,Vincentian,Samoa,Samoan,San Marino,Sammarinese,Sao Tome and Príncipe,Sao Tomean,Saudi Arabia,Saudi,Saudi Arabia,Saudi Arabian,Scotland,Scottish,Senegal,Senegalese,Serbia,Serbian,Seychelles,Seychellois,Sierra Leone,Sierra Leonean,Singapore,Singapore,Singapore ,Singaporean,Sint Eustatius,Sint Eustatius,Sint Eustatius,Statian,Sint Maarten,Sint Maarten,Slovakia,Slovak,Slovenia,Slovenian,Slovenia,Slovene,Solomon Islands,Solomon Island,Somalia,Somali,Somaliland,Somalilander,South Africa,South African,South Georgia And Sandwich Isl.,South Georgian,South Georgia And Sandwich Isl.,South Sandwich Island,South Sudan,South Sudanese,Spain,Spanish,Sri Lanka,Sri Lankan,Sudan,Sudanese,Surinam,Surinamese,Svalbard,Svalbard,Swaziland,Swazi,Sweden,Swedish,Switzerland,Swiss,Syria,Syrian,Tajikistan,Tajikistani,Tanzania,Tanzanian,Thailand,Thai,Timor-Leste,Timorese,Togo,Togolese,Tokelau,Tokelauan,Tonga,Tongan,Trinidad And Tobago,Trinidadian,Trinidad And Tobago,Tobagonian,Tunisia,Tunisian,Turkey,Turkish,Turkmenistan,Turkmen,Turks And Caicos Islands,Turks and Caicos Island,Tuvalu,Tuvaluan,Uganda,Ugandan,Ukraine,Ukrainian,United Arab Emirates,Emirati,United Arab Emirates,Emirian,United Arab Emirates,Emiri,United States,American,Uruguay,Uruguayan,Uzbekistan,Uzbekistani,Uzbekistan ,Uzbek,Vanuatu,Ni-Vanuatu,Vanuatu ,Vanuatuan,Vatican City State,Vatican,Venezuela,Venezuelan,Vietnam,Vietnamese,Virgin Islands- British,British Virgin Island,Virgin Islands- United States,U.S. Virgin Island,Wales,Welsh,Wallis And Futuna,Wallis and Futuna,Wallis And Futuna,Wallisian,Wallis And Futuna,Futunan,Western Sahara,Sahrawi,Western Sahara,Sahrawian,Western Sahara,Sahraouian,Yemen,Yemeni,Zambia,Zambian,Zimbabwe,Zimbabwean"
-
-// x = x.split(",")
-
-// for (var i = 0; i < x.length; i+=2) {
-// 	$("#daily_snapshot").prepend('"'+x[i+1]+'" : "'+x[i]+'", ')
-// };
-
 var demonymic = {"Zimbabwean" : "Zimbabwe", "Zambian" : "Zambia", "Yemeni" : "Yemen", "Sahraouian" : "Western Sahara", "Sahrawian" : "Western Sahara", "Sahrawi" : "Western Sahara", "Futunan" : "Wallis And Futuna", "Wallisian" : "Wallis And Futuna", "Wallis and Futuna" : "Wallis And Futuna", "Welsh" : "Wales", "U.S. Virgin Island" : "Virgin Islands- United States", "British Virgin Island" : "Virgin Islands- British", "Vietnamese" : "Vietnam", "Venezuelan" : "Venezuela", "Vatican" : "Vatican City State", "Vanuatuan" : "Vanuatu ", "Ni-Vanuatu" : "Vanuatu", "Uzbek" : "Uzbekistan ", "Uzbekistani" : "Uzbekistan", "Uruguayan" : "Uruguay", "American" : "United States", "Emiri" : "United Arab Emirates", "Emirian" : "United Arab Emirates", "Emirati" : "United Arab Emirates", "Ukrainian" : "Ukraine", "Ugandan" : "Uganda", "Tuvaluan" : "Tuvalu", "Turks and Caicos Island" : "Turks And Caicos Islands", "Turkmen" : "Turkmenistan", "Turkish" : "Turkey", "Tunisian" : "Tunisia", "Tobagonian" : "Trinidad And Tobago", "Trinidadian" : "Trinidad And Tobago", "Tongan" : "Tonga", "Tokelauan" : "Tokelau", "Togolese" : "Togo", "Timorese" : "Timor-Leste", "Thai" : "Thailand", "Tanzanian" : "Tanzania", "Tajikistani" : "Tajikistan", "Syrian" : "Syria", "Swiss" : "Switzerland", "Swedish" : "Sweden", "Swazi" : "Swaziland", "Svalbard" : "Svalbard", "Surinamese" : "Surinam", "Sudanese" : "Sudan", "Sri Lankan" : "Sri Lanka", "Spanish" : "Spain", "South Sudanese" : "South Sudan", "South Sandwich Island" : "South Georgia And Sandwich Isl.", "South Georgian" : "South Georgia And Sandwich Isl.", "South African" : "South Africa", "Somalilander" : "Somaliland", "Somali" : "Somalia", "Solomon Island" : "Solomon Islands", "Slovene" : "Slovenia", "Slovenian" : "Slovenia", "Slovak" : "Slovakia", "Sint Maarten" : "Sint Maarten", "Statian" : "Sint Eustatius", "Sint Eustatius" : "Sint Eustatius", "Singaporean" : "Singapore ", "Singapore" : "Singapore", "Sierra Leonean" : "Sierra Leone", "Seychellois" : "Seychelles", "Serbian" : "Serbia", "Senegalese" : "Senegal", "Scottish" : "Scotland", "Saudi Arabian" : "Saudi Arabia", "Saudi" : "Saudi Arabia", "Sao Tomean" : "Sao Tome and Príncipe", "Sammarinese" : "San Marino", "Samoan" : "Samoa", "Vincentian" : "Saint Vincent And Grenadines", "Saint Vincentian" : "Saint Vincent And Grenadines", "Miquelonnais" : "Saint Pierre And Miquelon", "Saint-Pierrais" : "Saint Pierre And Miquelon", "Saint-Martinoise" : "Saint Martin", "Saint Lucian" : "Saint Lucia", "Kittitian or Nevisian" : "Saint Kitts and Nevis", "Saint Helenian" : "Saint Helena", "Barthelemois" : "Saint Barthelemy", "Saba" : "Saba", "Rwandan" : "Rwanda", "Soviet" : "Russia", "Soviet-Russian" : "Russia", "Russian" : "Russia", "Romanian" : "Romania", "Reunionnais" : "Reunion ", "Reunionese" : "Reunion", "Qatari" : "Qatar", "Puerto Rican" : "Puerto Rico", "Portuguese" : "Portugal", "Polish" : "Poland", "Pitcairn Island" : "Pitcairn Islands", "Philippine" : "Philippines", "Filipino" : "Philippines", "Peruvian" : "Peru", "Paraguayan" : "Paraguay", "Papuan" : "Papua New Guinea", "Papua New Guinean" : "Papua New Guinea", "Panamanian" : "Panama", "Palestinian" : "Palestine", "Palauan" : "Palau", "Pakistani" : "Pakistan", "Omani" : "Oman", "Norwegian" : "Norway", "Northern Marianan" : "Northern Mariana Islands", "Irish" : "Ireland", "Northern Irish" : "Northern Ireland", "Norfolk Island" : "Norfolk Island", "Niuean" : "Niue", "Nigerian" : "Nigeria", "Nigerien" : "Niger", "Nicaraguan" : "Nicaragua", "New Zealand" : "New Zealand", "New Caledonian" : "New Caledonia", "Netherlandic" : "Netherlands ", "Dutch" : "Netherlands", "Nepalese" : "Nepal ", "Nepali" : "Nepal", "Nauruan" : "Nauru", "Namibian" : "Namibia", "Burmese" : "Myanmar", "Mozambican" : "Mozambique", "Moroccan" : "Morocco", "Montserratian" : "Montserrat", "Montenegrin" : "Montenegro", "Mongolian" : "Mongolia", "Monacan" : "Monaco ", "Monégasque" : "Monaco", "Moldovan" : "Moldova", "Micronesian" : "Micronesia- Federated States of", "Mexican" : "Mexico", "Mahoran" : "Mayotte", "Mauritian" : "Mauritius", "Mauritanian" : "Mauritania", "Martinican" : "Martinique ", "Martiniquais" : "Martinique", "Marshallese" : "Marshall Islands", "Maltese" : "Malta", "Malinese" : "Mali ", "Malian" : "Mali", "Maldivian" : "Maldives", "Malaysian" : "Malaysia", "Malawian" : "Malawi", "Malagasy" : "Madagascar", "Macedonian" : "Macedonia", "Chinese" : "Macau ", "Macanese" : "Macau", "Luxembourgish" : "Luxembourg ", "Luxembourg" : "Luxembourg", "Lithuanian" : "Lithuania", "Liechtensteiner" : "Liechtenstein", "Libyan" : "Libya", "Liberian" : "Liberia", "Basotho" : "Lesotho", "Lebanese" : "Lebanon", "Lettish" : "Latvia ", "Latvian" : "Latvia", "Laotian" : "Laos ", "Lao" : "Laos", "Kirghiz" : "Kyrgyzstan ", "Kirgiz" : "Kyrgyzstan ", "Kyrgyz" : "Kyrgyzstan ", "Kyrgyzstani" : "Kyrgyzstan", "Kuwaiti" : "Kuwait", "Kosovars" : "Kosovo", "Kosovan" : "Kosovo ", "Kosovar" : "Kosovo", "South Korean" : "South Korea", "North Korean" : "North Korea", "I-Kiribati" : "Kiribati", "Kenyan" : "Kenya", "Kazakh" : "Kazakhstan ", "Kazakhstani" : "Kazakhstan", "Jordanian" : "Jordan", "Channel Island" : "Jersey", "Japanese" : "Japan", "Jan Mayen" : "Jan Mayen", "Jamaican" : "Jamaica", "Ivorian" : "Ivory Coast", "Italian" : "Italy", "Israeli" : "Israel", "Manx" : "Isle of Man", "Irish" : "Ireland", "Iraqi" : "Iraq", "Persian" : "Iran", "Iranian" : "Iran", "Indonesian" : "Indonesia", "Indian" : "India", "Icelandic" : "Iceland", "Magyar" : "Iceland", "Hungarian" : "Hungary", "Hong Kongese" : "Hong Kong", "Honduran" : "Honduras", "McDonald Island" : "Heard Island & McDonald Islands", "Heard Island" : "Heard Island & McDonald Islands", "Haitian" : "Haiti", "Guyanese" : "Guyana", "Bissau-Guinean" : "Guinea-Bissau", "Guinean" : "Guinea", "Channel Island" : "Guernsey", "Guatemalan" : "Guatemala", "Guambat" : "Guam", "Guamanian" : "Guam", "Guadeloupe" : "Guadeloupe", "Grenadian" : "Grenada", "Greenlandic" : "Greenland", "Greek- Hellenic" : "Greece", "Gibraltar" : "Gibraltar", "Ghanaian" : "Ghana", "German" : "Germany", "Georgian" : "Georgia", "Gambian" : "Gambia", "Gabonese" : "Gabon", "French Southern Territories" : "French Southern Territories", "French Polynesian" : "French Polynesia", "French Guianese" : "French Guiana", "French" : "France", "Finnish" : "Finland", "Fijian" : "Fiji", "Faroese" : "Faroe Islands", "Falkland Island" : "Falkland Islands", "European" : "European Union", "Ethiopian" : "Ethiopia", "Estonian" : "Estonia", "Eritrean" : "Eritrea", "Equatoguinean" : "Equatorial Guinea", "Equatorial Guinean" : "Equatorial Guinea", "English" : "United Kingdom", "UK" : "United Kingdom", "British" : "United Kingdom", "Salvadoran" : "El Salvador", "Egyptian" : "Egypt", "Ecuadorian" : "Ecuador", "Timorese" : "East Timor", "Dominican" : "Dominican Republic", "Dominican" : "Dominica", "Djiboutian" : "Djibouti", "Danish" : "Denmark", "Czech" : "Czech Republic", "Cypriot" : "Cyprus", "Curacaoan" : "Curacao", "Cuban" : "Cuba", "Croatian" : "Croatia", "Ivorian" : "Cote D'Ivoire", "Costa Rican" : "Costa Rica", "Cook Island" : "Cook Islands", "Congolese" : "Congo- Democratic Republic", "Comorian" : "Comoros ", "Comoran" : "Comoros", "Colombian" : "Colombia", "Cocos Island" : "Cocos (Keeling) Islands", "Christmas Island" : "Christmas Island", "Chinese" : "China", "Chilean" : "Chile", "Chadian" : "Chad", "Central African" : "Central African Republic", "Caymanian" : "Cayman Islands", "Canadian" : "Canada", "Cameroonian" : "Cameroon", "Cambodian" : "Cambodia", "Cabo Verdean" : "Cabo Verde", "Burundian" : "Burundi", "Burmese" : "Burma", "Burkinabé" : "Burkina Faso", "Bulgarian" : "Bulgaria", "Bruneian" : "Brunei", "BIOT" : "British Indian Ocean Territory", "Brazilian" : "Brazil", "Bouvet Island" : "Bouvet Island", "Botswanan" : "Botswana", "Motswana" : "Botswana", "Herzegovinian" : "Bosnia And Herzegovina", "Bosnian" : "Bosnia And Herzegovina", "Bonaire" : "Bonaire", "Bolivian" : "Bolivia", "Bhutanese" : "Bhutan", "Bermudan" : "Bermuda ", "Bermudian" : "Bermuda", "Beninoises" : "Benin ", "Beninois" : "Benin ", "Beninese" : "Benin", "Belizean" : "Belize", "Belgian" : "Belgium", "Belarusian" : "Belarus", "Barbadian" : "Barbados", "Bangladeshi" : "Bangladesh", "Bahraini" : "Bahrain", "Bahamian" : "Bahamas", "Azeri" : "Azerbaijan ", "Azerbaijani" : "Azerbaijan", "Austrian" : "Austria", "Australian" : "Australia", "Aruban" : "Aruba", "Armenian" : "Armenia", "Argentine" : "Argentina", "Barbudan" : "Antigua And Barbuda", "Antiguan" : "Antigua And Barbuda", "Antarctic" : "Antarctica", "Anguillan" : "Anguilla", "Angolan" : "Angola", "Andorran" : "Andorra", "American Samoan" : "American Samoa", "Algerian" : "Algeria", "Albanian" : "Albania", "Aland Island" : "Aland Islands", "Afghan" : "Afghanistan", "Abkhazian" : "Abkhazia", "Abkhaz" : "Abkhazia"}
 
 // list of country codes
@@ -96,12 +88,17 @@ $.ajax({
 		var list_deaths = function(day, location, today=false) {
 			for (var i = 1; i < day.length; i++) {
 
-				var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '')
-				var death = day[i].split(">[")[1].split("]</ref>")[0]
+				var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
+				// if (day[i].split(">[")[1]==undefined) {
+				// 	var death = day[i].split(">{")[1].split("]</ref>")[0]}
+				// else {
+				// 	var death = day[i].split("http")[1].split("]</ref>")[0]
+				// };
 				var person = day[i].split(",")[0].replace("{{ill|","").split("]]")[0].split("|")[0].replace(/\(([^)]+)\)/, "").replace(/\[/g, "")
-				var url = death.split(" ")[0]
+				var url = "http" + day[i].split("http")[1].split(" ")[0]
+				// var url = death.split(" ")[0]
 					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
-				var explanation = death.replace(url, "").replace("/ ", "").split("]")[0]
+				// var explanation = death.replace(url, "").replace("/ ", "").split("]")[0]
 
 				var date = window.day
 				if (today) {date=month + " " + window.day};
@@ -453,7 +450,7 @@ $.ajax({
 
 		    	//add today to daily snapshot
 				if ((month==window.month)||(month==window.last_month&&date>=day)) {
-					if (date==window.day) {$("#daily_snapshot").prepend("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+					if (date==window.day) {$("#daily_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 					if (date==yesterday) {$("#yesterday_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 			    };
 		    };
@@ -642,62 +639,57 @@ $.ajax({
 
 //show and hide info
 var showandhide = function(btn="#", div, other="#"){
+	$(btn).click(function(){
 		$(".inner").css({"display":"none"})
 		$(div).css({"display":"inline-block"})
 		$(div + "> div ").css({"display":"inline-block"})
 		$(other).css({"display":"inline-block"})
-		// $("button").css({"background-color":"transparent"})
 		$("button").children().css({"text-decoration":"none"})
-		// $(btn).css({"background-color":"rgba(255, 255, 255, 0.2)"})
 		$(btn).children().css({"text-decoration":"underline"})
+		$("#ongoing_sub_menu *").removeClass("show")
+		$("#recent_sub_menu *").removeClass("show")
+	});
 };
 
-$('#button_zero').click(function(){
 	showandhide("#button_zero", "#daily_snapshot", "#yesterday_snapshot")
-});
 
-// $('#button_zero_point_one').click(function(){
-// 	showandhide('#button_zero_point_one', "#yesterday_snapshot")
-// });
-
-$('#about_button').click(function(){
 	showandhide('#about_button', "#about")
-});
 
-$('#button_one').click(function(){
 	showandhide('#button_one', "#ongoing_protests")
-});
 
-$('#button_two').click(function(){
 	showandhide('#button_two', "#ongoing_wars")
-});
 
-$('#button_three').click(function(){
 	showandhide('#button_three', "#terrorist_attacks", "#terrorist_attacks_2")
-});
 
-$('#button_four').click(function(){
 	showandhide('#button_four', "#new_heads")
-});
 
-$('#button_five').click(function(){
 	showandhide('#button_five', "#notable_deaths")
-});
 
-$('#button_six').click(function(){
 	showandhide('#button_six', "#disasters")
-});
 
 // make navbar stick to top
-  $(window).scroll(function () {
-    if ($(window).scrollTop() > 184) {
-      $('.navbar').addClass('navbar-fixed');
-      $('#today-title').css({"padding-bottom":"65px"})
-    }
-    if ($(window).scrollTop() < 184) {
-      $('.navbar').removeClass('navbar-fixed');
-      $('#today-title').css({"padding-bottom":"20px"})
-    }
-  });
-
+$(window).scroll(function () {
+	if ($(window).scrollTop() > 184) {
+		$('.navbar').addClass('navbar-fixed');
+		// $('#today-title').css({"padding-bottom":"65px"})
+		$('#ongoing').css({"padding-top":"44px"})
+	}
+	if ($(window).scrollTop() < 184) {
+		$('.navbar').removeClass('navbar-fixed');
+		// $('#today-title').css({"margin-bottom":"20px"})
+		$('#ongoing').css({"padding-top":"0px"})
+	}
 });
+
+// show/hide subnavigation
+var showSubNav = function(button, other, sub) {
+	button.click(function(){
+		$(sub+" *").toggleClass("show")
+		$(other+" *").removeClass("show")
+	});
+};
+
+showSubNav($("#ongoing_button"), "#recent_sub_menu", "#ongoing_sub_menu")
+showSubNav($("#recent_button"), "#ongoing_sub_menu", "#recent_sub_menu")
+
+}); //end of script

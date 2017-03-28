@@ -51,18 +51,20 @@ a {
 	display:inline-block;
 }
 
-/*#daily_snapshot {
-	display:inline-block;
-}*/
-
 #buttons {
 	text-align:center;
 	width:100%;
 }
 
-.navbar {
+.navbar, .navbar li {
 	/*background-color:rgba(255, 255, 255, 0.2);*/
+	display: inline-block;
+	margin: 0px;
+}
+
+.navbar {
 	background: linear-gradient(rgba(255, 255, 255, 0), black);
+	width: 100%;
 }
 
 #buttons:focus {
@@ -171,14 +173,10 @@ h5 {
 
 .navbar-fixed {
 	top: 0;
+	left: 0;
 	position: fixed;
     width: 100%;
     background-color: black;
-/*	background-image: url("images/nasa.jpg");
-	background-position:center;
-	background-size:cover;
-	background-position: 0% 61.5%;
-	filter: saturate(8);*/
 }
 
 #ongoing img {
@@ -186,4 +184,43 @@ h5 {
 	top: 5px;
 	z-index: -1;
 	padding-right: 2px;
+}
+
+/*submenu*/
+#recent_sub_menu, #recent_sub_menu *, #ongoing_sub_menu, #ongoing_sub_menu * {
+	display: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+#recent_sub_menu, #ongoing_sub_menu {
+	display: inline-block;
+	position: absolute;
+	width: 70px;
+}
+#recent_sub_menu button, #ongoing_sub_menu button {
+	background-color: black;
+	height: 30px;
+	width: 130px;
+	position: relative;
+	left: -70px;
+	padding: 2px;
+}
+
+#ongoing_sub_menu button { 
+	width: 90px;
+	left: -50px; 
+}
+
+.show {
+	display: inline-block !important;
+}
+
+ul li ul li h6 {
+	font-size: 1em;
+	padding-bottom: 20px;
+}
+
+ul li ul {
+	margin-bottom: 5px;
 }
