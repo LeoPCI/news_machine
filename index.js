@@ -88,7 +88,15 @@ $.ajax({
 		var list_deaths = function(day, location, today=false) {
 			for (var i = 1; i < day.length; i++) {
 
-				var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
+				if (day[i].split(",")[2] == undefined) {
+					var notability = ""
+				}
+				else {
+					var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
+					var nat = "unknown"
+					nat = notability.split(" ")[1].split("-born")[0]
+				};
+				
 				// if (day[i].split(">[")[1]==undefined) {
 				// 	var death = day[i].split(">{")[1].split("]</ref>")[0]}
 				// else {
@@ -105,8 +113,6 @@ $.ajax({
 				if (day==deaths_yesterday) {date=yesterday_month + " " + yesterday};
 				if (day==deaths_third) {date=third_day_month + " " + third_day};
 
-				var nat = "unknown"
-				nat = notability.split(" ")[1].split("-born")[0]
 				country = demonymic[nat]
 
 				$(location).append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <br> <a target=_blank href=" + url + ">" + person + "</a> <br>" + notability + "<br>" + date + '</div>')
@@ -355,7 +361,7 @@ $.ajax({
     	$("#daily_snapshot").append("<br><strong id='terrorlist1'>Terrorist Attacks: </strong>")
     	$("#yesterday_snapshot").append("<br><strong id='terrorlist2'>Terrorist Attacks: </strong>")
 
-		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[1].split("|-")
+		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[0].split("|-")
 
 		for (var i = 2; i < attacks.length; i++) {
 				
