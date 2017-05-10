@@ -224,3 +224,14 @@ h5 {
 ul li ul li h6 {
 	font-size: 1em;
 }
+
+#bookmarkme-outer-div {
+	width: 100%;
+	text-align: center;
+}
+
+#bookmarkme:focus {
+    color: #555;
+    font-weight: 600;
+    border: 1px solid #bbb;;
+}
