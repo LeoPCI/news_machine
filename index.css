@@ -2,7 +2,11 @@
 	font-family:'Karla', monospace;
 }
 body {
-	background: url(images/debut_light.png)
+	background: url(images/debut_light.png);
+	display: -ms-grid;
+    display: grid;
+  	grid-template-columns: 20% 20% 20% 20% 20%;
+  	grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
 h1, h2, h3, h5, h6 {
@@ -40,25 +44,30 @@ a {
 	width:100%;
 }
 
-#buttons .row button h6 {
+#buttons-mobile .row button h6 {
 	vertical-align: middle;
 }
 
 #daily_snapshot, #yesterday_snapshot {
 	margin:20px;
 	text-align: left;
-	width:65%;
+	width:85%;
 	display:inline-block;
 }
 
 #buttons {
 	text-align:center;
-	width:100%;
+	/*width:100%;*/
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: -1;
 }
 
 .navbar, .navbar li {
 	/*background-color:rgba(255, 255, 255, 0.2);*/
 	display: inline-block;
+	/*display: block;*/
 	margin: 0px;
 }
 
@@ -67,11 +76,11 @@ a {
 	width: 100%;
 }
 
-#buttons:focus {
+#buttons:focus, #buttons-mobile:focus {
 	background-color:transparent;
 }
 
-#buttons button {	
+#buttons button, #buttons-mobile button {	
 	display:inline;
 	color:white;
 	text-align:center;
@@ -95,13 +104,11 @@ button:focus {
 	width:100%;
 	margin:auto;
 	text-align:center;
+	grid-column-start: 2;
+	grid-column-end: -1;
 }
 #ongoing-wars {
 	text-align:center;
-}
-
-em {
-	text-decoration: underline;
 }
 
 header {
@@ -112,6 +119,8 @@ header {
 	width:100%;
 	text-align:center;
 	padding-top:20px;
+	grid-column-start: 1;
+	grid-column-end: -1;
 }
 header h1 {
 	font-size: 4em;
@@ -228,10 +237,65 @@ ul li ul li h6 {
 #bookmarkme-outer-div {
 	width: 100%;
 	text-align: center;
+	grid-column-start: 2;
+	grid-column-end: -1;
 }
 
 #bookmarkme:focus {
     color: #555;
     font-weight: 600;
-    border: 1px solid #bbb;;
+    border: 1px solid #bbb;
+}
+
+.align-left {
+	text-align: left;
+	margin: auto;
+	width: 85%;
+	margin-top: 20px;
+}
+
+#snapshots {
+	display: inline-block;
+}
+
+#sidebar * {
+	color: white;
+	list-style: none;
+}
+
+#buttons {
+	text-align: left;
+	background-color: #0d2b46;
+}
+
+#buttons-mobile {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	text-align: center;
+	background-color: black;
+	display: none;
+}
+
+/*make yesterday and today side-by-side if screen big enough*/
+@media screen and (min-width: 940px) {
+	#daily_snapshot, #yesterday_snapshot {
+	    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    	-moz-column-count: 2; /* Firefox */
+    	column-count: 2;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	#buttons {
+		display: none;
+	}
+	
+	#buttons-mobile {
+		display: inherit;
+	}
+
+	#ongoing {
+		grid-column-start: 1;
+		grid-column-end: -1;
+	}
 }

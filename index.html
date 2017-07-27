@@ -33,35 +33,53 @@
 
 	<header>
 
-	<h1>Reality Brief</h1>
+		<h1>Reality Brief</h1>
+		<h2 id="today-title"></h2>
+		
+	</header>
 
-	<h2 id="today-title"></h2>
 
-		<div id="buttons">
-
+		<div id="buttons-mobile">
 			<div class="navbar">
-			<ul class="navbar">
-					<li><button id="button_zero"><h6>Daily</h6></button></li>
+				<ul class="navbar">
+					<li><button class="button_zero"><h6>Daily</h6></button></li>
 					<li><button id="ongoing_button"><h6>Ongoing&#8595;</h6></button>
 					<ul id="ongoing_sub_menu">
-						<li><button id="button_one"><h6>Protests</h6></button></li>
-						<li><button id="button_two" class="last_submenu_item"><h6>Conflicts</h6></button></li>
+						<li><button class="button_one"><h6>Protests</h6></button></li>
+						<li><button class="button_two last_submenu_item"><h6>Conflicts</h6></button></li>
 					</ul></li>
 					<li><button id="recent_button"><h6>Recent&#8595;</h6></button>
 					<ul id="recent_sub_menu">
-						<li><button id="button_four"><h6>Heads of State</h6></button></li>
-						<li><button id="button_five"><h6>Notable Deaths</h6></button></li>
-						<li><button id="button_three"><h6>Terrorist Attacks</h6></button></li>
-						<li><button id="button_six" class="last_submenu_item"><h6>Natural Disasters</h6></button></li>
+						<li><button class="button_four"><h6>Heads of State</h6></button></li>
+						<li><button class="button_five"><h6>Notable Deaths</h6></button></li>
+						<li><button class="button_three"><h6>Terrorist Attacks</h6></button></li>
+						<li><button class="button_six last_submenu_item"><h6>Natural Disasters</h6></button></li>
 					</ul></li>				
 					<button id="about_button"><h6>About</h6></button>
 				</ul>
 			</div>
-
 		</div>
 
-	</header>
-
+		<div id="buttons">
+			<div id="sidebar">
+				<ul>
+					<li><button class="button_zero"><h6>Daily</h6></button></li>
+					<li><button class="ongoing_button"><h6><em>Ongoing</em></h6></button>
+					<ul id="ongoing_sub">
+						<li><button class="button_one"><h6>Protests</h6></button></li>
+						<li><button class="button_two" class="last_submenu_item"><h6>Conflicts</h6></button></li>
+					</ul></li>
+					<li><button class="recent_button"><h6><em>Recent</em></h6></button>
+					<ul id="recent_sub">
+						<li><button class="button_four"><h6>Heads of State</h6></button></li>
+						<li><button class="button_five"><h6>Notable Deaths</h6></button></li>
+						<li><button class="button_three"><h6>Terrorist Attacks</h6></button></li>
+						<li><button class="button_six last_submenu_item"><h6>Natural Disasters</h6></button></li>
+					</ul></li>				
+					<button id="about_button"><h6>About</h6></button>
+				</ul>
+			</div>
+		</div>
 
 	<div id="ongoing">
 
@@ -70,9 +88,14 @@
 
 		</div>
 
-		<div id="daily_snapshot" class="inner"><h5>Today So Far</h5></div>
-
-		<div id="yesterday_snapshot" class="inner"><h5 id="yesterday-title"></h5></div>
+	<div id="snapshots" class="inner">
+	
+		<h5 class="align-left">Today So Far</h5>
+		<div id="daily_snapshot" class="inner"></div>
+		<h5 class="align-left">Yesterday</h5>
+		<!-- <h5 id="yesterday-title"></h5> -->
+		<div id="yesterday_snapshot" class="inner"></div>
+		</div>
 
 		<div id="ongoing_protests" class="inner"><h5>Ongoing Mass Protests</h5></div>
 

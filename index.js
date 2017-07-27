@@ -49,10 +49,10 @@ countryLetters = {"UK" : "gb", "Zimbabwe" : "zw", "Zambia" : "zm", "Yemen" : "ye
 
 //add date
 	$("#today-title").append(month + " " + day + ", " + year)
-	$("#yesterday-title").append(yesterday_month + " " + yesterday + ", " + yesterday_year)
+	// $("#yesterday-title").append(yesterday_month + " " + yesterday + ", " + yesterday_year)
 
 //define source urls
-	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests&contentmodel=wikitext&prop=wikitext&format=json"
+	ongoing_protests="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_protests_and_civil_unrest&contentmodel=wikitext&prop=wikitext&format=json"
 	ongoing_armed_conflicts="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ongoing_armed_conflicts&contentmodel=wikitext&prop=wikitext&format=json"
 	terrorist_attacks="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_terrorist_incidents_in_"+month+"_"+year+"&contentmodel=wikitext&prop=wikitext&format=json"
 	terrorist_attacks_2="https://en.wikipedia.org/w/api.php?action=parse&page=List_of_terrorist_incidents_in_"+last_month+"_"+last_month_year+"&contentmodel=wikitext&prop=wikitext&format=json"
@@ -182,7 +182,7 @@ var getWikimediaNews = function(url, appendto, title, update){
 						for (var i = 0; i < double_def_array.length; i++) {
 							parsed = parsed.replace(double_def_array[i] + "]]", "")
 						};
-						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/\. [A-Z]/g)[0].split(/\." [A-Z]/g)[0] + " "
+						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/\. [A-Z]/g)[0].split(/\." [A-Z][a-z]/g)[0] + " "
 					}
 
 					// make sure longest description is shown
@@ -230,13 +230,14 @@ $.ajax({
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
-	  var listvar = data["parse"]["wikitext"]["*"]
-	  listvar = listvar.split('==List of ongoing civil unrests and protests==');
-	  listvar = listvar[1].split('align=center');
+		  var listvar = data["parse"]["wikitext"]["*"]
+		  listvar = listvar.split('==List of ongoing civil unrests and protests==');
+		  listvar = listvar[1].split('align=center');
 
-	  var listvar2 = data["parse"]["wikitext"]["*"]
-	  listvar2 = listvar2.split('==List of ongoing civil unrests and protests==');
-	  listvar2 = listvar2[0].split('align=center');
+		  var listvar2 = data["parse"]["wikitext"]["*"]
+		  listvar2 = listvar2.split('==List of ongoing civil unrests and protests==');
+		  listvar2 = listvar2[0].split('align=center');
+
 
 	  var getinfo = function(line){
 	  	for (var i = 1; i < line.length; i++) {
@@ -267,9 +268,16 @@ $.ajax({
     dataType: "jsonp",
     success: function( data ) {
 
+    try {
+
 	  var listvar = data["parse"]["wikitext"]["*"]
-	  listvar = listvar.split('==10,000+ deaths in current or past year==');
+	  listvar = listvar.split('==10,000 or more deaths in current or past year==');
 	  listvar = listvar[1].split('align=center');
+
+	}
+	catch(err) {
+    		console.log(err.message);
+	}
 
 	  var getinfo = function(line){
 
@@ -453,9 +461,8 @@ $.ajax({
 
 				heads_of_state_array.unshift( "<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <br> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" )
 
-
 		    	//add today to daily snapshot
-				if ((month==window.month)||(month==window.last_month&&date>=day)) {
+				if ((month==window.month)||(month==window.last_month&&date>day)) {
 					if (date==window.day) {$("#daily_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 					if (date==yesterday) {$("#yesterday_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 			    };
@@ -519,7 +526,6 @@ $.ajax({
 
 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-
     	};
     }
 });
@@ -657,35 +663,35 @@ var showandhide = function(btn="#", div, other="#"){
 	});
 };
 
-	showandhide("#button_zero", "#daily_snapshot", "#yesterday_snapshot")
+showandhide(".button_zero", "#snapshots")
 
-	showandhide('#about_button', "#about")
+showandhide('.about_button', "#about")
 
-	showandhide('#button_one', "#ongoing_protests")
+showandhide('.button_one', "#ongoing_protests")
 
-	showandhide('#button_two', "#ongoing_wars")
+showandhide('.button_two', "#ongoing_wars")
 
-	showandhide('#button_three', "#terrorist_attacks", "#terrorist_attacks_2")
+showandhide('.button_three', "#terrorist_attacks", "#terrorist_attacks_2")
 
-	showandhide('#button_four', "#new_heads")
+showandhide('.button_four', "#new_heads")
 
-	showandhide('#button_five', "#notable_deaths")
+showandhide('.button_five', "#notable_deaths")
 
-	showandhide('#button_six', "#disasters")
+showandhide('.button_six', "#disasters")
 
-// make navbar stick to top
-$(window).scroll(function () {
-	if ($(window).scrollTop() > 184) {
-		$('.navbar').addClass('navbar-fixed');
-		// $('#today-title').css({"padding-bottom":"65px"})
-		$('#ongoing').css({"padding-top":"44px"})
-	}
-	if ($(window).scrollTop() < 184) {
-		$('.navbar').removeClass('navbar-fixed');
-		// $('#today-title').css({"margin-bottom":"20px"})
-		$('#ongoing').css({"padding-top":"0px"})
-	}
-});
+// // make navbar stick to top
+// $(window).scroll(function () {
+// 	if ($(window).scrollTop() > 184) {
+// 		$('.navbar').addClass('navbar-fixed');
+// 		// $('#today-title').css({"padding-bottom":"65px"})
+// 		$('#ongoing').css({"padding-top":"44px"})
+// 	}
+// 	if ($(window).scrollTop() < 184) {
+// 		$('.navbar').removeClass('navbar-fixed');
+// 		// $('#today-title').css({"margin-bottom":"20px"})
+// 		$('#ongoing').css({"padding-top":"0px"})
+// 	}
+// });
 
 // show/hide subnavigation
 var showSubNav = function(button, other, sub) {
@@ -716,3 +722,18 @@ $(function() {
 });
 
 }); //end of script
+
+
+
+// get data from rss feed
+request = "http://gdacs.org/xml/rss.xml"
+var yqlURL = [
+    "http://query.yahooapis.com/v1/public/yql",
+    "?q=" + encodeURIComponent("select * from xml where url='" + request + "'"),
+    "&format=xml&callback=?"
+].join("");
+	$.getJSON(yqlURL, function(data){
+    xmlContent = $(data.results[0]);
+    var Abstract = $(xmlContent).find("channel").text();
+    success: console.log(Abstract)
+})
