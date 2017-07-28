@@ -88,7 +88,7 @@ a {
 	border:0;
 	height: 100%;
 	margin: 0;
-	padding: 0px 8px;
+	padding: 0px 4px;
 	border-radius: 0;
 	margin-right:.5em;
 	margin-left:.5em;
@@ -274,7 +274,7 @@ ul li ul li h6 {
 	grid-column-start: 1;
 	grid-column-end: -1;
 	text-align: center;
-	background-color: black;
+	background-color: black!important;
 	display: none;
 }
 
