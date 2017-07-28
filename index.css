@@ -36,6 +36,7 @@ strong {
 	height: 30%;
 	width: 24%;
 	text-align: left;
+	overflow: inherit;
 }
 
 a {
@@ -172,7 +173,7 @@ h5 {
 	font-size: 2.1em;
 }
 
-#button_zero h6 {
+.button_zero h6 {
 	text-decoration: underline;
 }
 
@@ -274,6 +275,10 @@ ul li ul li h6 {
 	text-align: center;
 	background-color: black;
 	display: none;
+}
+
+#sidebar ul li > h6 {
+	margin-left: 1em;
 }
 
 /*make yesterday and today side-by-side if screen big enough*/

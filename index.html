@@ -63,20 +63,20 @@
 		<div id="buttons">
 			<div id="sidebar">
 				<ul>
-					<li><button class="button_zero"><h6>Daily</h6></button></li>
-					<li><button class="ongoing_button"><h6><em>Ongoing</em></h6></button>
+					<li><button class="button_zero"><h6><em>Daily</h6></em></button></li>
+					<li><h6>Ongoing</h6>
 					<ul id="ongoing_sub">
-						<li><button class="button_one"><h6>Protests</h6></button></li>
+						<li><button class="button_one"><h6><em>Protests</em></h6></button></li>
 						<li><button class="button_two" class="last_submenu_item"><h6>Conflicts</h6></button></li>
 					</ul></li>
-					<li><button class="recent_button"><h6><em>Recent</em></h6></button>
+					<li><h6>Recent</h6>
 					<ul id="recent_sub">
-						<li><button class="button_four"><h6>Heads of State</h6></button></li>
-						<li><button class="button_five"><h6>Notable Deaths</h6></button></li>
-						<li><button class="button_three"><h6>Terrorist Attacks</h6></button></li>
-						<li><button class="button_six last_submenu_item"><h6>Natural Disasters</h6></button></li>
+						<li><button class="button_four"><h6><em>Heads of State</em></h6></button></li>
+						<li><button class="button_five"><h6><em>Notable Deaths</em></h6></button></li>
+						<li><button class="button_three"><h6><em>Terrorist Attacks</em></h6></button></li>
+						<li><button class="button_six last_submenu_item"><h6><em>Natural Disasters</em></h6></button></li>
 					</ul></li>				
-					<button class="about_button"><h6>About</h6></button>
+					<button class="about_button"><h6><em>About</em></h6></button>
 				</ul>
 			</div>
 		</div>
@@ -84,8 +84,27 @@
 	<div id="ongoing">
 
 		<div id="about" class="inner"><h5>About</h5><p>Nationalism, sensationalism and the <a target="_blank" href="https://en.wikipedia.org/wiki/Propaganda_model">propaganda model</a> cause many people to consume a dangerously biased assortment of news. Using the miracles of the internet, Reality Brief reduces a degree of bias by automatically reporting every instance in the world of a variety of predetermined types of events.</p>
-		<p>More specifically, Reality Brief uses the Wikimedia API to pull current information from crowdsourced lists. It also uses the Sigimera API to pull natural disaster data from gdacs.org.</p>
-
+		<p>More specifically, Reality Brief uses the Wikimedia API to pull current information from crowdsourced lists. It also pulls natural disaster data from gdacs.org.</p>
+		<p>Using this data, Reality Brief automatically reports:</p>
+		<ul>
+			<li>Every code red or orange natural disaster</li>
+			<li>Every terrorist attack</li>
+			<li>Every new state leader</li>
+			<li>Every oil spill, shipwreck, plane crash, or major fire</li>
+			<li>Every attempted or successful political assasination or coup</li>
+			<li>Each day's most impactful deaths</li>
+			<li>Major political updates from any country</li>
+			<li>Major war updates from any country</li>
+		</ul>
+		<p>Reality Brief also maintains fluid lists of:</p>
+		<ul>
+			<li>Every ongoing war or conflict in the world</li>
+			<li>Every mass protest in the world</li>
+			<li>Recently instated heads of states</li>
+			<li>Recent code red and orange natural disasters</li>
+			<li>Recent terrorist attacks</li>
+			<li>Recent prominent deaths</li>
+		</ul>
 		</div>
 
 	<div id="snapshots" class="inner">
@@ -108,7 +127,7 @@
 
 		<div id="notable_deaths" class="inner"><h5>Public Figures Who Have Died in the Past Three Days</h5></div>
 
-		<div id="disasters" class="inner"><h5>20 Last Code Red and Orange Natural Disasters</h5></div>
+		<div id="disasters" class="inner"><h5>Natural disaster alerts in the past week</h5></div>
 
 	</div>
 

@@ -182,7 +182,7 @@ var getWikimediaNews = function(url, appendto, title, update){
 						for (var i = 0; i < double_def_array.length; i++) {
 							parsed = parsed.replace(double_def_array[i] + "]]", "")
 						};
-						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/\. [A-Z]/g)[0].split(/\." [A-Z][a-z]/g)[0] + " "
+						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z][a-z]/g)[0] + " "
 					}
 
 					// make sure longest description is shown
@@ -476,114 +476,114 @@ $.ajax({
 });
 
 
-//get recent code RED disasters news
-$.ajax({
-    url: natural_disasters,
-    jsonp: "callback",
-    dataType: "jsonp",
-    success: function( data ) {
+// //get recent code RED disasters news
+// $.ajax({
+//     url: natural_disasters,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
 
-    	$('#disasters').append("<h5><em>Code Red</em></h5>")
+//     	$('#disasters').append("<h5><em>Code Red</em></h5>")
 
-    	for (var i = 0; i < data.length; i++) {
-    		var content = data[i]
+//     	for (var i = 0; i < data.length; i++) {
+//     		var content = data[i]
     	
-	    	var severity = content["crisis_severity"]
-	    	var description = content["dc_description"]
-	    	var date = description.split(",")[0]
-	    	var nowdate = ""
-	    	if (date.split(" ")[0]=="From") {
-	    		nowdate = date.split(" ")[3].split("/")[0]
-	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-	    	}
-	    	else {
-	    		nowdate = date.split(" ")[1].split("/")[1]
-	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
-	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-	    	};
+// 	    	var severity = content["crisis_severity"]
+// 	    	var description = content["dc_description"]
+// 	    	var date = description.split(",")[0]
+// 	    	var nowdate = ""
+// 	    	if (date.split(" ")[0]=="From") {
+// 	    		nowdate = date.split(" ")[3].split("/")[0]
+// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+// 	    	}
+// 	    	else {
+// 	    		nowdate = date.split(" ")[1].split("/")[1]
+// 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
+// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+// 	    	};
 
-	    	var nowyear = ""
-	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
-	    	else { nowyear = date.split(" ")[1].split("/")[2] };
+// 	    	var nowyear = ""
+// 	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
+// 	    	else { nowyear = date.split(" ")[1].split("/")[2] };
 
-	    	var title = content["dc_title"]
-	    	var what = content["dc_subject"][0]
-	    		what = what[0].toUpperCase() + what.slice(1)
-	    	var url = content["rdfs_seeAlso"]
-	    	var effected = content["crisis_population"]
+// 	    	var title = content["dc_title"]
+// 	    	var what = content["dc_subject"][0]
+// 	    		what = what[0].toUpperCase() + what.slice(1)
+// 	    	var url = content["rdfs_seeAlso"]
+// 	    	var effected = content["crisis_population"]
 
-	    	var country = content["gn_parentCountry"][0]
-	    	if (country=="" || country==null) {country="unspecified country"};
+// 	    	var country = content["gn_parentCountry"][0]
+// 	    	if (country=="" || country==null) {country="unspecified country"};
 
-	    		country = country.split(" ")
+// 	    		country = country.split(" ")
 
-	    		for (var j = 0; j < country.length; j++) {
-	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
-	    		};
-	    		country = country.join(" ")
+// 	    		for (var j = 0; j < country.length; j++) {
+// 	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
+// 	    		};
+// 	    		country = country.join(" ")
 
-	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+// 	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
-	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-    	};
-    }
-});
+// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+//     	};
+//     }
+// });
 
-//get recent code ORANGE disasters news
-$.ajax({
-    url: natural_disasters_2,
-    jsonp: "callback",
-    dataType: "jsonp",
-    success: function( data ) {
+// //get recent code ORANGE disasters news
+// $.ajax({
+//     url: natural_disasters_2,
+//     jsonp: "callback",
+//     dataType: "jsonp",
+//     success: function( data ) {
 
-    	$('#disasters').append("<h5><em>Code Orange</em></h5>")
+//     	$('#disasters').append("<h5><em>Code Orange</em></h5>")
 
-    	for (var i = 0; i < data.length; i++) {
-    		var content = data[i]
+//     	for (var i = 0; i < data.length; i++) {
+//     		var content = data[i]
     	
-	    	var severity = content["crisis_severity"]
-	    	var description = content["dc_description"]
-	    	var date = description.split(",")[0]
-	    	var nowdate = ""
-	    	if (date.split(" ")[0]=="From") {
-	    		nowdate = date.split(" ")[3].split("/")[0]
-	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-	    	}
-	    	else {
-	    		nowdate = date.split(" ")[1].split("/")[1]
-	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
-	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-	    	};
+// 	    	var severity = content["crisis_severity"]
+// 	    	var description = content["dc_description"]
+// 	    	var date = description.split(",")[0]
+// 	    	var nowdate = ""
+// 	    	if (date.split(" ")[0]=="From") {
+// 	    		nowdate = date.split(" ")[3].split("/")[0]
+// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+// 	    	}
+// 	    	else {
+// 	    		nowdate = date.split(" ")[1].split("/")[1]
+// 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
+// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
+// 	    	};
 
-	    	var nowyear = ""
-	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
-	    	else { nowyear = date.split(" ")[1].split("/")[2] };
+// 	    	var nowyear = ""
+// 	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
+// 	    	else { nowyear = date.split(" ")[1].split("/")[2] };
 
-	    	var title = content["dc_title"]
-	    	var what = content["dc_subject"][0]
-	    		what = what[0].toUpperCase() + what.slice(1)
-	    	var url = content["rdfs_seeAlso"]
-	    	var effected = content["crisis_population"]
+// 	    	var title = content["dc_title"]
+// 	    	var what = content["dc_subject"][0]
+// 	    		what = what[0].toUpperCase() + what.slice(1)
+// 	    	var url = content["rdfs_seeAlso"]
+// 	    	var effected = content["crisis_population"]
 
-	    	var country = content["gn_parentCountry"][0]
-	    	if (country=="" || country==null) {country="unspecified country"};
+// 	    	var country = content["gn_parentCountry"][0]
+// 	    	if (country=="" || country==null) {country="unspecified country"};
 
-	    		country = country.split(" ")
+// 	    		country = country.split(" ")
 
-	    		for (var j = 0; j < country.length; j++) {
-	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
-	    		};
-	    		country = country.join(" ")
+// 	    		for (var j = 0; j < country.length; j++) {
+// 	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
+// 	    		};
+// 	    		country = country.join(" ")
 
-	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+// 	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
-	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
 
-    	};
-    }
-});
+//     	};
+//     }
+// });
 
 //get recent shipwrecks
 $.ajax({
@@ -726,7 +726,7 @@ $(function() {
 
 
 // get data from rss feed
-request = "http://gdacs.org/xml/rss.xml"
+request = "http://www.gdacs.org/xml/rss_7d.xml"
 var yqlURL = [
     "http://query.yahooapis.com/v1/public/yql",
     "?q=" + encodeURIComponent("select * from xml where url='" + request + "'"),
@@ -734,6 +734,29 @@ var yqlURL = [
 ].join("");
 	$.getJSON(yqlURL, function(data){
     xmlContent = $(data.results[0]);
-    var Abstract = $(xmlContent).find("channel").text();
-    success: console.log(Abstract)
+    var Abstract = $(xmlContent).find("channel").html();
+    var output = Abstract.split("<item>")
+    for (var i = 1; i < output.length; i++) {
+    	var item = output[i]
+    	var alertlevel = item.split("<gdacs:alertlevel>")[1].split("</gdacs:alertlevel>")[0]
+	    	var description = item.split("<description>")[1].split("</description>")[0]
+	    	var toDate = new Date(item.split("<gdacs:todate>")[1].split("</gdacs:todate>")[0])
+	    	var dates = description.split(", ")[0]
+	    	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0]
+	    	var image = item.split("<enclosure")[1].split("</enclosure>")[0].split("url=\"")[1].split("\"")[0]
+	    	var url = item.split("<link>")[1].split("<")[0]
+
+	    	var country = item.split("<gdacs:country>")[1].split("</gdacs:country>")[0]
+	    	if (country=="" || country==null) {country="unspecified country"};
+
+	    	// $('#snapshots').append(item+"<br><br>")
+	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+
+	    if (alertlevel!="Green" && alertlevel!="White") {
+	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")
+
+	    	if (toDate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
+	    	if (toDate==window.yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
+	    };
+    };
 })
