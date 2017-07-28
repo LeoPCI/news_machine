@@ -396,7 +396,7 @@ $.ajax({
 				var date = attack[1]
 				var type = attack[2]
 				var dead = attack[4]
-				var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]
+				if (attacks[i].split("{{")[1] != undefined) {var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]};
 
 				// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 
@@ -725,7 +725,7 @@ $(function() {
 
 
 
-// get data from rss feed
+// get disasters data from rss feed
 request = "http://www.gdacs.org/xml/rss_7d.xml"
 var yqlURL = [
     "http://query.yahooapis.com/v1/public/yql",
@@ -739,18 +739,18 @@ var yqlURL = [
     for (var i = 1; i < output.length; i++) {
     	var item = output[i]
     	var alertlevel = item.split("<gdacs:alertlevel>")[1].split("</gdacs:alertlevel>")[0]
-	    	var description = item.split("<description>")[1].split("</description>")[0]
-	    	var toDate = new Date(item.split("<gdacs:todate>")[1].split("</gdacs:todate>")[0])
-	    	var dates = description.split(", ")[0]
-	    	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0]
-	    	var image = item.split("<enclosure")[1].split("</enclosure>")[0].split("url=\"")[1].split("\"")[0]
-	    	var url = item.split("<link>")[1].split("<")[0]
+    	var description = item.split("<description>")[1].split("</description>")[0]
+    	var toDate = new Date(item.split("<gdacs:todate>")[1].split("</gdacs:todate>")[0])
+    	var dates = description.split(", ")[0]
+    	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0]
+    	var image = item.split("<enclosure")[1].split("</enclosure>")[0].split("url=\"")[1].split("\"")[0]
+    	var url = item.split("<link>")[1].split("<")[0]
 
-	    	var country = item.split("<gdacs:country>")[1].split("</gdacs:country>")[0]
-	    	if (country=="" || country==null) {country="unspecified country"};
+    	var country = item.split("<gdacs:country>")[1].split("</gdacs:country>")[0]
+    	if (country=="" || country==null) {country="unspecified country"};
 
-	    	// $('#snapshots').append(item+"<br><br>")
-	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+    	// $('#snapshots').append(item+"<br><br>")
+    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
 	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")
@@ -758,5 +758,41 @@ var yqlURL = [
 	    	if (toDate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
 	    	if (toDate==window.yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
 	    };
+    };
+})
+
+// get conflicts updates from rss feed
+request = "https://twitrss.me/twitter_user_to_rss/?user=Conflicts"
+var yqlURL = [
+    "http://query.yahooapis.com/v1/public/yql",
+    "?q=" + encodeURIComponent("select * from xml where url='" + request + "'"),
+    "&format=xml&callback=?"
+].join("");
+	$.getJSON(yqlURL, function(data){
+    xmlContent = $(data.results[0]);
+    var Abstract = $(xmlContent).find("channel").html();
+    var output = Abstract.split("<item>")
+    for (var i = 1; i < output.length; i++) {
+    	var item = output[i]
+    	// var alertlevel = item.split("<gdacs:alertlevel>")[1].split("</gdacs:alertlevel>")[0]
+    	// var description = item.split("<description>")[1].split("</description>")[0]
+    	var date = new Date(item.split("<pubdate>")[1].split("</pubdate>")[0])
+    	// var dates = description.split(", ")[0]
+    	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0].split(": ")[1]
+    	// var image = item.split("<enclosure")[1].split("</enclosure>")[0].split("url=\"")[1].split("\"")[0]
+    	var url = item.split("<link>")[1].split("<")[0]
+
+    	// var country = item.split("<gdacs:country>")[1].split("</gdacs:country>")[0]
+    	// if (country=="" || country==null) {country="unspecified country"};
+
+    	// $('#snapshots').append(item+"<br><br>")
+    	// $('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+
+	    // if (alertlevel!="Green" && alertlevel!="White") {
+	    // 	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")
+
+	    // 	if (toDate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
+	    // 	if (toDate==window.yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
+	    // };
     };
 })
