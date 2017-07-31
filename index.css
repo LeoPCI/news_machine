@@ -305,3 +305,15 @@ ul li ul li h6 {
 		grid-column-end: -1;
 	}
 }
+
+@media screen and (max-width: 860px) {
+	#disasters .news_item img {
+		margin-top: 40px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#disasters .news_item {
+		width: 80%;
+	}
+}

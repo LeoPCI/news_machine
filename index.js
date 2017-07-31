@@ -750,7 +750,9 @@ var yqlURL = [
     	if (country=="" || country==null) {country="unspecified country"};
 
     	// $('#snapshots').append(item+"<br><br>")
-    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+	    if (alertlevel!="White") {
+    		$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+	    };
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
 	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")
