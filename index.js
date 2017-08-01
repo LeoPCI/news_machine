@@ -453,24 +453,42 @@ $.ajax({
 
 		for (var i = 2; i < heads.length; i++) {
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
+
 			if (section[2]!=undefined) {
 				if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
-				if (section[1]=='rowspan="2" ') {section.shift();};
+				if (section[1]=='rowspan="2" ') {section.shift()};
 
 				var date = section[1].replace(/[^0-9 ]/g, "")
 				var month = section[1].replace(/[0-9 ]/g, "").slice(0,-1)
-				var who = section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")
+		
+				if (section[2]=='rowspan="2" ') {section.shift(); console.log(section);};
+				if (section[2].split("{{")[1]!=undefined) {continue};
+
+				if (section[2].split('[[')[1] != undefined) {
+					who = section[2].split('[[')[1].split(']]')[0]
+				}
+
+				// else {
+					// continue;
+				// }
+
 				if (section[5]!=undefined) {var what = section[5].replace(/[^a-zA-Z \-]/g, "")
 				var country = section[4].slice(0,-3).replace("}}", "").split("{")[0]};
-				if (section.length>6) {var title = section[6].split("]]")[0].replace(/\[/g, "")};
+				if (section.length>6) {
+					// console.log(section[6])
+					var title = section[6].split("]]")[0].replace(/\[/g, "")
+				};
+
+				if (who=="Emmanuel Macron") {title = "President"; country="France"};
+
 				var url = "https://en.wikipedia.org/wiki/" + who.replace(/ /g, "_")
 
 				heads_of_state_array.unshift( "<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <br> <a target=_blank href=" + url + ">" + who + "</a><br>" + title + " of " + country + "<br>SINCE: " + month + " " + date + "</div>" )
 
 		    	//add today to daily snapshot
 				if ((month==window.month)||(month==window.last_month&&date>day)) {
-					if (date==window.day) {$("#daily_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
-					if (date==yesterday) {$("#yesterday_snapshot").append("<strong>***New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+					if (date==window.day) {$("#daily_snapshot").append("<strong>New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
+					if (date==yesterday) {$("#yesterday_snapshot").append("<strong>New " + title + ":</strong> <p> <img src='flags/"+countryLetters[country]+".png'> <a target=_blank href=" + url + ">" + who + "</a> has assumed the office of " + title + " of " + country + "</p>")};
 			    };
 		    };
 		};
