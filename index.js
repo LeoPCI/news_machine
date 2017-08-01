@@ -1,18 +1,5 @@
 $(document).ready(function() {
 
-
-var ua = window.navigator.userAgent;
-var msie = ua.indexOf("MSIE ");
-// If Internet Explorer, return message
-if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  {
-	$('html').html("<p>Hi, it looks like you're using Internet Explorer. <br>This is a bad life choice that will undoubtedly cause you endless and unecessary pain and suffering. I'm going to intervene right now and help you get your feet back on the ground. <br>Here is a link where you can download Google Chrome: https://www.google.com/chrome/browser/desktop/index.html. <br> Once you've installed Chrome, you can come back and this site will be functional.</p>")
-    // $('body').prepend("Hi, it looks like you're using Internet Explorer. <br>This is a bad life choice that will undoubtedly cause you endless and unecessary pain and suffering. I'm going to intervene right now and help you get your feet back on the ground. <br>Here is a link where you can download Google Chrome: https://www.google.com/chrome/browser/desktop/index.html. <br> Once you've installed Chrome, you can come back and this site will be functional.");
-}
-// // If another browser, do stuff
-else {
-	console.log("good job, you're not using internet explorer")
-}
-
 // nice little unless function
 var unless = function( condition, callback ) {
     if (typeof callback === 'function') {

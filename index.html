@@ -29,6 +29,7 @@
 <link rel="stylesheet" type="text/css" href="index.css">
 
 </head>
+
 <body>
 
 	<header>
@@ -137,7 +138,23 @@
 <div id="bookmarkme-outer-div"><button id="bookmarkme" title="bookmark this page">Bookmark This Site</button></div>
 
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	var ua = window.navigator.userAgent;
+	var msie = ua.indexOf("MSIE ");
+	// If Internet Explorer, return message
+	if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  {
+		$('html').html("<p>Hi, it looks like you're using Internet Explorer. <br>This is a bad life choice that will undoubtedly cause you endless and unecessary pain and suffering. I'm going to intervene right now and help you get your feet back on the ground. <br>Here is a link to download Google Chrome: <a href='https://www.google.com/chrome/browser/desktop/index.html'>https://www.google.com/chrome/browser/desktop/index.html</a> <br> Once you've installed Chrome, you can come back and this site will be functional.</p>")
+	    // $('body').prepend("Hi, it looks like you're using Internet Explorer. <br>This is a bad life choice that will undoubtedly cause you endless and unecessary pain and suffering. I'm going to intervene right now and help you get your feet back on the ground. <br>Here is a link where you can download Google Chrome: https://www.google.com/chrome/browser/desktop/index.html. <br> Once you've installed Chrome, you can come back and this site will be functional.");
+	}
+	// If another browser, congradulate user
+	else {
+		console.log("Good job, you're not using Internet Explorer.")
+	}
+</script>
+
 <script src="index.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
