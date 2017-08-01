@@ -10,7 +10,7 @@ if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  {
 }
 // // If another browser, do stuff
 else {
-	console.log("good job, you're not using internet explorer')
+	console.log("good job, you're not using internet explorer")
 }
 
 // nice little unless function
