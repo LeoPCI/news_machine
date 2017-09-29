@@ -273,7 +273,9 @@ $.ajax({
 
 	  var listvar = data["parse"]["wikitext"]["*"]
 	  listvar = listvar.split('==10,000 or more deaths in current or past year==');
-	  listvar = listvar[1].split('align=center');
+	  listvar = listvar[1].split('==Deaths by country==')[0]
+	  console.log(listvar)
+	  listvar = listvar.split('align=center');
 
 	}
 	catch(err) {
@@ -281,7 +283,7 @@ $.ajax({
 	}
 
 	  var getinfo = function(line){
-
+	  	console.log(line)
 	  	for (var i = 1; i < line.length; i++) {
 	  	  var thing=line[i].split("|");
 
@@ -453,7 +455,7 @@ $.ajax({
 
 		for (var i = 2; i < heads.length; i++) {
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
-
+			// console.log(section)
 			if (section[2]!=undefined) {
 				if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
 				if (section[1]=='rowspan="2" ') {section.shift()};
@@ -461,7 +463,7 @@ $.ajax({
 				var date = section[1].replace(/[^0-9 ]/g, "")
 				var month = section[1].replace(/[0-9 ]/g, "").slice(0,-1)
 		
-				if (section[2]=='rowspan="2" ') {section.shift(); console.log(section);};
+				if (section[2]=='rowspan="2" ') {section.shift();};
 				if (section[2].split("{{")[1]!=undefined) {continue};
 
 				if (section[2].split('[[')[1] != undefined) {
@@ -471,6 +473,9 @@ $.ajax({
 				// else {
 					// continue;
 				// }
+
+				//...............................this is where I was working on a bug...........
+				if (section[3].split("{{")[1]==undefined) {console.log(section[3].split("{{")[1])};
 
 				if (section[5]!=undefined) {var what = section[5].replace(/[^a-zA-Z \-]/g, "")
 				var country = section[4].slice(0,-3).replace("}}", "").split("{")[0]};
