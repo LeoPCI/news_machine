@@ -676,7 +676,8 @@ $.ajax({
 	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0].split("|")[0]};
 	    		if (wreck.split("|title=")[1] != undefined) {
 	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
-	    			if (date.split(" ")[0]==window.day && date.split(" ")[1]==window.month) {$('#daily_snapshot').append("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
+	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
+	    			if (new Date(date).setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
 	    		};
 	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")
 	 		};
