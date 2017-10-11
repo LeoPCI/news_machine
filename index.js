@@ -851,7 +851,7 @@ var yqlURL = [
     xmlContent = $(data.results[0]);
     var Abstract = $(xmlContent).find("channel").html();
     var output = Abstract.split("<item>")
-    for (var i = 1; i < output.length; i++) {
+    for (var i = output.length-1; i > 0; i--) {
     	var item = output[i]
 
     	var date = new Date(item.split("<pubdate>")[1].split("</pubdate>")[0])
@@ -865,6 +865,5 @@ var yqlURL = [
 
     };
 })
-
 
 // }
