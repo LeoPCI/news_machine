@@ -211,7 +211,7 @@ var getWikimediaNews = function(url, appendto, title, update){
 					// append to daily events list
 			    	if (i==0) {
 						if (description != " " && description != "" && description != "  ") {
-							$(appendto).append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p>")
+							$(appendto).append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p></div>")
 						};
 					}
 					else {
@@ -418,7 +418,7 @@ $.ajax({
     success: function( data ) {
 
     	$("#daily_snapshot").append("<div class='news-category' id='terrorlist1-div'><strong id='terrorlist1'>Terrorist Attacks: </strong></div>")
-    	$("#yesterday_snapshot").append("<div class='news=category' id='terrorlist2-div'><strong id='terrorlist2'>Terrorist Attacks: </strong></div>")
+    	$("#yesterday_snapshot").append("<div class='news-category' id='terrorlist2-div'><strong id='terrorlist2'>Terrorist Attacks: </strong></div>")
 
 		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[0].split("|-")
 
@@ -886,6 +886,8 @@ var yqlURL = [
     	var country = findCountry(item)
 
     	var url = item.split("<link>")[1].split("<")[0]
+
+    	console.log(item)
 
 		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "<br>" + title+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p><br>")
 
