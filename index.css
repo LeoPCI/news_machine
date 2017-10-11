@@ -289,6 +289,13 @@ ul li ul li h6 {
     	-moz-column-count: 2; /* Firefox */
     	column-count: 2;
 	}
+
+	#daily_snapshot p, #yesterday_snapshot p, .news-category {
+	 	-webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;		
+	}
+
 }
 
 @media screen and (max-width: 800px) {
