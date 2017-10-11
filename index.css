@@ -30,6 +30,7 @@ strong {
 	min-height:150px;
 	max-height:200px;
 	overflow: hidden;
+	vertical-align: top;
 }
 
 #disasters .news_item {
@@ -37,6 +38,7 @@ strong {
 	width: 24%;
 	text-align: left;
 	overflow: inherit;
+	margin-top: 50px;
 }
 
 a {
@@ -112,6 +114,16 @@ button:focus {
 	text-align:center;
 }
 
+.background-image {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+/*    background: url(images/World_Night_Lights_Map.jpg) no-repeat center center;
+	background-position:center;
+	background-size:cover;*/
+}
+
 header {
 	background-image: url("images/World_Night_Lights_Map.jpg");
 	background-position:center;
@@ -120,6 +132,7 @@ header {
 	width:100%;
 	height: 240px;
 	text-align:center;
+	/*background-position: 50px;*/
 	padding-top:20px;
 	grid-column-start: 1;
 	grid-column-end: -1;
@@ -194,7 +207,7 @@ h5 {
 	position: relative;
 	top: 5px;
 	z-index: -1;
-	padding-right: 2px;
+	padding-right: 4px;
 }
 
 /*submenu*/
@@ -258,6 +271,7 @@ ul li ul li h6 {
 
 #snapshots {
 	display: inline-block;
+    /*background: url(images/debut_light.png);*/
 }
 
 #sidebar * {
@@ -280,6 +294,15 @@ ul li ul li h6 {
 
 #sidebar ul li > h6 {
 	margin-left: 1em;
+}
+
+/*FOOTER*/
+footer {
+	background-color: black;
+	grid-column-start: 1;
+	grid-column-end: -1;
+	text-align: center;
+	color: white;
 }
 
 /*make yesterday and today side-by-side if screen big enough*/
@@ -314,8 +337,16 @@ ul li ul li h6 {
 }
 
 @media screen and (max-width: 860px) {
+	.news_item {
+		width: 30%;
+	}
+
 	#disasters .news_item img {
 		margin-top: 40px;
+	}
+
+	#disasters .news_item {
+		width: 43%;
 	}
 }
 
