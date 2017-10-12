@@ -133,20 +133,20 @@ $.ajax({
 			    //add today to daily snapshot
 			    if (today) {
 			    	if (i==1) {
-						$("#daily_snapshot").append("<div class='news-category' id='deaths1-div'><strong>Deaths: </strong><p>" + "<img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p></div>");
+						$("#daily_snapshot").append("<div class='news-category' id='deaths1-div'><strong>Deaths: </strong><p>" + "<img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + "&nbsp;&#10138</a></p></div>");
 					}
 					else {
-						$("#deaths1-div").append("<p><strong></strong>" + " <img src='flags/"+country+".png'>" + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
+						$("#deaths1-div").append("<p><strong></strong>" + " <img src='flags/"+country+".png'>" + notability + " <a target=_blank href=" + url + "> " + person + "&nbsp;&#10138</a></p>");
 					};
 				};
 
 			    //add today to yesterday snapshot
 			    if (date == yesterday_month + " " + yesterday) {
 			    	if (i==1) {
-						$("#yesterday_snapshot").append("<div class='news-category' id='deaths2-div'><strong>Deaths: </strong><p>" + " <img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p></div>");
+						$("#yesterday_snapshot").append("<div class='news-category' id='deaths2-div'><strong>Deaths: </strong><p>" + " <img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + "&nbsp;&#10138</a></p></div>");
 					}
 					else {
-						$("#deaths2-div").append("<p><strong></strong>" + " <img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + " &#10138</a></p>");
+						$("#deaths2-div").append("<p><strong></strong>" + " <img src='flags/"+country+".png'>"  + notability + " <a target=_blank href=" + url + "> " + person + "&nbsp;&#10138</a></p>");
 					};
 				};
 
@@ -211,12 +211,12 @@ var getWikimediaNews = function(url, appendto, title, update){
 					// append to daily events list
 			    	if (i==0) {
 						if (description != " " && description != "" && description != "  ") {
-							$(appendto).append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story &#10138;</a></p></div>")
+							$(appendto).append(update + "<p> <img src='flags/"+country+".png'>" + description+"<a target='_blank' href="+url+">Story&nbsp;&#10138;</a></p></div>")
 						};
 					}
 					else {
 						if (description != " " && description != "" && description != "  ") {
-							$(appendto).append("<p> <img src='flags/"+country+".png'>" + description+" <a target='_blank' href="+url+">Story &#10138;</a></p>")
+							$(appendto).append("<p> <img src='flags/"+country+".png'>" + description+" <a target='_blank' href="+url+">Story&nbsp;&#10138;</a></p>")
 						};
 					};
 				};
@@ -264,7 +264,7 @@ $.ajax({
 	  	  	if (isNaN(parseInt(died))) {died=thing[4].split('{{')[0]};
 		  var url = "https://en.wikipedia.org/wiki/" + name.replace(/ /g, "_")
 
-		  $("#ongoing_protests").append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <a target='_blank' href=" + url + "><br>" + title + "</a> <br> SINCE: " + date + " <br>DEAD: " + died + "<br><a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+") + google_news_2 + "> news &#10138; </a> </div>" );
+		  $("#ongoing_protests").append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <a target='_blank' href=" + url + "><br>" + title + "</a> <br> SINCE: " + date + " <br>DEAD: " + died + "<br><a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+") + google_news_2 + "> news&nbsp;&#10138; </a> </div>" );
 
 	  	};
 	  };
@@ -321,7 +321,7 @@ $.ajax({
 		  for (var key in countryLetters) { if (title.includes(key)) {country = countryLetters[key]}; }
 
 
-		  $("#ongoing_wars").append( "<div class='news_item'> <img src='flags/"+country+".png'> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br> <a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news &#10138; </a> </div>" );
+		  $("#ongoing_wars").append( "<div class='news_item'> <img src='flags/"+country+".png'> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br> <a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news&nbsp;&#10138; </a> </div>" );
 
 	  	};
 	  };
@@ -343,7 +343,7 @@ $.ajax({
 
 		var last_date = attacks[attacks.length-1].split("|")[1]
 
-		for (var i = 2; i < attacks.length; i++) {
+		for (var i = attacks.length-1; i > 2; i--) {
 			var source=attacks[i].split("http")[1]
 			if (source!=null) { 
 				source = source.split("|")[0]
@@ -400,7 +400,7 @@ $.ajax({
 
 			if (date == yesterday) {
 				display2 = true
-				$("#terrorlist2-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
+				$("#terrorlist2-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
 		    };
 			
 			if (display2) {$("#terrorlist2").css({"display":"inherit"})};
@@ -422,7 +422,7 @@ $.ajax({
 
 		attacks = data["parse"]["wikitext"]["*"].split('== '+window.month+' ==')[0].split("|-")
 
-		for (var i = 2; i < attacks.length; i++) {
+		for (var i = attacks.length-1; i > 2; i--) {
 				
 			var source=attacks[i].split("http")[1]
 			if (source!=null) { 
@@ -484,18 +484,18 @@ $.ajax({
 			    	$("#terrorist_attacks").append("<div class='news_item'> <img src='flags/"+countryLetters[full_where]+".png'><br> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + full_where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
 			    	//add today to daily snapshot
-			   //  		if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong><br><p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
-						// if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong><br<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
+			   //  		if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong><br><p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
+						// if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong><br<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
 			
 
 					if (date==window.day) {
 						display1 = true
-						$("#terrorlist1-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
+						$("#terrorlist1-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
 					};
 
 					if (date==today.getDate()) {
 						display2 = true
-						$("#terrorlist2-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
+						$("#terrorlist2-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
 					};
 
 			    };
@@ -551,6 +551,9 @@ $.ajax({
 				};
 
 				if (who=="Emmanuel Macron") {title = "President"; country="France"};
+				if (who=="Enrico Carattoni") {title = "Captain Regent"; country="San Marino"};
+				if (who=="Riad Seif") {title = "President"; country="The Syrian Resistance"};
+				if (who=="Bjarni Benediktsson (born 1970)") {title = "Prime Minister"; country="Iceland"};
 
 				var url = "https://en.wikipedia.org/wiki/" + who.replace(/ /g, "_")
 
@@ -617,10 +620,10 @@ $.ajax({
 // 	    		};
 // 	    		country = country.join(" ")
 
-// 	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+// 	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
 
-// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
+// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
 //     	};
 //     }
 // });
@@ -671,10 +674,10 @@ $.ajax({
 // 	    		};
 // 	    		country = country.join(" ")
 
-// 	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+// 	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
 
-// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
-// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info &#10138 </a> </p>")};
+// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
+// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
 
 //     	};
 //     }
@@ -697,10 +700,10 @@ $.ajax({
 	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0].split("|")[0]};
 	    		if (wreck.split("|title=")[1] != undefined) {
 	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
-	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
-	    			if (new Date(date).setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")};
+	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
+	    			if (new Date(date).setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
 	    		};
-	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story &#10138</a></p>")
+	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")
 	 		};
     	};
     }
@@ -849,14 +852,14 @@ var yqlURL = [
 
     	// $('#snapshots').append(item+"<br><br>")
 	    if (alertlevel!="White") {
-    		$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info &#10138 </a> </div>")
+    		$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
 	    };
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
-	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")
+	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")
 
-	    	if (toDate.setHours(0,0,0,0)==today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
-	    	if (toDate.setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p>")};
+	    	if (toDate.setHours(0,0,0,0)==today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
+	    	if (toDate.setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
 	    };
     };
 })
@@ -887,9 +890,9 @@ var yqlURL = [
 
     	var url = item.split("<link>")[1].split("<")[0]
 
-    	console.log(item)
+    	// console.log(item)
 
-		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "<br>" + title+ "<a target=_blank href="+ url + "> Info &#10138 </a> </p><br>")
+		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "<br>" + title+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p><br>")
 
     };
 })
