@@ -493,7 +493,7 @@ $.ajax({
 						$("#terrorlist1-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
 					};
 
-					if (date==today.getDate()) {
+					if (date==yesterday) {
 						display2 = true
 						$("#terrorlist2-div").append("<p><img src='flags/"+countryLetters[full_where]+".png'>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + full_where + ", " + dead + "confirmed dead </p>")
 					};
