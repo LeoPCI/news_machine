@@ -355,6 +355,10 @@ footer {
 		width: 43%;
 		min-height: 270px;
 	}
+
+	#about_this {
+		width: 90%;
+	}
 }
 
 @media screen and (max-width: 480px) {
