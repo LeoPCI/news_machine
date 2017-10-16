@@ -87,11 +87,11 @@ $.ajax({
 
 		var days = data["parse"]["wikitext"]["*"]
 
-//define today's deaths
+		//define today's deaths
 		var deaths_today = days.split("==="+String(day)+"===")[1].split("==="+String(yesterday)+"===")[0].split("*")
-//define yesterday's deaths
+		//define yesterday's deaths
 		var deaths_yesterday = days.split("=="+String(yesterday_month)+"==")[1].split("==="+String(yesterday)+"===")[1].split("==="+String(third_day)+"===")[0].split("*")
-//define third day's deaths
+		//define third day's deaths
 		var deaths_third = days.split("=="+String(third_day_month)+"==")[1].split("==="+String(third_day)+"===")[1].split("==="+String(fourth_day)+"===")[0].split("*")
 
 		var list_deaths = function(day, location, today=false) {
@@ -101,7 +101,8 @@ $.ajax({
 					var notability = ""
 				}
 				else {
-					var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
+					// var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
+					notability = day[i].split(",")[2].split(".")[0].split("(")[0]
 					var nat = "unknown"
 					nat = notability.split(" ")[1].split("-born")[0]
 				};
@@ -321,7 +322,7 @@ $.ajax({
 		  for (var key in countryLetters) { if (title.includes(key)) {country = countryLetters[key]}; }
 
 
-		  $("#ongoing_wars").append( "<div class='news_item'> <img src='flags/"+country+".png'> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br> <a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news&nbsp;&#10138; </a> </div>" );
+		  $("#ongoing_wars").append( "<div class='news_item'> <img src='flags/"+country+".png'> <br> <a target='_blank' href=" + url + ">" + title + "</a> <br>" + "SINCE:" + since + "<br>" + "DEAD: " + died + "<br> <a target='_blank' href=" + google_news_1 + title.replace(/ /g, "+").slice(0, -1) + google_news_2 + "> news&nbsp;&#10138; </a> </div>" );
 
 	  	};
 	  };
@@ -365,28 +366,12 @@ $.ajax({
 			var type = attack[2]
 			var dead = attack[4]
 
-			if (attacks[i].split("{{")[1] != undefined) {
-
-				var where = attacks[i].split("== References ==")[0].split('|')[8]
-				
-				if (where != undefined) {
-					full_where = where.split(',')
-					full_where = full_where[full_where.length-1].slice(1,-1)
-					// full_where = where.replace('[[',"").replace("]]","").replace('[[',"").replace("]]","")	
-					// var where = full_where.split(',')
-					// var where = where[where.length-1].slice(1,-1)
-				};
-
+			if (attacks[i].split("]], ")[1] != undefined) {
+				full_where = attacks[i].split("]], ")[1].split("|")[0]
 			}
-
 			else {
-				var where = ""
-				var full_where = "Unknown"
-			};
-
-			if (countryLetters[full_where]==undefined) {
-				full_where="Unknown"
-			};
+				full_where = "unknown"
+			}
 
 			// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 			var display2 = false
@@ -447,30 +432,13 @@ $.ajax({
 				var date = attack[1]
 				var type = attack[2]
 				var dead = attack[4]
-				// if (attacks[i].split("{{")[1] != undefined) {var where = attacks[i].split("{{")[1].split("}}")[0].split("|")[1]};
 
-
-				if (attacks[i].split("{{")[1] != undefined) {
-
-					var where = attacks[i].split("== References ==")[0].split('|')[8]
-
-					if (where != undefined) {
-						full_where = where.split(',')
-						full_where = full_where[full_where.length-1].slice(1,-1)
-						// full_where = where.replace('[[',"").replace("]]","").replace('[[',"").replace("]]","")
-						// var where = full_where.split(',')
-						// var where = where[where.length-1].slice(1,-1)
-					};
-
+				if (attacks[i].split("]], ")[1] != undefined) {
+					full_where = attacks[i].split("]], ")[1].split("|")[0].slice(0, -1)
 				}
 				else {
-					var where = ""
-					var full_where = "Unknown"
-				};
-
-				if (countryLetters[full_where]==undefined) {
-					full_where="Unknown"
-				};
+					full_where = "unknown"
+				}
 
 				// var description = attack[9].split('{{')[0].replace(/\[/g, "").replace(/\]/g, "").split("http")[0]
 
@@ -701,7 +669,7 @@ $.ajax({
 	    		if (wreck.split("|title=")[1] != undefined) {
 	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
 	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
-	    			if (new Date(date).setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
+	    			if (new Date(date).setHours(0,0,0,0) == new Date(today.getDate()).setHours(0,0,0,0) - 1) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
 	    		};
 	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")
 	 		};
@@ -759,7 +727,19 @@ var showandhide = function(btn="#", div, other="#"){
 		$(btn).children().css({"text-decoration":"underline"})
 		$("#ongoing_sub_menu *").removeClass("show")
 		$("#recent_sub_menu *").removeClass("show")
+		
+		// change url
+		translation = {".button_two":"wars", ".button_one":"protests", ".button_six":"disasters", ".button_three":"attacks", ".button_five":"deaths", ".button_four":"heads", ".button_seven":"conflictnews", ".about_button":"about", ".button_zero":"brief"}
+		window.location.href = window.location.href.split("/")[0] + "#" + translation[btn]
+
 	});
+
+	// use url to determine proper div to show
+	parameters = window.location.href.split("/");
+	parameters = parameters[parameters.length-1].replace("#", "");
+	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven"}
+	$(translation[parameters]).trigger('click');
+
 };
 
 showandhide(".button_zero", "#snapshots")
@@ -807,20 +787,20 @@ showSubNav($("#recent_button"), "#ongoing_sub_menu", "#recent_sub_menu")
 
 // bookmark this page
 
-$(function() {
-  $('#bookmarkme').click(function() {
-    if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox Bookmark
-      window.sidebar.addPanel(document.title, window.location.href, '');
-    } else if (window.external && ('AddFavorite' in window.external)) { // IE Favorite
-      window.external.AddFavorite(location.href, document.title);
-    } else if (window.opera && window.print) { // Opera Hotlist
-      this.title = document.title;
-      return true;
-    } else { // webkit - safari/chrome
-      alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');
-    }
-  });
-});
+// $(function() {
+//   $('#bookmarkme').click(function() {
+//     if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox Bookmark
+//       window.sidebar.addPanel(document.title, window.location.href, '');
+//     } else if (window.external && ('AddFavorite' in window.external)) { // IE Favorite
+//       window.external.AddFavorite(location.href, document.title);
+//     } else if (window.opera && window.print) { // Opera Hotlist
+//       this.title = document.title;
+//       return true;
+//     } else { // webkit - safari/chrome
+//       alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');
+//     }
+//   });
+// });
 
 }); //end of script
 
@@ -842,6 +822,7 @@ var yqlURL = [
     	var alertlevel = item.split("<gdacs:alertlevel>")[1].split("</gdacs:alertlevel>")[0]
     	var description = item.split("<description>")[1].split("</description>")[0]
     	var toDate = new Date(item.split("<gdacs:todate>")[1].split("</gdacs:todate>")[0])
+    	var fromDate = new Date(item.split("<gdacs:fromdate>")[1].split("</gdacs:fromdate>")[0])
     	var dates = description.split(", ")[0]
     	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0]
     	var image = item.split("<enclosure")[1].split("</enclosure>")[0].split("url=\"")[1].split("\"")[0]
@@ -851,15 +832,16 @@ var yqlURL = [
     	if (country=="" || country==null) {country="unspecified country"};
 
     	// $('#snapshots').append(item+"<br><br>")
-	    if (alertlevel!="White") {
-    		$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
-	    };
+	    // if (alertlevel!="White") {
+    		$('#disasters').append("<div class='news_item' style=border-color:"+alertlevel+"> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
+	    // };
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
 	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")
 
-	    	if (toDate.setHours(0,0,0,0)==today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
-	    	if (toDate.setHours(0,0,0,0)==new Date(today.getDate() - 1).setHours(0,0,0,0)) {$('#yesterday_snapshot').append("<strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
+	    	if (toDate.setHours(0,0,0,0)==today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong> Code <span style=color:"+alertlevel+">"+ alertlevel +"</span> alert: </strong> <br> <p> <img src='flags/"+countryLetters[country]+".png'> " + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
+	    	if ((fromDate.setHours(0,0,0,0) < today.setHours(0,0,0,0)-1) && (toDate.setHours(0,0,0,0) > today.setHours(0,0,0,0)-1)) {$('#yesterday_snapshot').append("<strong> Code <span style=color:"+alertlevel+">"+ alertlevel +"</span> alert: </strong> <br> <p> <img src='flags/"+countryLetters[country]+".png'>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
+
 	    };
     };
 })
@@ -882,8 +864,8 @@ var yqlURL = [
 
     	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0].split(": ")[1]
     	if (title != undefined) { 
-    		title = title.split(" - @")[0] 
-    		if (title.includes("http")) {title = "Video"}
+    		title = title.split(" - @")[0].split("http")[0] 
+    		// if (title.includes("http")) {title = "video"}
     	};
 
     	var country = findCountry(item)
@@ -892,13 +874,17 @@ var yqlURL = [
 
     	// console.log(item)
 
-		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "<br>" + title+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p><br>")
+		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "</strong><br>" + title+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p><br>")
 
     };
 })
 
 // // PARALLAX
 // $(window).scroll(function () {
-// 	position = ($(this).scrollTop() / 2)-135
-//     $("header").css("background-position","50% " + position + "px");
+// 	if ($(window).width() > 790) {
+// 		position = ($(this).scrollTop() / 2)-135
+// 	    $("header").css("background-position","50% " + position + "px");
+// 	};
 // });
+
+

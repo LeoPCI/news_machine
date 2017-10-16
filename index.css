@@ -15,7 +15,7 @@ h1, h2, h3, h5, h6 {
 }
 
 strong {
-	font-weight: bolder;
+	font-weight: bold;
 }
 
 .inner {
@@ -34,11 +34,14 @@ strong {
 }
 
 #disasters .news_item {
-	height: 30%;
 	width: 24%;
+	height: 30%;
+	min-height: 230px;
 	text-align: left;
 	overflow: inherit;
 	margin-top: 50px;
+	padding: 5px;
+	border: 2px solid green;
 }
 
 a {
@@ -193,6 +196,9 @@ h5 {
 
 #today-title {
 	padding-bottom: 20px;
+	font-family: "Roboto-Mono";
+	letter-spacing: +.2rem;
+    font-size: 3em;
 }
 
 .navbar-fixed {
@@ -347,6 +353,7 @@ footer {
 
 	#disasters .news_item {
 		width: 43%;
+		min-height: 270px;
 	}
 }
 
