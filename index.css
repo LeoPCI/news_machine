@@ -33,7 +33,7 @@ strong {
 	vertical-align: top;
 }
 
-#disasters .news_item {
+#natural_disasters .news_item {
 	width: 24%;
 	height: 30%;
 	min-height: 230px;
@@ -165,20 +165,20 @@ p {
 	text-align: left;
 }
 
-#about p {
+#about_this p {
 	margin-top: 10px;
 }
 
-#about {
+#about_this {
 	width: 60%;
 }
 
-#about ul {
+#about_this ul {
 	text-align: left;
 	margin-left: 50px;
 }
 
-#about ul li {
+#about_this ul li {
 	margin: 0px;
 }
 
@@ -347,18 +347,18 @@ footer {
 		width: 30%;
 	}
 
-	#disasters .news_item img {
+	#natural_disasters .news_item img {
 		margin-top: 40px;
 	}
 
-	#disasters .news_item {
+	#natural_disasters .news_item {
 		width: 43%;
 		min-height: 270px;
 	}
 }
 
 @media screen and (max-width: 480px) {
-	#disasters .news_item {
+	#natural_disasters .news_item {
 		width: 80%;
 	}
 }

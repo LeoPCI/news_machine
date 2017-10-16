@@ -737,14 +737,14 @@ var showandhide = function(btn="#", div, other="#"){
 	// use url to determine proper div to show
 	parameters = window.location.href.split("/");
 	parameters = parameters[parameters.length-1].replace("#", "");
-	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven"}
+	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven", "about":".about_button"}
 	$(translation[parameters]).trigger('click');
 
 };
 
 showandhide(".button_zero", "#snapshots")
 
-showandhide('.about_button', "#about")
+showandhide('.about_button', "#about_this")
 
 showandhide('.button_one', "#ongoing_protests")
 
@@ -756,7 +756,7 @@ showandhide('.button_four', "#new_heads")
 
 showandhide('.button_five', "#notable_deaths")
 
-showandhide('.button_six', "#disasters")
+showandhide('.button_six', "#natural_disasters")
 
 showandhide('.button_seven', "#conflict_updates")
 
@@ -833,7 +833,7 @@ var yqlURL = [
 
     	// $('#snapshots').append(item+"<br><br>")
 	    // if (alertlevel!="White") {
-    		$('#disasters').append("<div class='news_item' style=border-color:"+alertlevel+"> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
+    		$('#natural_disasters').append("<div class='news_item' style=border-color:"+alertlevel+"> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
 	    // };
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
