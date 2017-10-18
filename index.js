@@ -524,8 +524,11 @@ $.ajax({
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
-		var wrecks = data["parse"]["wikitext"]["*"].split(/\n\n===/g)
-    	 for (var i = 1; i < wrecks.length; i++) {
+		var wrecks = data["parse"]["wikitext"]["*"].split("<!--Template for copying, insert new entries above.")[0].split(/\n\n===/g)
+    	
+    	var wrecks_array = []
+
+    	for (var i = 1; i < wrecks.length; i++) {
 	 		var all = wrecks[i].split("{{shipwreck list item")
 	 		 for (var j = 1; j < all.length; j++) {
     			var wreck = all[j]
@@ -533,13 +536,22 @@ $.ajax({
 	    		var url = ""
 	    		var country = wreck.split("|desc=")[0].split("|flag=")[1].split("|")[1].slice(0,-3)
 	    		if (wreck.split("http")[1] != undefined) { url = "http" + wreck.split("http")[1].split(" ")[0].split("|")[0]};
+	    		
 	    		if (wreck.split("|title=")[1] != undefined) {
-	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "")
-	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
-	    			if (new Date(date).setHours(0,0,0,0) == new Date(today.getDate()).setHours(0,0,0,0) - 1) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
+	    			var headline = wreck.split("|desc=")[1].split("{{cite web")[0].replace(/\[/g, "").replace(/\]/g, "").split("\. [A-Z]")[0].replace(/\{([^)]+)\}/g, "").split("{")[0].replace("|", "/").replace(")", "").replace("The", "A")
+	    			
+	    			if (new Date(date + ", " + window.year).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p><img src=flags/"+countryLetters[country]+".png>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
+	    			if (new Date(date + ", " + window.year).setHours(0,0,0,0) == new Date(today + ", " + window.year).setHours(0,0,0,0) - 1 ) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p><img src=flags/"+countryLetters[country]+".png>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
 	    		};
+
+				wrecks_array.unshift("<br><p>" + "<img src=flags/"+countryLetters[country]+".png>" + "<strong>" + date + ", " + country + "</strong><br>" + headline + "<a target='_blank' href='" + url +"'> Story&nbsp;&#10138</a></p>")
 	 		};
     	};
+
+    	for (var i = 0; i < wrecks_array.length; i++) {
+    		$('#recent_shipwrecks').append(wrecks_array[i])
+    	};
+
     }
 });
 
@@ -566,9 +578,7 @@ $.ajax({
 
 			url = "https://en.wikipedia.org" + spill.split("href")[1].split('"')[1].split('"')[0]
 
-			console.log(location)
-
-			$('#ongoing_oil_spills').append( "<br><p> <a href=" + url + " target='_blank'><strong>" + title + "</strong></a><br>" + location + "<br>" + note + " </p>" )
+			$('#ongoing_oil_spills').append( "<br><p> <a href=" + url + " target='_blank'><strong>" + title + "</strong></a><br>" + location + "<br>" + note + "</p>" )
 		};
     }
 });
@@ -582,10 +592,17 @@ $.ajax({
 		var coups = data["parse"]["wikitext"]["*"].split("Coups d'\u00e9tat and coup attempts since 2010")[1].split("\n==See also==\n")[0].split("\n|- ")
 	
 		for (var i = 2; i < coups.length-1; i++) {
-			coup = coups[i].split("\n|")[1]
+			var coup = coups[i].split("\n|")[1]
 			var title = coup.split("||")[0]
 			var date = coup.split("||")[1].split("}}")[0].replace("{{nowrap|", "")
 			var year = title.split(" ")[1].replace("[[", "")
+			var url = coup.split("url=")[1]
+			
+			unless(url==undefined, function(){url=url.split("|")[0]});
+
+			link = "<a target='_blank' href='" + url + "'>Story&nbsp;&#10138;</a>"
+
+			if (url==undefined) {link = ""};
 
 			// var endDate = date
 			// if (date.split(" – ")[1] != undefined) {
@@ -599,9 +616,9 @@ $.ajax({
 				var url = "http" + coup.split("http")[1].split("|")[0]
 			};
 			
-			if (status == " Ongoing ") {
-				$('#daily_snapshot').prepend("<br><strong>Coup: </strong><p><img src=flags/"+countryLetters[country]+".png>" + status + " in " + country + " on " + date+ "</p>")
-			};
+			// if (status == " Ongoing ") {
+			// 	$('#daily_snapshot').prepend("<br><strong>Coup: </strong><p><img src=flags/"+countryLetters[country]+".png>" + status + " in " + country + " since " + year + ", " + date + link +"</p>")
+			// };
 
 		}; 
     }
@@ -621,7 +638,7 @@ var showandhide = function(btn="#", div, other="#"){
 		$("#recent_sub_menu *").removeClass("show")
 		
 		// change url
-		translation = {".button_two":"wars", ".button_one":"protests", ".button_six":"disasters", ".button_three":"attacks", ".button_five":"deaths", ".button_four":"heads", ".button_seven":"conflictnews", ".about_button":"about", ".button_zero":"brief", ".spills_button":"spills"}
+		translation = {".button_two":"wars", ".button_one":"protests", ".button_six":"disasters", ".button_three":"attacks", ".button_five":"deaths", ".button_four":"heads", ".button_seven":"conflictnews", ".about_button":"about", ".button_zero":"brief", ".spills_button":"spills", ".wrecks_button":"wrecks"}
 		window.location.href = window.location.href.split("/")[0] + "#" + translation[btn]
 
 	});
@@ -629,7 +646,7 @@ var showandhide = function(btn="#", div, other="#"){
 	// use url to determine proper div to show
 	parameters = window.location.href.split("/");
 	parameters = parameters[parameters.length-1].replace("#", "");
-	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven", "about":".about_button", "spills":".spills_button"}
+	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven", "about":".about_button", "spills":".spills_button", "wrecks":".wrecks_button"}
 	$(translation[parameters]).trigger('click');
 
 };
@@ -653,6 +670,8 @@ showandhide('.button_six', "#natural_disasters")
 showandhide('.button_seven', "#conflict_updates")
 
 showandhide('.spills_button', "#ongoing_oil_spills")
+
+showandhide('.wrecks_button', "#recent_shipwrecks")
 
 // // make navbar stick to top
 // $(window).scroll(function () {
