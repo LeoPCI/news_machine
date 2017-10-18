@@ -48,9 +48,8 @@ countryLetters = {"UK" : "gb", "Zimbabwe" : "zw", "Zambia" : "zm", "Yemen" : "ye
 		last_month_year = year-1
 	};
 
-//add date
+	//add date to title
 	$("#today-title").append(month + " " + day + ", " + year)
-	// $("#yesterday-title").append(yesterday_month + " " + yesterday + ", " + yesterday_year)
 
 // Find Country Via Paragraph
 findCountry = function(content) {
@@ -101,22 +100,15 @@ $.ajax({
 					var notability = ""
 				}
 				else {
-					// var notability = day[i].split(",")[2].split("[")[0].replace("(", "").replace(".", "").replace(/\"/g, '').split("{{")[0]
 					notability = day[i].split(",")[2].split(".")[0].split("(")[0]
 					var nat = "unknown"
 					nat = notability.split(" ")[1].split("-born")[0]
 				};
 				
-				// if (day[i].split(">[")[1]==undefined) {
-				// 	var death = day[i].split(">{")[1].split("]</ref>")[0]}
-				// else {
-				// 	var death = day[i].split("http")[1].split("]</ref>")[0]
-				// };
 				var person = day[i].split(",")[0].replace("{{ill|","").split("]]")[0].split("|")[0].replace(/\(([^)]+)\)/, "").replace(/\[/g, "")
 				var url = "http" + day[i].split("http")[1].split(" ")[0]
-				// var url = death.split(" ")[0]
-					if (url.slice(-1)=="/") {url = url.slice(0, -1)};
-				// var explanation = death.replace(url, "").replace("/ ", "").split("]")[0]
+
+				if (url.slice(-1)=="/") {url = url.slice(0, -1)};
 
 				var date = window.day
 				if (today) {date=month + " " + window.day};
@@ -287,7 +279,6 @@ $.ajax({
 	  var listvar = data["parse"]["wikitext"]["*"]
 	  listvar = listvar.split('==10,000 or more deaths in current or past year==');
 	  listvar = listvar[1].split('==Deaths by country==')[0]
-	  // console.log(listvar)
 	  listvar = listvar.split('align=center');
 
 	}
@@ -296,7 +287,6 @@ $.ajax({
 	}
 
 	  var getinfo = function(line){
-	  	// console.log(line)
 	  	for (var i = 1; i < line.length; i++) {
 	  	  var thing=line[i].split("|");
 
@@ -337,8 +327,6 @@ $.ajax({
     jsonp: "callback",
     dataType: "jsonp",
     success: function( data ) {
-
-    	// console.log(data["parse"]["wikitext"]["*"].split('==List==')[1])
 
 		attacks = data["parse"]["wikitext"]["*"].split('==List==')[1].split("|-")
 
@@ -419,7 +407,7 @@ $.ajax({
 
 			var context = attacks[i].split("[[")
 
-		// prevent failure errors with unless
+			// prevent failure errors with unless
 			unless(context[context.length-2]==undefined, function() {
 
 				var perpetrator = context[context.length-2].split("]]")[0].split("|")
@@ -452,9 +440,6 @@ $.ajax({
 			    	$("#terrorist_attacks").append("<div class='news_item'> <img src='flags/"+countryLetters[full_where]+".png'><br> <a target='_blank' href=" + source + ">" + type + "</a><br>WHEN: " + window.month + " " + date + "<br> WHERE: " + full_where + "<br>DEAD: " + dead + "<br>PERPETRATOR: " + perpetrator + "</div>" );
 
 			    	//add today to daily snapshot
-			   //  		if (date==window.day) {$("#daily_snapshot").append("<br><strong>Terrorist Attack: </strong><br><p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
-						// if (date==yesterday) {$("#yesterday_snapshot").append("<br><strong>Terrorist Attack: </strong><br<p>" + perpetrator + " behind <a target='_blank' href=" + source + ">" + type + "&nbsp;&#10138;</a> in " + where + ", " + dead + "confirmed dead </p>")};
-			
 
 					if (date==window.day) {
 						display1 = true
@@ -489,7 +474,7 @@ $.ajax({
 
 		for (var i = 2; i < heads.length; i++) {
 			var section = heads[i].replace(/\{\{small\|/g, "").split("|")
-			// console.log(section)
+
 			if (section[2]!=undefined) {
 				if (section[2].replace(/\[/g, "").replace(/\]/g, "").replace(/\}/g, "")=="{{flag") {section.shift(); section.unshift(heads[i-1].split("|")[2]); section.unshift("")};
 				if (section[1]=='rowspan="2" ') {section.shift()};
@@ -504,17 +489,9 @@ $.ajax({
 					who = section[2].split('[[')[1].split(']]')[0]
 				}
 
-				// else {
-					// continue;
-				// }
-
-				//...............................this is where I was working on a bug...........
-				// if (section[3].split("{{")[1]==undefined) {console.log(section[3].split("{{")[1])};
-
 				if (section[5]!=undefined) {var what = section[5].replace(/[^a-zA-Z \-]/g, "")
 				var country = section[4].slice(0,-3).replace("}}", "").split("{")[0]};
 				if (section.length>6) {
-					// console.log(section[6])
 					var title = section[6].split("]]")[0].replace(/\[/g, "")
 				};
 
@@ -541,116 +518,6 @@ $.ajax({
     }
 });
 
-
-// //get recent code RED disasters news
-// $.ajax({
-//     url: natural_disasters,
-//     jsonp: "callback",
-//     dataType: "jsonp",
-//     success: function( data ) {
-
-//     	$('#disasters').append("<h5><em>Code Red</em></h5>")
-
-//     	for (var i = 0; i < data.length; i++) {
-//     		var content = data[i]
-    	
-// 	    	var severity = content["crisis_severity"]
-// 	    	var description = content["dc_description"]
-// 	    	var date = description.split(",")[0]
-// 	    	var nowdate = ""
-// 	    	if (date.split(" ")[0]=="From") {
-// 	    		nowdate = date.split(" ")[3].split("/")[0]
-// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-// 	    	}
-// 	    	else {
-// 	    		nowdate = date.split(" ")[1].split("/")[1]
-// 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
-// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-// 	    	};
-
-// 	    	var nowyear = ""
-// 	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
-// 	    	else { nowyear = date.split(" ")[1].split("/")[2] };
-
-// 	    	var title = content["dc_title"]
-// 	    	var what = content["dc_subject"][0]
-// 	    		what = what[0].toUpperCase() + what.slice(1)
-// 	    	var url = content["rdfs_seeAlso"]
-// 	    	var effected = content["crisis_population"]
-
-// 	    	var country = content["gn_parentCountry"][0]
-// 	    	if (country=="" || country==null) {country="unspecified country"};
-
-// 	    		country = country.split(" ")
-
-// 	    		for (var j = 0; j < country.length; j++) {
-// 	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
-// 	    		};
-// 	    		country = country.join(" ")
-
-// 	    	$('#disasters').append("<div class='news_item'> <img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
-
-// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
-// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong>***Code Red " + what + " in " + country + "</strong>: <p> <img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
-//     	};
-//     }
-// });
-
-// //get recent code ORANGE disasters news
-// $.ajax({
-//     url: natural_disasters_2,
-//     jsonp: "callback",
-//     dataType: "jsonp",
-//     success: function( data ) {
-
-//     	$('#disasters').append("<h5><em>Code Orange</em></h5>")
-
-//     	for (var i = 0; i < data.length; i++) {
-//     		var content = data[i]
-    	
-// 	    	var severity = content["crisis_severity"]
-// 	    	var description = content["dc_description"]
-// 	    	var date = description.split(",")[0]
-// 	    	var nowdate = ""
-// 	    	if (date.split(" ")[0]=="From") {
-// 	    		nowdate = date.split(" ")[3].split("/")[0]
-// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-// 	    	}
-// 	    	else {
-// 	    		nowdate = date.split(" ")[1].split("/")[1]
-// 	    		if (date.split(" ")[3]==null) {nowdate = date.split(" ")[1].split("/")[0]};
-// 	    		if (nowdate[0]==0) {nowdate=nowdate[1]};
-// 	    	};
-
-// 	    	var nowyear = ""
-// 	    	if (date.split(" ")[0]=="From") { nowyear = date.split(" ")[3].split("/")[2] }
-// 	    	else { nowyear = date.split(" ")[1].split("/")[2] };
-
-// 	    	var title = content["dc_title"]
-// 	    	var what = content["dc_subject"][0]
-// 	    		what = what[0].toUpperCase() + what.slice(1)
-// 	    	var url = content["rdfs_seeAlso"]
-// 	    	var effected = content["crisis_population"]
-
-// 	    	var country = content["gn_parentCountry"][0]
-// 	    	if (country=="" || country==null) {country="unspecified country"};
-
-// 	    		country = country.split(" ")
-
-// 	    		for (var j = 0; j < country.length; j++) {
-// 	    			country[j] = country[j][0].toUpperCase() + country[j].slice(1)
-// 	    		};
-// 	    		country = country.join(" ")
-
-// 	    	$('#disasters').append("<div class='news_item'><img src='flags/"+countryLetters[country]+".png'> <strong> " + what + " in " + country  + "</strong><br>" + date + "<br>" + title + "<br>" + " <a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
-
-// 	    	if (nowdate==window.day && nowyear==window.year) {$('#daily_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
-// 	    	if (nowdate==yesterday && nowyear==yesterday_year) {$('#yesterday_snapshot').append("<br><strong> Code Orange " + what + " in " + country + "</strong>: <p><img src='flags/"+countryLetters[country]+".png'>" + title + "</strong> <a target=_blank href="+ url + ">Info&nbsp;&#10138 </a> </p>")};
-
-//     	};
-//     }
-// });
-
 //get recent shipwrecks
 $.ajax({
     url: shipwrecks,
@@ -671,7 +538,6 @@ $.ajax({
 	    			if (new Date(date).setHours(0,0,0,0) == today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
 	    			if (new Date(date).setHours(0,0,0,0) == new Date(today.getDate()).setHours(0,0,0,0) - 1) {$('#yesterday_snapshot').append("<strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")};
 	    		};
-	    		// $('#daily_snapshot').prepend("<br><strong>" + country + " Shipwreck:</strong>  <p>" + headline + "<a href='" + url +"'> Story&nbsp;&#10138</a></p>")
 	 		};
     	};
     }
@@ -774,17 +640,6 @@ showandhide('.button_seven', "#conflict_updates")
 // 	}
 // });
 
-// show/hide subnavigation
-var showSubNav = function(button, other, sub) {
-	button.click(function(){
-		$(sub+" *").toggleClass("show")
-		$(other+" *").removeClass("show")
-	});
-};
-
-showSubNav($("#ongoing_button"), "#recent_sub_menu", "#ongoing_sub_menu")
-showSubNav($("#recent_button"), "#ongoing_sub_menu", "#recent_sub_menu")
-
 // bookmark this page
 
 // $(function() {
@@ -802,8 +657,26 @@ showSubNav($("#recent_button"), "#ongoing_sub_menu", "#recent_sub_menu")
 //   });
 // });
 
-}); //end of script
+// // PARALLAX
+// $(window).scroll(function () {
+// 	if ($(window).width() > 790) {
+// 		position = ($(this).scrollTop() / 2)-135
+// 	    $("header").css("background-position","50% " + position + "px");
+// 	};
+// });
 
+// show/hide subnavigation
+var showSubNav = function(button, other, sub) {
+	button.click(function(){
+		$(sub+" *").toggleClass("show")
+		$(other+" *").removeClass("show")
+	});
+};
+
+showSubNav($("#ongoing_button"), "#recent_sub_menu", "#ongoing_sub_menu")
+showSubNav($("#recent_button"), "#ongoing_sub_menu", "#recent_sub_menu")
+
+}); //end of script
 
 
 // get disasters data from rss feed
@@ -831,17 +704,12 @@ var yqlURL = [
     	var country = item.split("<gdacs:country>")[1].split("</gdacs:country>")[0]
     	if (country=="" || country==null) {country="unspecified country"};
 
-    	// $('#snapshots').append(item+"<br><br>")
-	    // if (alertlevel!="White") {
-    		$('#natural_disasters').append("<div class='news_item' style=border-color:"+alertlevel+"> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
-	    // };
+
+		$('#natural_disasters').append("<div class='news_item' style=border-color:"+alertlevel+"> <img src='flags/"+countryLetters[country]+".png'> " + dates + " <strong> <br>" + title + " in " + country  + "</strong> " + "<img src='" + image + "'>" + " <br><a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </div>")
 
 	    if (alertlevel!="Green" && alertlevel!="White") {
-	    	// $('#daily_snapshot').append("<br><strong><img src='flags/"+countryLetters[country]+".png'> Code "+ alertlevel +" alert: <br> <p>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")
-
 	    	if (toDate.setHours(0,0,0,0)==today.setHours(0,0,0,0)) {$('#daily_snapshot').append("<strong> Code <span style=color:"+alertlevel+">"+ alertlevel +"</span> alert: </strong> <br> <p> <img src='flags/"+countryLetters[country]+".png'> " + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
 	    	if ((fromDate.setHours(0,0,0,0) < today.setHours(0,0,0,0)-1) && (toDate.setHours(0,0,0,0) > today.setHours(0,0,0,0)-1)) {$('#yesterday_snapshot').append("<strong> Code <span style=color:"+alertlevel+">"+ alertlevel +"</span> alert: </strong> <br> <p> <img src='flags/"+countryLetters[country]+".png'>" + description+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p>")};
-
 	    };
     };
 })
@@ -865,26 +733,13 @@ var yqlURL = [
     	var title = item.split("<title>")[1].split("</title>")[0].split("(")[0].split(". ")[0].split(": ")[1]
     	if (title != undefined) { 
     		title = title.split(" - @")[0].split("http")[0] 
-    		// if (title.includes("http")) {title = "video"}
     	};
 
     	var country = findCountry(item)
 
     	var url = item.split("<link>")[1].split("<")[0]
 
-    	// console.log(item)
-
 		$('#conflict_updates').append("<strong><p><img src='flags/"+country+".png'>" + date.toLocaleString() + "</strong><br>" + title+ "<a target=_blank href="+ url + "> Info&nbsp;&#10138 </a> </p><br>")
 
     };
 })
-
-// // PARALLAX
-// $(window).scroll(function () {
-// 	if ($(window).width() > 790) {
-// 		position = ($(this).scrollTop() / 2)-135
-// 	    $("header").css("background-position","50% " + position + "px");
-// 	};
-// });
-
-
