@@ -543,16 +543,35 @@ $.ajax({
     }
 });
 
-// // get oil spills
-// $.ajax({
-//     url: oil_spills,
-//     jsonp: "callback",
-//     dataType: "jsonp",
-//     success: function( data ) {
-// 		var spills = data["parse"]["text"]["*"].split("section: Underway")[1].split("Complete</span>")[0].split(" title=")
-// 		$('#daily_snapshot').prepend(spills)
-//     }
-// });
+// get oil spills
+$.ajax({
+    url: oil_spills,
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function( data ) {
+		var spills = data["parse"]["text"]["*"].split("section: Underway")[1].split("Complete</span>")[0].split('<tr>')
+
+		for (var i = 2; i < spills.length; i++) {
+			var spill = spills[i]
+			var title = spill.split('title="')[1].split('"')[0]
+			var location = spill.split('<td align="left">')[2].split("</td>")[0].split("<br")[0].replace("<p>", "").replace("</p>", "").replace(/href=\"/g, "target='_blank' href=\"https://en.wikipedia.org")
+			var note = spill.split('<td')
+			
+			note = note[note.length-1].split("</td>")[0].replace(/\(([^)]+)\)/g, "").replace(" , ", ", ").replace(/href=\"/g, "target='_blank' href=\"https://en.wikipedia.org")
+			if (note[0]==">") {note = note.replace(">", "")};
+
+			if (note.split('"left">')[1] != undefined) {
+				note = note.split('"left">')[1]
+			};
+
+			url = "https://en.wikipedia.org" + spill.split("href")[1].split('"')[1].split('"')[0]
+
+			console.log(location)
+
+			$('#ongoing_oil_spills').append( "<br><p> <a href=" + url + " target='_blank'><strong>" + title + "</strong></a><br>" + location + "<br>" + note + " </p>" )
+		};
+    }
+});
 
 // coup attempts
 $.ajax({
@@ -565,7 +584,13 @@ $.ajax({
 		for (var i = 2; i < coups.length-1; i++) {
 			coup = coups[i].split("\n|")[1]
 			var title = coup.split("||")[0]
-			var date = coup.split("||")[1]
+			var date = coup.split("||")[1].split("}}")[0].replace("{{nowrap|", "")
+			var year = title.split(" ")[1].replace("[[", "")
+
+			// var endDate = date
+			// if (date.split(" – ")[1] != undefined) {
+			// 	endDate = date.split(" – ")[1]
+			// };
 
 			var country = coup.split("||")[3].split("[[")[1].split("]]")[0]
 			var status = coup.split("||")[2]
@@ -574,10 +599,11 @@ $.ajax({
 				var url = "http" + coup.split("http")[1].split("|")[0]
 			};
 			
-			// if (status == " Ongoing ") {
-			// 	$('#daily_snapshot').prepend("<br>Coup: <p>" + status + " in " + country + " on " + date+ "</p>")
-			// };
-		};
+			if (status == " Ongoing ") {
+				$('#daily_snapshot').prepend("<br><strong>Coup: </strong><p><img src=flags/"+countryLetters[country]+".png>" + status + " in " + country + " on " + date+ "</p>")
+			};
+
+		}; 
     }
 });
 
@@ -595,7 +621,7 @@ var showandhide = function(btn="#", div, other="#"){
 		$("#recent_sub_menu *").removeClass("show")
 		
 		// change url
-		translation = {".button_two":"wars", ".button_one":"protests", ".button_six":"disasters", ".button_three":"attacks", ".button_five":"deaths", ".button_four":"heads", ".button_seven":"conflictnews", ".about_button":"about", ".button_zero":"brief"}
+		translation = {".button_two":"wars", ".button_one":"protests", ".button_six":"disasters", ".button_three":"attacks", ".button_five":"deaths", ".button_four":"heads", ".button_seven":"conflictnews", ".about_button":"about", ".button_zero":"brief", ".spills_button":"spills"}
 		window.location.href = window.location.href.split("/")[0] + "#" + translation[btn]
 
 	});
@@ -603,7 +629,7 @@ var showandhide = function(btn="#", div, other="#"){
 	// use url to determine proper div to show
 	parameters = window.location.href.split("/");
 	parameters = parameters[parameters.length-1].replace("#", "");
-	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven", "about":".about_button"}
+	translation = {"wars":".button_two", "protests":".button_one", "disasters":".button_six", "attacks":".button_three", "deaths":".button_five", "heads":".button_four", "conflictnews":".button_seven", "about":".about_button", "spills":".spills_button"}
 	$(translation[parameters]).trigger('click');
 
 };
@@ -625,6 +651,8 @@ showandhide('.button_five', "#notable_deaths")
 showandhide('.button_six', "#natural_disasters")
 
 showandhide('.button_seven', "#conflict_updates")
+
+showandhide('.spills_button', "#ongoing_oil_spills")
 
 // // make navbar stick to top
 // $(window).scroll(function () {
