@@ -188,7 +188,8 @@ var getWikimediaNews = function(url, appendto, title, update){
 						for (var i = 0; i < double_def_array.length; i++) {
 							parsed = parsed.replace(double_def_array[i] + "]]", "")
 						};
-						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z][a-z]/g)[0] + " "
+						// return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/[a-z]\. [A-Z]/g)[0].split(/[a-z]\." [A-Z][a-z]/g)[0] + " "
+						return parsed.replace(/\[/g, "").replace(/\]/g, "").replace(/\|/g, "").split(/\. [A-Z]/g)[0].split(/\." [A-Z][a-z]/g)[0] + ". "
 					}
 
 					// make sure longest description is shown
@@ -328,7 +329,7 @@ $.ajax({
     dataType: "jsonp",
     success: function( data ) {
 
-		attacks = data["parse"]["wikitext"]["*"].split('==List==')[1].split("|-")
+		attacks = data["parse"]["wikitext"]["*"].split('== '+window.last_month+' ==')[0].split("|-")
 
 		var last_date = attacks[attacks.length-1].split("|")[1]
 
@@ -772,7 +773,8 @@ var yqlURL = [
     xmlContent = $(data.results[0]);
     var Abstract = $(xmlContent).find("channel").html();
     var output = Abstract.split("<item>")
-    for (var i = output.length-1; i > 0; i--) {
+	for (var i = 2; i < output.length; i++) {
+
     	var item = output[i]
 
     	var date = new Date(item.split("<pubdate>")[1].split("</pubdate>")[0])
