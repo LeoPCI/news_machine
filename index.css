@@ -6,7 +6,7 @@ body {
 	display: -ms-grid;
     display: grid;
   	grid-template-columns: 20% 20% 20% 20% 20%;
-  	grid-template-rows: 20% 20% 20% 20% 20%;
+  	grid-template-rows: 260px 20% 20% 20% 20%;
 }
 
 h1, h2, h3, h5, h6 {
@@ -108,9 +108,11 @@ button:focus {
 
 #ongoing {
 	width:100%;
+	max-width: 1000px;
 	margin:auto;
 	text-align:center;
-	grid-column-start: 2;
+	/*grid-column-start: 2;*/
+	grid-column-start: 1;
 	grid-column-end: -1;
 }
 #ongoing-wars {
